@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import "./styling/App.css";
-import { Outlet, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Outlet } from "react-router-dom";
+// import axios from "axios";
+import Navbar from "./Components/Navigation/Navbar";
 
 function App() {
   // const navigate = useNavigate();
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <header className="App-header">
         <h1 className="text-3xl font-bold underline text-purple-800 border-dotted">
           Hello world!
