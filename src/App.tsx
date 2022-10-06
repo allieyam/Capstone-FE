@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function App() {
-  //   const navigate = useNavigate();
+  // const navigate = useNavigate();
   //   const [userId, setUserId] = useState("");
   //   const [resume, setResume] = useState([]);
 
@@ -44,19 +44,8 @@ function App() {
         <h1 className="text-3xl font-bold underline text-purple-800 border-dotted">
           Hello world!
         </h1>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Outlet />
       </header>
-      <Outlet />
     </div>
   );
 }
