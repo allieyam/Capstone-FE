@@ -16,27 +16,114 @@ function Template() {
       <Template1
         name={"allie"}
         email={"allie@allie.com"}
-        keyskills={"im good at this"}
-        work={"i worked here"}
-        education={"i attended this school"}
+        keyskills={[
+          { name: "python", description: "im good at this" },
+          { name: "javascript", description: "im good at this too" },
+        ]}
+        work={[
+          {
+            place: "apple",
+            description: "i worked at apple",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "pear",
+            description: "i worked at pear",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]}
+        education={[
+          {
+            place: "orange",
+            description: "i studient at orange",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "mangosteen",
+            description: "i studient at mangosteen",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]}
         phone={"1234 5678"}
       />
       <p>Template 2</p>
       <Template2
         name={"allie"}
         email={"allie@allie.com"}
-        keyskills={"im good at this"}
-        work={"i worked here"}
-        education={"i attended this school"}
+        keyskills={[
+          { name: "python", description: "im good at this" },
+          { name: "javascript", description: "im good at this too" },
+        ]}
+        work={[
+          {
+            place: "apple",
+            description: "i worked at apple",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "pear",
+            description: "i worked at pear",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]}
+        education={[
+          {
+            place: "orange",
+            description: "i studient at orange",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "mangosteen",
+            description: "i studient at mangosteen",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]}
         phone={"1234 5678"}
       />
       <p>Template 3</p>
       <Template3
         name={"allie"}
         email={"allie@allie.com"}
-        keyskills={"im good at this"}
-        work={"i worked here"}
-        education={"i attended this school"}
+        keyskills={[
+          { name: "python", description: "im good at this" },
+          { name: "javascript", description: "im good at this too" },
+        ]}
+        work={[
+          {
+            place: "apple",
+            description: "i worked at apple",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "pear",
+            description: "i worked at pear",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]}
+        education={[
+          {
+            place: "orange",
+            description: "i studient at orange",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+          {
+            place: "mangosteen",
+            description: "i studient at mangosteen",
+            date_started: "date started",
+            date_ended: "date started",
+          },
+        ]}
         phone={"1234 5678"}
       />
       <Link to="add-template">
