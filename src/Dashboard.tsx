@@ -3,6 +3,13 @@ import "./styling/App.css";
 import { Link } from "react-router-dom";
 import Template from "./Components/Template";
 
+//Define users in dashboard
+
+interface currUser {
+  name: string;
+  email: string;
+}
+
 function Dashboard() {
   return (
     <div>
