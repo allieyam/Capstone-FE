@@ -1,0 +1,52 @@
+.template3-container {
+  width: 21cm;
+  height: 29.7cm;
+  background: white;
+  display: flex;
+  flex-direction: row;
+
+  color: black;
+  font-size: 20px;
+}
+
+.template3-name {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.template3-header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 4px solid grey;
+
+  padding: 20px;
+  width: 30%;
+}
+
+.template3-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.template3-bottom-headers {
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+.template3-blurb {
+  width: 80%;
+  border-bottom: 2px solid lightgrey;
+  padding: 20px;
+}
+
+.template3-info {
+  width: 70%;
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+}

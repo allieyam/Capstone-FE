@@ -1,20 +1,49 @@
 import React from "react";
-interface Props {
-  name: string;
-  email: string;
-  keyskills: string;
-  work: string;
-  education: string;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UserTypes } from "../types";
+import "../../styling/TemplateStyling/template1.css";
+
+//Define the interface here
+interface Style {
+  data: {
+    font: string;
+    fontSize: number;
+    color: string;
+  };
 }
 
-export const template1 = ({
+function Template1({
   name,
   email,
   keyskills,
   work,
   education,
-}: Props) => {
-  // dumb component for template styling
-  // div class names will be specific to each template and have its own css stylesheet
-  return <div>template1</div>;
-};
+  phone,
+}: UserTypes) {
+  // const obj = { font: "A", fontSize: 8, color: "white" };
+  return (
+    <div className="template">
+      <div className="template1-container">
+        <div className="template1-header-container">
+          <div className="template1-name">{name}</div>
+          <div className="template1-contact-container">
+            <div className="template1-email">
+              {/* <FontAwesomeIcon icon="far fa-envelope" /> */}📧
+              {email}
+            </div>
+            <div className="template1-phone">📱{phone}</div>
+          </div>
+        </div>
+        <div className="template1-blurb">Bla bla blablablbalba</div>
+        <div className="template1-bottom-headers">Work Experience</div>
+        <div className="template1-work">{work}</div>
+        <div className="template1-bottom-headers">Education</div>
+        <div className="template1-education">{education}</div>
+        <div className="template1-bottom-headers">Key Skills</div>
+        <div className="template1-skills">{keyskills}</div>
+      </div>
+    </div>
+  );
+}
+
+export default Template1;
