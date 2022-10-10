@@ -1,5 +1,7 @@
-import React, { MouseEvent } from "react";
-import "../styling/App.css";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { UserTypes } from "../types";
+import "../../styling/TemplateStyling/template1.css";
 
 //Define the interface here
 interface Style {
@@ -10,28 +12,36 @@ interface Style {
   };
 }
 
-// function CssStyle({ data: { font, fontSize, color } }: Style) {
-//   return (
-//     <div style={`font-size:${fontSize}; color:${color}; font:${font}`}></div>
-//   );
-// }
-
-function Template1() {
-  const handleSubmit = (e: MouseEvent) => {
-    console.log("clicked");
-  };
-
+function Template1({
+  name,
+  email,
+  keyskills,
+  work,
+  education,
+  phone,
+}: UserTypes) {
   // const obj = { font: "A", fontSize: 8, color: "white" };
   return (
-    <div>
-      <p>Template1 1</p>
-
-      {/* Example
-      <div>
-        <CssStyle data={obj} />
-      </div> */}
-
-      <button onClick={(e) => handleSubmit(e)}></button>
+    <div className="template">
+      <div className="template1-container">
+        <div className="template1-header-container">
+          <div className="template1-name">{name}</div>
+          <div className="template1-contact-container">
+            <div className="template1-email">
+              {/* <FontAwesomeIcon icon="far fa-envelope" /> */}📧
+              {email}
+            </div>
+            <div className="template1-phone">📱{phone}</div>
+          </div>
+        </div>
+        <div className="template1-blurb">Bla bla blablablbalba</div>
+        <div className="template1-bottom-headers">Work Experience</div>
+        <div className="template1-work">{work}</div>
+        <div className="template1-bottom-headers">Education</div>
+        <div className="template1-education">{education}</div>
+        <div className="template1-bottom-headers">Key Skills</div>
+        <div className="template1-skills">{keyskills}</div>
+      </div>
     </div>
   );
 }
