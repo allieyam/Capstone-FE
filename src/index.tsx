@@ -8,6 +8,7 @@ import Dashboard from "./Dashboard";
 import Template from "./Components/Template";
 import AddTemplate from "./Components/AddTemplate";
 import Form from "./Components/Form";
+import TemplateEdit from "./Components/TemplateEdit";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -21,7 +22,9 @@ root.render(
         <Route path="form" element={<Form />} />
         <Route path="template" element={<Template />}>
           <Route path="add-template" element={<AddTemplate />} />
+          <Route path="edit-template" element={<TemplateEdit />} />
         </Route>
+
         <Route path="*" element={"Nothing here!"} />
       </Route>
     </Routes>

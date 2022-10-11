@@ -13,7 +13,7 @@ function Template() {
   return (
     <div>
       <p>Template 1</p>
-      <Template1
+      {/* <Template1
         name={"allie"}
         email={"allie@allie.com"}
         keyskills={[
@@ -49,9 +49,9 @@ function Template() {
           },
         ]}
         phone={"1234 5678"}
-      />
+      /> */}
       <p>Template 2</p>
-      <Template2
+      {/* <Template2
         name={"allie"}
         email={"allie@allie.com"}
         keyskills={[
@@ -87,9 +87,9 @@ function Template() {
           },
         ]}
         phone={"1234 5678"}
-      />
+      /> */}
       <p>Template 3</p>
-      <Template3
+      {/* <Template3
         name={"allie"}
         email={"allie@allie.com"}
         keyskills={[
@@ -125,8 +125,9 @@ function Template() {
           },
         ]}
         phone={"1234 5678"}
-      />
+      /> */}
       <Link to="add-template">
+        Add a Template
         <AddTemplate />
       </Link>
     </div>
