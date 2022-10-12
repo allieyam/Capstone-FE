@@ -7,7 +7,8 @@ import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import Template from "./Components/Template";
 import AddTemplate from "./Components/AddTemplate";
-import Form from "./Components/Form";
+import Form from "./Components/AddResume/Form";
+import UserProfile from "./backup/UserProfile";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -19,6 +20,7 @@ root.render(
       <Route path="/" element={<App />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="form" element={<Form />} />
+        <Route path="userp" element={<UserProfile />} />
         <Route path="template" element={<Template />}>
           <Route path="add-template" element={<AddTemplate />} />
         </Route>

@@ -28,7 +28,8 @@ function Template1({
           <div className="template1-name">{name}</div>
           <div className="template1-contact-container">
             <div className="template1-email">
-              {/* <FontAwesomeIcon icon="far fa-envelope" /> */}📧
+              {/* <FontAwesomeIcon icon="far fa-envelope" /> */}
+              📧
               {email}
             </div>
             <div className="template1-phone">📱{phone}</div>

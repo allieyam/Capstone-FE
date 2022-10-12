@@ -44,7 +44,7 @@ function App() {
       <Navbar />
       <header className="App-header">
         <h1 className="text-3xl font-bold text-purple-800 border-dotted">
-          Fill in your details!
+          Hi!{" "}
         </h1>
         <br />
         <Outlet />
