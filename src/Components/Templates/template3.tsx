@@ -27,11 +27,42 @@ function Template3({
         <div className="template3-info">
           <div className="template3-blurb">Bla bla blablablbalba</div>
           <div className="template3-bottom-headers">Work Experience</div>
-          <div className="template3-work">{work}</div>
+          <div className="template3-work">
+            {work.map((place, index) => {
+              return (
+                <div className="template3-workplace" key={index}>
+                  {place.place}
+                  {place.description}
+                  {place.date_started}
+                  {place.date_ended}
+                </div>
+              );
+            })}
+          </div>
           <div className="template3-bottom-headers">Education</div>
-          <div className="template3-education">{education}</div>
+          <div className="template3-education">
+            {" "}
+            {education.map((place, index) => {
+              return (
+                <div className="template3-educationplace" key={index}>
+                  {place.place}
+                  {place.description}
+                  {place.date_started}
+                  {place.date_ended}
+                </div>
+              );
+            })}
+          </div>
           <div className="template3-bottom-headers">Key Skills</div>
-          <div className="template3-skills">{keyskills}</div>
+          <div className="template3-skills">
+            {keyskills.map((skill, index) => {
+              return (
+                <div className="template1-skill" key={index}>
+                  {skill.name}:{skill.description}
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="template3-header-container">
           <div className="template3-name">{name}</div>
