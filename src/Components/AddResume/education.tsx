@@ -2,33 +2,33 @@ import React, { useState, ChangeEvent } from "react";
 import "../../styling/App.css";
 import { useNavigate } from "react-router-dom";
 
-function Work({ workExperience, setWorkExperience }: any) {
+function Education({ formValues, setFormValues }: any) {
+  const navigate = useNavigate();
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
   const [dateStarted, setDateStarted] = useState("");
   const [dateEnded, setDateEnded] = useState("");
 
-  const navigate = useNavigate();
-
-  const handleWork = (
+  const handleEducation = (
     i: number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setWorkExperience((currentworkExperience: any) => {
-      const newWork = currentworkExperience.map((work: any, index: number) => {
-        if (index === i) {
-          return { ...work, [event.target.name]: event.target.value };
+    // const newFormValues: FormValue[] = [...formValues];
+    // newFormValues[i][event.target.name] = event.target.value;
+    setFormValues((currentFormValues: any) => {
+      const newFormValues = currentFormValues.map(
+        (formValue: any, index: number) => {
+          if (index === i) {
+            return { ...formValue, [event.target.name]: event.target.value };
+          }
+          return formValue;
         }
-        return work;
-      });
-      console.log("newWork", newWork);
-      return newWork;
+      );
+      console.log("newFormValues", newFormValues);
+      return newFormValues;
     });
     switch (event.target.name) {
       case "place":
-        setPlace(event.target.value);
-        break;
-      case "position":
         setPlace(event.target.value);
         break;
       case "date_started":
@@ -44,12 +44,11 @@ function Work({ workExperience, setWorkExperience }: any) {
     }
   };
 
-  const addWorkField = () => {
-    setWorkExperience([
-      ...workExperience,
+  const addFormFields = () => {
+    setFormValues([
+      ...formValues,
       {
         place: "",
-        position: "",
         description: "",
         date_started: "",
         date_ended: "",
@@ -57,47 +56,38 @@ function Work({ workExperience, setWorkExperience }: any) {
     ]);
   };
 
-  let removeWorkField = (index: number) => {
-    let newWork = [...workExperience];
-    newWork.splice(index, 1);
-    setWorkExperience(newWork);
+  let removeFormFields = (index: number) => {
+    let newFormValues = [...formValues];
+    newFormValues.splice(index, 1);
+    setFormValues(newFormValues);
   };
 
   return (
     <div className="card">
       <div className="card-body">
-        <h3 className="card-title">Work Experience</h3>
+        <h3 className="card-title">Education</h3>
         <hr />
       </div>
       <div>
         <>
-          {workExperience.map((element: any, index: number) => (
+          {formValues.map((element: any, index: number) => (
             <div className="form-inline" key={index}>
               <form>
                 <div className="flex flex-col p-5 w-full">
                   <div className="col-lg-12 text-left">
                     <h3>
                       <b>
-                        <i className="fas fa-check-circle mr-1"></i>3
+                        <i className="fas fa-check-circle mr-1"></i>1
                       </b>
                     </h3>
                   </div>
                   <div className="col-lg-4 text-left">
-                    <label>Company*</label>
+                    <label>Institute/Organisation*</label>
                     <input
                       className=" text-gray-700 font-bold"
                       type="text"
                       name="place"
-                      onChange={(event) => handleWork(index, event)}
-                    />
-                  </div>
-                  <div className="col-lg-4 text-left">
-                    <label>Position*</label>
-                    <input
-                      className=" text-gray-700 font-bold"
-                      type="text"
-                      name="position"
-                      onChange={(event) => handleWork(index, event)}
+                      onChange={(event) => handleEducation(index, event)}
                     />
                   </div>
                   <div className="col-lg-4 text-left">
@@ -106,7 +96,7 @@ function Work({ workExperience, setWorkExperience }: any) {
                       className=" text-gray-700 font-bold"
                       type="text"
                       name="date_started"
-                      onChange={(event) => handleWork(index, event)}
+                      onChange={(event) => handleEducation(index, event)}
                     />
                   </div>
                   <div className="col-lg-4 text-left">
@@ -115,7 +105,7 @@ function Work({ workExperience, setWorkExperience }: any) {
                       className=" text-gray-700 font-bold"
                       type="text"
                       name="date_ended"
-                      onChange={(event) => handleWork(index, event)}
+                      onChange={(event) => handleEducation(index, event)}
                     />
                   </div>
                   <div className="col-lg-4 text-left">
@@ -124,7 +114,7 @@ function Work({ workExperience, setWorkExperience }: any) {
                       className=" text-gray-700 font-bold"
                       type="text"
                       name="description"
-                      onChange={(event) => handleWork(index, event)}
+                      onChange={(event) => handleEducation(index, event)}
                     />
                   </div>
                 </div>
@@ -133,7 +123,7 @@ function Work({ workExperience, setWorkExperience }: any) {
                 <button
                   type="button"
                   className="button remove"
-                  onClick={() => removeWorkField(index)}
+                  onClick={() => removeFormFields(index)}
                 >
                   Remove
                 </button>
@@ -143,7 +133,7 @@ function Work({ workExperience, setWorkExperience }: any) {
           <button
             className="button add"
             type="button"
-            onClick={(e: any) => addWorkField()}
+            onClick={() => addFormFields()}
           >
             Add
           </button>
@@ -155,4 +145,4 @@ function Work({ workExperience, setWorkExperience }: any) {
   );
 }
 
-export default Work;
+export default Education;

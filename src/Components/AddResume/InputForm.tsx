@@ -1,25 +1,23 @@
 import { ChangeEvent } from "react";
 import { currUser } from "../types";
+import Education from "./education";
 import Work from "./work";
 
 export default function InputForm({
   name,
   contact,
   email,
-  education,
-  skill,
   handleChange,
   handleSubmit,
-  handleEducation,
-  addFormFields,
-  formValues,
-  removeFormFields,
   handleSkill,
   allSkills,
   addSkillfields,
   removeSkills,
   workExperience,
   setWorkExperience,
+  summary,
+  formValues,
+  setFormValues,
 }: currUser) {
   return (
     <div>
@@ -84,112 +82,9 @@ export default function InputForm({
             />
           </div>
         </div>
-        <div className="card">
-          <div className="card-body">
-            <h3 className="card-title">Education</h3>
-            <hr />
-          </div>
-          <div>
-            <>
-              {formValues.map((element: any, index) => (
-                <div className="form-inline" key={index}>
-                  <form>
-                    <div className="flex flex-col p-5 w-full">
-                      <div className="col-lg-12 text-left">
-                        <h3>
-                          <b>
-                            <i className="fas fa-check-circle mr-1"></i>1
-                          </b>
-                        </h3>
-                      </div>
-                      <div className="col-lg-4 text-left">
-                        <label>Institute/Organisation*</label>
-                        <input
-                          className=" text-gray-700 font-bold"
-                          type="text"
-                          name="place"
-                          onChange={(event) => handleEducation(index, event)}
-                        />
-                      </div>
-                      <div className="col-lg-4 text-left">
-                        <label>Start Date</label>
-                        <input
-                          className=" text-gray-700 font-bold"
-                          type="text"
-                          name="date_started"
-                          onChange={(event) => handleEducation(index, event)}
-                        />
-                      </div>
-                      <div className="col-lg-4 text-left">
-                        <label>End Date*</label>
-                        <input
-                          className=" text-gray-700 font-bold"
-                          type="text"
-                          name="date_ended"
-                          onChange={(event) => handleEducation(index, event)}
-                        />
-                      </div>
-                      <div className="col-lg-4 text-left">
-                        <label>Description*</label>
-                        <input
-                          className=" text-gray-700 font-bold"
-                          type="text"
-                          name="description"
-                          onChange={(event) => handleEducation(index, event)}
-                        />
-                      </div>
-                    </div>
-                  </form>
-                  {index ? (
-                    <button
-                      type="button"
-                      className="button remove"
-                      onClick={() => removeFormFields(index)}
-                    >
-                      Remove
-                    </button>
-                  ) : null}
-                </div>
-              ))}
-              <button
-                className="button add"
-                type="button"
-                onClick={(e: any) => addFormFields(e)}
-              >
-                Add
-              </button>
-              <br />
-              <br />
-            </>
-          </div>
+        <div>
           <div>
             {/* Skills */}
-            {/* <div className="flex flex-col p-5 w-full">
-              <div className="w-full px-3">
-                <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  placeholder="grid-work"
-                >
-                  Skills{" "}
-                </label>
-                <input
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Add skills"
-                  name="skill"
-                  value={skill}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="col-lg-4 text-left">
-                <label>Description</label>
-                <input
-                  className=" text-gray-700 font-bold"
-                  type="text"
-                  onChange={handleChange}
-                />
-              </div>
-              <button>Add</button>
-            </div> */}
             {/* Skills */}
           </div>
           <div className="card">
@@ -215,7 +110,7 @@ export default function InputForm({
                           <input
                             className=" text-gray-700 font-bold"
                             type="text"
-                            name="skills"
+                            name="name"
                             onChange={(event) => handleSkill(index, event)}
                           />
                         </div>
@@ -224,7 +119,7 @@ export default function InputForm({
                           <input
                             className=" text-gray-700 font-bold"
                             type="text"
-                            name="skilldes"
+                            name="description"
                             onChange={(event) => handleSkill(index, event)}
                           />
                         </div>
@@ -252,6 +147,27 @@ export default function InputForm({
                 <br />
               </>
             </div>
+            <Education formValues={formValues} setFormValues={setFormValues} />
+            <Work
+              workExperience={workExperience}
+              setWorkExperience={setWorkExperience}
+            />
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full px-3">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                  Summary
+                </label>
+                <input
+                  id="summary"
+                  // className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  placeholder="Fill in the blurb..."
+                  name="summary"
+                  value={summary}
+                  onChange={handleChange}
+                ></input>
+              </div>
+            </div>
           </div>
           <button
             type="submit"
@@ -260,10 +176,6 @@ export default function InputForm({
             Submit
           </button>
         </div>
-        <Work
-          workExperience={workExperience}
-          setWorkExperience={setWorkExperience}
-        />
       </form>
     </div>
   );

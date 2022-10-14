@@ -13,7 +13,7 @@ interface Style {
 }
 
 function Template2({
-  name,
+  username,
   email,
   keyskills,
   work,
@@ -24,7 +24,7 @@ function Template2({
     <div className="template">
       <div className="template2-container">
         <div className="template2-header-container">
-          <div className="template2-name">{name}</div>
+          <div className="template2-name">{username}</div>
           <div className="template2-contact-container">
             <div className="template2-email">{email}</div>
             <div className="template2-phone">{phone}</div>

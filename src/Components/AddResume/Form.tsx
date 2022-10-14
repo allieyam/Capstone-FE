@@ -9,10 +9,7 @@ function Form() {
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
 
-  const [place, setPlace] = useState("");
-  const [description, setDescription] = useState("");
-  const [dateStarted, setDateStarted] = useState("");
-  const [dateEnded, setDateEnded] = useState("");
+  const user_id = 2;
 
   const initialFormValues = [
     {
@@ -29,15 +26,17 @@ function Form() {
   const [skillDes, setSkillDes] = useState("");
   const initialSkill = [
     {
-      skills: "",
+      name: "",
       description: "",
     },
   ];
   type AllSkill = typeof initialSkill[number];
   const [allSkills, setAllSkills] = useState<AllSkill[]>(initialSkill);
+
   const initialWork = [
     {
       place: "",
+      position: "",
       description: "",
       date_started: "",
       date_ended: "",
@@ -45,7 +44,7 @@ function Form() {
   ];
   type work = typeof initialWork[number];
   const [workExperience, setWorkExperience] = useState<work[]>(initialWork);
-
+  const [summary, setSummary] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,38 +58,8 @@ function Form() {
       case "contact":
         setContact(event.target.value);
         break;
-      default:
-    }
-  };
-
-  const handleEducation = (
-    i: number,
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    // const newFormValues: FormValue[] = [...formValues];
-    // newFormValues[i][event.target.name] = event.target.value;
-    setFormValues((currentFormValues) => {
-      const newFormValues = currentFormValues.map((formValue, index) => {
-        if (index === i) {
-          return { ...formValue, [event.target.name]: event.target.value };
-        }
-        return formValue;
-      });
-      console.log("newFormValues", newFormValues);
-      return newFormValues;
-    });
-    switch (event.target.name) {
-      case "place":
-        setPlace(event.target.value);
-        break;
-      case "date_started":
-        setDateStarted(event.target.value);
-        break;
-      case "date_ended":
-        setDateEnded(event.target.value);
-        break;
-      case "description":
-        setDescription(event.target.value);
+      case "summary":
+        setSummary(event.target.value);
         break;
       default:
     }
@@ -114,7 +83,7 @@ function Form() {
       case "skills":
         setSkills(event.target.value);
         break;
-      case "skilldes":
+      case "description":
         setSkillDes(event.target.value);
         break;
       default:
@@ -125,7 +94,7 @@ function Form() {
     event.preventDefault();
     console.log("clicked");
 
-    // Send request to create new listing in backend
+    // Send request to create new resume in backend
     await axios
       .post(`${process.env.REACT_APP_API_SERVER}`, {
         name,
@@ -135,6 +104,11 @@ function Form() {
         keySkills: allSkills,
         contact,
       })
+      // // Send request to create new resume in backend
+      // await axios
+      //   .post(`${process.env.REACT_APP_API_SERVER}/${user_id}/cv`, {
+      //     summary,
+      //   })
       .then((res) => {
         // Clear form state
         setName("");
@@ -148,32 +122,14 @@ function Form() {
       });
   };
 
-  const addFormFields = () => {
-    setFormValues([
-      ...formValues,
-      {
-        place: "",
-        description: "",
-        date_started: "",
-        date_ended: "",
-      },
-    ]);
-  };
-
   const addSkillfields = () => {
     setAllSkills([
       ...allSkills,
       {
-        skills: "",
+        name: "",
         description: "",
       },
     ]);
-  };
-
-  let removeFormFields = (index: number) => {
-    let newFormValues = [...formValues];
-    newFormValues.splice(index, 1);
-    setFormValues(newFormValues);
   };
 
   let removeSkills = (index: number) => {
@@ -182,8 +138,6 @@ function Form() {
     setAllSkills(newSkill);
   };
 
-  console.log(formValues);
-
   return (
     <div>
       <p>
@@ -191,21 +145,22 @@ function Form() {
           name={name}
           contact={contact}
           email={email}
-          // workExperience={workExperience}
+          summary={summary}
           education={formValues}
           skill={skills}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          handleEducation={handleEducation}
-          addFormFields={addFormFields}
-          removeFormFields={removeFormFields}
-          formValues={formValues}
           handleSkill={handleSkill}
           allSkills={allSkills}
           addSkillfields={addSkillfields}
           removeSkills={removeSkills}
+          setFormValues={setFormValues}
+          formValues={formValues}
           workExperience={workExperience}
           setWorkExperience={setWorkExperience}
+          // handleEducation={handleEducation}
+          // addFormFields={addFormFields}
+          // removeFormFields={removeFormFields}
         />
       </p>
     </div>

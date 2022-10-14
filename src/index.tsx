@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -7,14 +7,14 @@ import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import Template from "./Components/Template";
 import AddTemplate from "./Components/AddTemplate";
-
-import Form from "./Components/Form";
-import TemplateEdit from "./Components/TemplateEdit";
-
+import Form from "../src/Components/AddResume/Form";
+import TemplateEdit from "./Components/Navigation/TemplateEdit";
+import UserProfile from "./backup/UserProfile";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <BrowserRouter>
     <Routes>

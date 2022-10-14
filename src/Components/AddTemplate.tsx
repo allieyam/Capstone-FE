@@ -20,11 +20,7 @@ function AddTemplate() {
   useEffect(() => {
     getUserData();
   });
-  return (
-    <div>
-      <p>Add Template</p>
-    </div>
-  );
+  return <div>{/* <p>Add Template</p> */}</div>;
 }
 
 export default AddTemplate;

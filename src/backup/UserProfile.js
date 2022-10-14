@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function UserProfile() {
-  const [userProfile, setUserProfile] = useState([]);
+  const [userProfiles, setUserProfile] = useState([]);
 
   const getInitialData = async () => {
     axios.get(`${process.env.REACT_APP_API_SERVER}`).then((response) => {
@@ -16,11 +16,14 @@ function UserProfile() {
     getInitialData();
   }, []);
 
+  console.log(userProfiles);
+
   return (
     <div>
-      {userProfile && userProfile.length > 0
-        ? userProfile.map((userProfile, index) => {
-            return <div key={index}>{userProfile.work}</div>;
+      {userProfiles && userProfiles.length > 0
+        ? userProfiles.map((profile, index) => {
+            console.log(profile);
+            return <div key={index}>{profile.name}</div>;
           })
         : null}{" "}
     </div>
