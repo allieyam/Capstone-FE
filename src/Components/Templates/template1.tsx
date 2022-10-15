@@ -23,97 +23,9 @@ function Template1({
   user,
   updateEducation,
   updateAll,
+  updateSkill,
+  updateWork,
 }: UserTypes) {
-  //Initialise skills
-  const initialSkill = [
-    {
-      name: "",
-      description: "",
-    },
-  ];
-
-  const [skills, setSkills] = useState("");
-  const [skillDes, setSkillDes] = useState("");
-
-  type AllSkill = typeof initialSkill[number];
-  const [allSkills, setAllSkills] = useState<AllSkill[]>(initialSkill);
-  const handleSkill = (event: ChangeEvent<HTMLInputElement>) => {
-    switch (event.target.name) {
-      case "skills":
-        setSkills(event.target.value);
-        break;
-      case "description":
-        setSkillDes(event.target.value);
-        break;
-      default:
-    }
-    setAllSkills([
-      {
-        name: skills,
-        description: skillDes,
-      },
-    ]);
-  };
-
-  //Education
-  // const [place, setPlace] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [dateStarted, setDateStarted] = useState("");
-  // const [dateEnded, setDateEnded] = useState("");
-  // const initialFormValues = [
-  //   {
-  //     place: "",
-  //     description: "",
-  //     date_started: "",
-  //     date_ended: "",
-  //   },
-  // ];
-  // type FormValue = typeof initialFormValues[number];
-  // const [formValues, setFormValues] = useState<FormValue[]>(initialFormValues);
-  // const handleEducation = (event: ChangeEvent<HTMLInputElement>) => {
-  //   switch (event.target.name) {
-  //     case "place":
-  //       setPlace(event.target.value);
-  //       break;
-  //     case "date_started":
-  //       setDateStarted(event.target.value);
-  //       break;
-  //     case "date_ended":
-  //       setDateEnded(event.target.value);
-  //       break;
-  //     case "description":
-  //       setDescription(event.target.value);
-  //       break;
-  //     default:
-  //   }
-  //   setFormValues([
-  //     {
-  //       place: "",
-  //       description: "",
-  //       date_started: "",
-  //       date_ended: "",
-  //     },
-  //   ]);
-  // };
-
-  // const [username, setUsername] = useState("");
-  // const [mail, setMail] = useState("");
-  // const [contact, setContact] = useState("");
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   switch (event.target.name) {
-  //     case "name":
-  //       setUsername(event.target.value);
-  //       break;
-  //     case "email":
-  //       setMail(event.target.value);
-  //       break;
-  //     case "contact":
-  //       setContact(event.target.value);
-  //       break;
-  //     default:
-  //   }
-  // };
-
   //set to editing mode
   const [toggle, setToggle] = useState(true);
 
@@ -133,12 +45,12 @@ function Template1({
         name: username,
         email: email,
         contact: phone,
-        keySkills: allSkills,
+        keySkills: keyskills,
         education: education,
       })
       .then((res) => {
         // Clear form state
-        setAllSkills(initialSkill);
+        console.log(res);
       });
   };
 
@@ -163,7 +75,7 @@ function Template1({
           <div className="template1-contact-container">
             <div className="template1-email">
               {/* <FontAwesomeIcon icon="far fa-envelope" /> */}
-              {/* 📧 */}
+              📧
               {toggle ? (
                 email
               ) : (
@@ -195,46 +107,68 @@ function Template1({
           </div>
         </div>
         <div className="template1-blurb">Summary</div>
-        {/* <div className="template1-bottom-headers">Experience</div>
+        <div className="template1-bottom-headers">Work Experience</div>
         <div className="template1-work">
-          {toggle ? (
-            <div>
-              <>
-                {work.map((place, index) => {
-                  return (
-                    <div className="template1-workplace" key={index}>
-                      {place.place}
-                      <br />
-                      {place.description}
-                      <br />
-                      {place.date_started}
-                      <br />
-                      {place.date_ended}
-                    </div>
-                  );
-                })}
-              </>
-            </div>
-          ) : (
-            <div>
-              <input
-                className=" text-gray-700 font-bold"
-                type="text"
-                name="place"
-                placeholder="COMPANY"
-                // onChange={(event) => handleSkill(event)}
-              />
-              <br />
-              <input
-                className=" text-gray-700 font-bold"
-                type="text"
-                name="description"
-                placeholder="DESCRIPTION"
-                // onChange={(event) => handleSkill(event)}
-              />
-            </div>
-          )}
-        </div> */}
+          {work.map((company, index) => {
+            return toggle ? (
+              <div className="template1-workplace" key={index}>
+                {company.place}
+                <br />
+                {company.description}
+                <br />
+                {company.date_started}
+                <br />
+                {company.date_ended}
+              </div>
+            ) : (
+              <div className="template1-educationplace" key={index}>
+                <input
+                  className=" text-gray-700 font-bold"
+                  type="text"
+                  name="place"
+                  placeholder="COMPANY"
+                  value={company.place}
+                  onChange={(event) =>
+                    updateWork(index, "place", event.target.value)
+                  }
+                />
+                <br />
+                <input
+                  className=" text-gray-700 font-bold"
+                  type="text"
+                  name="description"
+                  placeholder="DESCRIPTION"
+                  value={company.description}
+                  onChange={(event) =>
+                    updateWork(index, "description", event.target.value)
+                  }
+                />
+                <br />
+                <input
+                  className=" text-gray-700 font-bold"
+                  type="date"
+                  name="date_started"
+                  placeholder="date_started"
+                  value={company.date_started}
+                  onChange={(event) =>
+                    updateWork(index, "date_started", event.target.value)
+                  }
+                />
+                <br />
+                <input
+                  className=" text-gray-700 font-bold"
+                  type="date"
+                  name="date_ended"
+                  placeholder="date_ended"
+                  value={company.date_ended}
+                  onChange={(event) =>
+                    updateWork(index, "date_ended", event.target.value)
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
         <div className="template1-bottom-headers">Education</div>
         <div className="template1-education">
           {education.map((educationPlace, index) => {
@@ -274,7 +208,7 @@ function Template1({
                 <br />
                 <input
                   className=" text-gray-700 font-bold"
-                  type="text"
+                  type="date"
                   name="date_started"
                   placeholder="date_started"
                   value={educationPlace.date_started}
@@ -285,7 +219,7 @@ function Template1({
                 <br />
                 <input
                   className=" text-gray-700 font-bold"
-                  type="text"
+                  type="date"
                   name="date_ended"
                   placeholder="date_ended"
                   value={educationPlace.date_ended}
@@ -298,30 +232,35 @@ function Template1({
           })}
         </div>
         <div className="template1-bottom-headers">Key Skills</div>
-        {keyskills.map((skill, index) => {
+        {keyskills.map((keySk, index) => {
           return toggle ? (
             <div className="template1-skill" key={index}>
-              {skill.name}
+              {keySk.name}
               <br />
-              {skill.description}
+              {keySk.description}
             </div>
           ) : (
             <div>
               <input
                 className=" text-gray-700 font-bold"
                 type="text"
-                name="skills"
-                // value={skill.name}
-                onChange={(event) => handleSkill(event)}
+                name="name"
+                placeholder="NAME"
+                value={keySk.name}
+                onChange={(event) =>
+                  updateSkill(index, "name", event.target.value)
+                }
               />
               <br />
               <input
                 className=" text-gray-700 font-bold"
                 type="text"
                 name="description"
-                // value={skill.description}
+                value={keySk.description}
                 placeholder="DESCRIPTION"
-                onChange={(event) => handleSkill(event)}
+                onChange={(event) =>
+                  updateSkill(index, "description", event.target.value)
+                }
               />
             </div>
           );

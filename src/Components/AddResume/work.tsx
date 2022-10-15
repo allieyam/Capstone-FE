@@ -103,8 +103,8 @@ function Work({ workExperience, setWorkExperience }: any) {
                   <div className="col-lg-4 text-left">
                     <label>Start Date</label>
                     <input
-                      className=" text-gray-700 font-bold"
-                      type="text"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      type="date"
                       name="date_started"
                       onChange={(event) => handleWork(index, event)}
                     />
@@ -112,8 +112,8 @@ function Work({ workExperience, setWorkExperience }: any) {
                   <div className="col-lg-4 text-left">
                     <label>End Date*</label>
                     <input
-                      className=" text-gray-700 font-bold"
-                      type="text"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      type="date"
                       name="date_ended"
                       onChange={(event) => handleWork(index, event)}
                     />

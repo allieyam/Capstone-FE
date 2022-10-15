@@ -14,6 +14,8 @@ export interface UserTypes {
   user: number;
   updateEducation: (index: number, name: string, value: string) => void;
   updateAll: (name: string, value: string) => void;
+  updateSkill: (index: number, name: string, value: string) => void;
+  updateWork: (index: number, name: string, value: string) => void;
 }
 
 interface Skill {
@@ -35,11 +37,6 @@ interface Education {
   date_ended: string;
 }
 
-// interface Skill {
-//   name: string;
-//   description?: string;
-// }
-
 export interface currUser {
   name: string;
   contact: string;
@@ -50,12 +47,6 @@ export interface currUser {
 
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  // addFormFields: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // removeFormFields: (index: number) => void;
-  // handleEducation: (
-  //   index: number,
-  //   e: React.ChangeEvent<HTMLInputElement>
-  // ) => void;
   handleSkill: (index: number, e: React.ChangeEvent<HTMLInputElement>) => void;
   allSkills: Array<object>;
   addSkillfields: (e: React.ChangeEvent<HTMLInputElement>) => void;

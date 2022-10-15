@@ -1,7 +1,8 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { currUser } from "../types";
 import Education from "./education";
 import Work from "./work";
+import DatePicker from "react-datepicker";
 
 export default function InputForm({
   name,
@@ -15,10 +16,15 @@ export default function InputForm({
   removeSkills,
   workExperience,
   setWorkExperience,
-  summary,
   formValues,
   setFormValues,
 }: currUser) {
+  const [summary, setSummary] = useState("");
+
+  const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setSummary(event?.target.value);
+  };
+
   return (
     <div>
       <form className="w-full max-w-sm" onSubmit={handleSubmit}>
@@ -59,7 +65,6 @@ export default function InputForm({
               value={contact}
               onChange={handleChange}
             />
-
             <p className="text-gray-600 text-xs italic">Contact number here </p>
           </div>
         </div>
@@ -83,10 +88,6 @@ export default function InputForm({
           </div>
         </div>
         <div>
-          <div>
-            {/* Skills */}
-            {/* Skills */}
-          </div>
           <div className="card">
             <div className="card-body">
               <h3 className="card-title">Skills</h3>
@@ -157,15 +158,15 @@ export default function InputForm({
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Summary
                 </label>
-                <input
+                <textarea
                   id="summary"
-                  // className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none font-small block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   placeholder="Fill in the blurb..."
                   name="summary"
+                  rows={5}
                   value={summary}
-                  onChange={handleChange}
-                ></input>
+                  onChange={handleSummary}
+                ></textarea>
               </div>
             </div>
           </div>

@@ -34,9 +34,9 @@ function Template() {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userPhone, setUserPhone] = useState("");
-  const [userWork, setUserWork] = useState([]);
+  const [userWork, setUserWork] = useState<any[]>([]);
   const [userEducation, setUserEducation] = useState<any[]>([]);
-  const [userSkills, setUserSkills] = useState([]);
+  const [userSkills, setUserSkills] = useState<any[]>([]);
 
   function updateEducation(index: number, name: string, value: string) {
     setUserEducation((currentEducation) => {
@@ -53,14 +53,33 @@ function Template() {
     });
   }
 
+  function updateSkill(index: number, name: string, value: string) {
+    setUserSkills((currentSkill) => {
+      const newSkill = currentSkill.map((skills: any, skillIndex: number) => {
+        if (index !== skillIndex) {
+          return skills;
+        }
+        const theSkills = { ...skills, [name]: value };
+        return theSkills;
+      });
+      return newSkill;
+    });
+  }
+
+  function updateWork(index: number, name: string, value: string) {
+    setUserWork((currentWork) => {
+      const newWork = currentWork.map((company: any, workIndex: number) => {
+        if (index !== workIndex) {
+          return company;
+        }
+        const working = { ...company, [name]: value };
+        return working;
+      });
+      return newWork;
+    });
+  }
+
   function updateAll(name: string, value: string) {
-    // if ((name = "name")) {
-    //   setUserName(value);
-    // } else if ((name = "email")) {
-    //   setUserEmail(value);
-    // } else if ((name = "contact")) {
-    //   setUserEmail(value);
-    // }
     switch (name) {
       case "name":
         setUserName(value);
@@ -87,6 +106,8 @@ function Template() {
         updateAll={updateAll}
         phone={userPhone}
         user={user_id}
+        updateSkill={updateSkill}
+        updateWork={updateWork}
       />
     </div>
   );
