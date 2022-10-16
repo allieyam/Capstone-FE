@@ -5,6 +5,7 @@ import axios from "axios";
 function AddTemplate() {
   const [templateChoice, setTemplateChoice] = useState(1);
   useEffect(() => {
+<<<<<<< HEAD
     if (templateChoice == 1) {
       return;
     }
@@ -15,6 +16,11 @@ function AddTemplate() {
       <h1>Add Template</h1>
     </div>
   );
+=======
+    getUserData();
+  });
+  return <div>{/* <p>Add Template</p> */}</div>;
+>>>>>>> main
 }
 
 export default AddTemplate;

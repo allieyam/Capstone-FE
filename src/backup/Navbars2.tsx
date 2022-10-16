@@ -6,7 +6,7 @@ function Navbar() {
 
   return (
     <div>
-      <nav className="items-center justify-start flex-wrap bg-teal-500 p-5">
+      <nav className="items-center justify-start flex-wrap bg-teal-500">
         <div className="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
           <div className="flex items-center">
             <ul className="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
@@ -28,7 +28,7 @@ function Navbar() {
               </li>
               <button
                 type="button"
-                className=" text-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 absolute top-5 right-1"
+                className=" text-sm leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white absolute top-4 right-1"
                 id="logout-button"
                 onClick={() => {
                   navigate("/");

@@ -13,7 +13,7 @@ interface Style {
 }
 
 function Template3({
-  name,
+  username,
   email,
   keyskills,
   work,
@@ -65,7 +65,7 @@ function Template3({
           </div>
         </div>
         <div className="template3-header-container">
-          <div className="template3-name">{name}</div>
+          <div className="template3-name">{username}</div>
           <div className="template3-contact-container">
             <div className="template3-email">
               {/* <FontAwesomeIcon icon="far fa-envelope" /> */}📧
