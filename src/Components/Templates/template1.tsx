@@ -19,8 +19,8 @@ function Template1({
   work,
   education,
   phone,
+  blurb,
 }: UserTypes) {
-  // const obj = { font: "A", fontSize: 8, color: "white" };
   return (
     <div className="template">
       <div className="template1-container">
@@ -34,16 +34,20 @@ function Template1({
             <div className="template1-phone">📱{phone}</div>
           </div>
         </div>
-        <div className="template1-blurb">Bla bla blablablbalba</div>
+        <div className="template1-blurb">{blurb}</div>
         <div className="template1-bottom-headers">Work Experience</div>
         <div className="template1-work">
           {work.map((place, index) => {
             return (
               <div className="template1-workplace" key={index}>
-                {place.place}
-                {place.description}
-                {place.date_started}
-                {place.date_ended}
+                <div className="template1-subheader">
+                  <div className="template1-place"> {place.place}</div>
+                  <div className="template1-position">{place.position}</div>
+                </div>
+                <div className="template1-dates">
+                  {place.date_started}-{place.date_ended}
+                </div>
+                <li>{place.description}</li>
               </div>
             );
           })}
@@ -53,10 +57,15 @@ function Template1({
           {education.map((place, index) => {
             return (
               <div className="template1-educationplace" key={index}>
-                {place.place}
-                {place.description}
-                {place.date_started}
-                {place.date_ended}
+                <div className="template1-subheader">
+                  <div className="template1-place">{place.place}</div>
+                  <div className="template1-position">{place.level}</div>
+                </div>
+                <div className="template1-dates">
+                  {place.date_started}-{place.date_ended}
+                </div>
+
+                <li>{place.description}</li>
               </div>
             );
           })}
@@ -66,8 +75,9 @@ function Template1({
           {keyskills.map((skill, index) => {
             return (
               <div className="template1-skill" key={index}>
-                {skill.name}
-                {skill.description}
+                <div className="template1-place-skill">{skill.name}</div>
+
+                <li>{skill.description}</li>
               </div>
             );
           })}

@@ -32,7 +32,7 @@ function Template2({
             <div className="template2-skills">
               {keyskills.map((skill, index) => {
                 return (
-                  <div className="template1-skill" key={index}>
+                  <div className="template2-skill" key={index}>
                     {skill.name}
                     {skill.description}
                   </div>
@@ -48,10 +48,15 @@ function Template2({
             {work.map((place, index) => {
               return (
                 <div className="template2-workplace" key={index}>
-                  {place.place}
-                  {place.description}
-                  {place.date_started}
-                  {place.date_ended}
+                  <div className="template2-subheader">
+                    <div className="template2-place">{place.place}</div>
+                    <div className="template2-position">{place.position}</div>
+                  </div>
+                  <div className="template2-dates">
+                    {place.date_started}-{place.date_ended}
+                  </div>
+
+                  <li>{place.description}</li>
                 </div>
               );
             })}

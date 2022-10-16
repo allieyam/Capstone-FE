@@ -1,28 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styling/App.css";
 import axios from "axios";
 
 function AddTemplate() {
-  const user_id = 1;
-  const getUserData = async () => {
-    let initialItems = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${user_id}`
-    );
-
-    let userData = initialItems.data[0];
-    console.log(
-      initialItems.data,
-      userData,
-      "initial data in get wishlist items"
-    );
-  };
-
+  const [templateChoice, setTemplateChoice] = useState(1);
   useEffect(() => {
-    getUserData();
-  });
+    if (templateChoice == 1) {
+      return;
+    }
+  }, []);
+
   return (
     <div>
-      <p>Add Template</p>
+      <h1>Add Template</h1>
     </div>
   );
 }

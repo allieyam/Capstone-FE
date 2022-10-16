@@ -20,10 +20,8 @@ root.render(
       <Route path="/" element={<App />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="form" element={<Form />} />
-        <Route path="template" element={<Template />}>
-          <Route path="add-template" element={<AddTemplate />} />
-          <Route path="edit-template" element={<TemplateEdit />} />
-        </Route>
+        <Route path="template" element={<Template />}></Route>
+        <Route path="add-template" element={<AddTemplate />} />
 
         <Route path="*" element={"Nothing here!"} />
       </Route>
