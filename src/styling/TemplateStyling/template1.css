@@ -30,8 +30,35 @@
 }
 
 .template1-bottom-headers {
-  font-weight: bold;
+  font-weight: bolder;
   text-align: left;
   padding-left: 20px;
   padding-top: 20px;
+}
+
+.template1-subheader {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+  padding-left: 20px;
+  font-size: 18px;
+}
+
+.template1-place {
+  font-weight: bold;
+}
+
+.template1-dates {
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.template1-place-skill {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 18px;
 }

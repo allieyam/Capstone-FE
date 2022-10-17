@@ -39,3 +39,27 @@
   border-bottom: 2px solid lightgrey;
   padding: 20px;
 }
+
+.template2-subheaders {
+  display: flex;
+  flex-direction: column;
+}
+
+.template2-place {
+  font-weight: bold;
+}
+
+.template2-dates {
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.template2-place-skill {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}

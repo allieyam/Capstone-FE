@@ -26,12 +26,14 @@ interface Skill {
 interface Work {
   place: string;
   description: string;
+  position: string;
   date_started: string;
   date_ended: string;
 }
 
 interface Education {
   place: string;
+  level: string;
   description: string;
   date_started: string;
   date_ended: string;
