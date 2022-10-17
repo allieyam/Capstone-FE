@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { currUser } from "../types";
 import Education from "./education";
 import Work from "./work";
-import DatePicker from "react-datepicker";
+import { Grammarly, GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 
 export default function InputForm({
   name,
@@ -158,15 +158,18 @@ export default function InputForm({
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                   Summary
                 </label>
-                <textarea
-                  id="summary"
-                  className="appearance-none font-small block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  placeholder="Fill in the blurb..."
-                  name="summary"
-                  rows={5}
-                  value={summary}
-                  onChange={handleSummary}
-                ></textarea>
+
+                <GrammarlyEditorPlugin clientId="client_CpFc5E3M1jpP8iwmtjGyZX">
+                  <textarea
+                    id="summary"
+                    className="appearance-none font-small block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                    placeholder="Fill in the blurb..."
+                    name="summary"
+                    rows={5}
+                    value={summary}
+                    onChange={handleSummary}
+                  ></textarea>
+                </GrammarlyEditorPlugin>
               </div>
             </div>
           </div>

@@ -25,19 +25,19 @@ function Template() {
         Template 1
       </button>
       {/* <Template1
-        name={userName}
+        username={userName}
         email={userEmail}
         keyskills={userSkills}
         work={userWork}
         education={userEducation}
         phone={userPhone}
-        blurb={userBlurb}
+        // blurb={userBlurb}
       /> */}
       <button className="template2-button" onClick={(e) => handleClick2(e)}>
         Template 2
       </button>
       {/* <Template2
-        name={userName}
+        username={userName}
         email={userEmail}
         keyskills={userSkills}
         work={userWork}
@@ -49,7 +49,7 @@ function Template() {
         Template 3
       </button>
       {/* <Template3
-        name={userName}
+        username={userName}
         email={userEmail}
         keyskills={userSkills}
         work={userWork}
