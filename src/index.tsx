@@ -10,6 +10,7 @@ import AddTemplate from "./Components/AddTemplate";
 import Form from "../src/Components/AddResume/Form";
 import TemplateEdit from "./Components/Navigation/TemplateEdit";
 import UserProfile from "./backup/UserProfile";
+// import TrainBrain from "../src/Components/brain";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -26,7 +27,7 @@ root.render(
         <Route path="template" element={<Template />} />
         <Route path="add-template" element={<AddTemplate />} />
         <Route path="edit-template" element={<TemplateEdit />} />
-
+        {/* <Route path="brain" element={<TrainBrain />} /> */}
         <Route path="*" element={"Nothing here!"} />
       </Route>
     </Routes>
