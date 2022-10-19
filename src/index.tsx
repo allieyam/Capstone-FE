@@ -11,25 +11,40 @@ import Form from "../src/Components/AddResume/Form";
 import TemplateEdit from "./Components/Navigation/TemplateEdit";
 import UserProfile from "./backup/UserProfile";
 import TrainBrain from "./Components/AddResume/brain";
+import { Auth0Provider } from "@auth0/auth0-react";
+
+export type Auth0Provider = {
+  domain: any;
+  clientId: string;
+  audience?: string;
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route index element={<Landing />} />
-      <Route path="/" element={<App />}>
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="form" element={<Form />} />
-        <Route path="userp" element={<UserProfile />} />
-        <Route path="template" element={<Template />} />
-        <Route path="add-template" element={<AddTemplate />} />
-        <Route path="edit-template" element={<TemplateEdit />} />
-        {/* <Route path="brain" element={<TrainBrain />} /> */}
-        <Route path="*" element={"Nothing here!"} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  <Auth0Provider
+    domain="dev-438w2leqmomjn2u0.us.auth0.com"
+    clientId="O2d5jUQEXxMY3yYs237AlC1OS9nrdTL2"
+    redirectUri={process.env.REACT_APP_REDIRECT_URI}
+    audience={process.env.REACT_APP_AUDIENCE}
+    scope={process.env.REACT_APP_SCOPE}
+  >
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Landing />} />
+        <Route path="/" element={<App />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="form" element={<Form />} />
+          <Route path="userp" element={<UserProfile />} />
+          <Route path="template" element={<Template />} />
+          <Route path="add-template" element={<AddTemplate />} />
+          <Route path="edit-template" element={<TemplateEdit />} />
+          {/* <Route path="brain" element={<TrainBrain />} /> */}
+          <Route path="*" element={"Nothing here!"} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </Auth0Provider>
 );

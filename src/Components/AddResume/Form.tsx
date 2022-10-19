@@ -1,16 +1,17 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import InputForm from "./InputForm";
 import "../../styling/App.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../../App";
 
 function Form() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
 
-  const user_id = 2;
-
+  const userId = useContext(UserContext);
+  console.log(userId);
   const initialFormValues = [
     {
       place: "",
@@ -93,10 +94,10 @@ function Form() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("clicked");
-
+    console.log(workExperience);
     // Send request to create new resume in backend
     await axios
-      .post(`${process.env.REACT_APP_API_SERVER}`, {
+      .put(`${process.env.REACT_APP_API_SERVER}/${userId}`, {
         name,
         email,
         workExperience: workExperience,
@@ -158,9 +159,6 @@ function Form() {
           formValues={formValues}
           workExperience={workExperience}
           setWorkExperience={setWorkExperience}
-          // handleEducation={handleEducation}
-          // addFormFields={addFormFields}
-          // removeFormFields={removeFormFields}
         />
       </p>
     </div>

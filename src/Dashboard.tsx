@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./styling/App.css";
 import { Link } from "react-router-dom";
 // import Template from "./Components/Template";
-
-//Define users in dashboard
+import { UserContext } from "./App";
+import axios from "axios";
 
 function Dashboard() {
+  const userId = useContext(UserContext);
+  const [resume, setResume] = useState([]);
+
+  const getInitialData = async () => {
+    axios
+      .get(`${process.env.REACT_APP_API_SERVER}/${userId}`)
+      .then((response) => {
+        console.log("response", response);
+        setResume(response.data);
+      });
+  };
+
+  useEffect(() => {
+    if (userId !== "") {
+      getInitialData();
+    }
+  }, [userId]);
+
+  console.log(resume);
+
   return (
     <div>
       <p>Dashboard</p>

@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import "../../styling/App.css";
 import { useNavigate } from "react-router-dom";
-import Calendar from "react-calendar";
 
 function Education({ formValues, setFormValues }: any) {
   const navigate = useNavigate();
