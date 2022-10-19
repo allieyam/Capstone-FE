@@ -1,14 +1,12 @@
 import React, { useState, ChangeEvent } from "react";
 import "../../styling/App.css";
-import { useNavigate } from "react-router-dom";
 
 function Work({ workExperience, setWorkExperience }: any) {
   const [place, setPlace] = useState("");
+  const [position, setPosition] = useState("");
   const [description, setDescription] = useState("");
   const [dateStarted, setDateStarted] = useState("");
   const [dateEnded, setDateEnded] = useState("");
-
-  const navigate = useNavigate();
 
   const handleWork = (
     i: number,
@@ -29,7 +27,7 @@ function Work({ workExperience, setWorkExperience }: any) {
         setPlace(event.target.value);
         break;
       case "position":
-        setPlace(event.target.value);
+        setPosition(event.target.value);
         break;
       case "date_started":
         setDateStarted(event.target.value);

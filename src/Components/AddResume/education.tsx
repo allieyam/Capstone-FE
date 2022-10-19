@@ -1,9 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import "../../styling/App.css";
-import { useNavigate } from "react-router-dom";
 
 function Education({ formValues, setFormValues }: any) {
-  const navigate = useNavigate();
   const [place, setPlace] = useState("");
   const [description, setDescription] = useState("");
   const [dateStarted, setDateStarted] = useState("");
