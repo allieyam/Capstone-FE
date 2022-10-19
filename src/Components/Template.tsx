@@ -21,10 +21,11 @@ function Template() {
 
   return (
     <div>
-      <button className="template1-button" onClick={(e) => handleClick1(e)}>
-        Template 1
-      </button>
-      {/* <Template1
+      <div className="template-button-container">
+        <button className="template1-button" onClick={(e) => handleClick1(e)}>
+          Template 1
+        </button>
+        {/* <Template1
         name={userName}
         email={userEmail}
         keyskills={userSkills}
@@ -33,10 +34,10 @@ function Template() {
         phone={userPhone}
         blurb={userBlurb}
       /> */}
-      <button className="template2-button" onClick={(e) => handleClick2(e)}>
-        Template 2
-      </button>
-      {/* <Template2
+        <button className="template2-button" onClick={(e) => handleClick2(e)}>
+          Template 2
+        </button>
+        {/* <Template2
         name={userName}
         email={userEmail}
         keyskills={userSkills}
@@ -45,10 +46,10 @@ function Template() {
         phone={userPhone}
         blurb={userBlurb}
       /> */}
-      <button className="template3-button" onClick={(e) => handleClick3(e)}>
-        Template 3
-      </button>
-      {/* <Template3
+        <button className="template3-button" onClick={(e) => handleClick3(e)}>
+          Template 3
+        </button>
+        {/* <Template3
         name={userName}
         email={userEmail}
         keyskills={userSkills}
@@ -57,7 +58,7 @@ function Template() {
         phone={userPhone}
         blurb={userBlurb}
       /> */}
-      {/* <button
+        {/* <button
         onClick={() => navigate("/add-template", { choice: templateChoice })}
       >
         Add New Template
@@ -70,7 +71,7 @@ function Template() {
       <Link to={{ pathname: "/add-template", state: templateChoice }}>
         Add a Template
       </Link> */}
-
+      </div>
       <Link to="/add-template" state={templateChoice}>
         Add a Template
       </Link>
