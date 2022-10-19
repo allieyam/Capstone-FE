@@ -23,6 +23,19 @@ function Form() {
   type FormValue = typeof initialFormValues[number];
   const [formValues, setFormValues] = useState<FormValue[]>(initialFormValues);
 
+  const initialWork = [
+    {
+      place: "",
+      position: "",
+      description: "",
+      date_started: "",
+      date_ended: "",
+    },
+  ];
+  type WorkValue = typeof initialWork[number];
+  const [workExperience, setWorkExperience] =
+    useState<WorkValue[]>(initialWork);
+
   const [skills, setSkills] = useState("");
   const [skillDes, setSkillDes] = useState("");
   const initialSkill = [
@@ -34,17 +47,6 @@ function Form() {
   type AllSkill = typeof initialSkill[number];
   const [allSkills, setAllSkills] = useState<AllSkill[]>(initialSkill);
 
-  const initialWork = [
-    {
-      place: "",
-      position: "",
-      description: "",
-      date_started: "",
-      date_ended: "",
-    },
-  ];
-  type work = typeof initialWork[number];
-  const [workExperience, setWorkExperience] = useState<work[]>(initialWork);
   const [summary, setSummary] = useState("");
   const navigate = useNavigate();
 

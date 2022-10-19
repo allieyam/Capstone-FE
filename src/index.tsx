@@ -25,8 +25,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Auth0Provider
-    domain="dev-438w2leqmomjn2u0.us.auth0.com"
-    clientId="O2d5jUQEXxMY3yYs237AlC1OS9nrdTL2"
+    domain="dev-pq772rssbtn28kif.us.auth0.com"
+    clientId="IDtf5Qn4lnusn83NYdly6cxWR4MqqPNW"
     redirectUri={process.env.REACT_APP_REDIRECT_URI}
     audience={process.env.REACT_APP_AUDIENCE}
     scope={process.env.REACT_APP_SCOPE}
