@@ -10,7 +10,7 @@ import AddTemplate from "./Components/AddTemplate";
 import Form from "../src/Components/AddResume/Form";
 import TemplateEdit from "./Components/Navigation/TemplateEdit";
 import UserProfile from "./backup/UserProfile";
-// import TrainBrain from "../src/Components/brain";
+import TrainBrain from "./Components/AddResume/brain";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
