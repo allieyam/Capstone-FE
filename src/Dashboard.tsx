@@ -14,6 +14,8 @@ function Dashboard() {
       <Link to="/form">Add details here</Link>
       <br />
       <Link to="/userp">View your details</Link>
+      <br />
+      <Link to="/brain">View the ML here</Link>
     </div>
   );
 }

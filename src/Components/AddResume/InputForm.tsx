@@ -2,7 +2,8 @@ import { ChangeEvent, useState } from "react";
 import { currUser } from "../types";
 import Education from "./education";
 import Work from "./work";
-import { Grammarly, GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
+import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
+import Popup from "./Popup";
 
 export default function InputForm({
   name,
@@ -20,6 +21,7 @@ export default function InputForm({
   setFormValues,
 }: currUser) {
   const [summary, setSummary] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setSummary(event?.target.value);
@@ -171,6 +173,20 @@ export default function InputForm({
                   ></textarea>
                 </GrammarlyEditorPlugin>
               </div>
+              <>
+                <button
+                  className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => setShowModal(true)}
+                >
+                  Hint{" "}
+                </button>
+                {showModal ? (
+                  <>
+                    <Popup setShowModal={setShowModal} summary={summary} />
+                  </>
+                ) : null}
+              </>
             </div>
           </div>
           <button

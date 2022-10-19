@@ -1,6 +1,7 @@
 import "../styling/App.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import UpImage from "../Components/Upload/UploadImage";
 
 function UserProfile() {
   const [userProfiles, setUserProfile] = useState([]);
@@ -20,6 +21,7 @@ function UserProfile() {
 
   return (
     <div>
+      <UpImage />
       {userProfiles && userProfiles.length > 0
         ? userProfiles.map((profile, index) => {
             console.log(profile);
