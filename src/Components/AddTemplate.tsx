@@ -3,6 +3,7 @@ import "../styling/App.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Template1 from "./Templates/template1";
+// import SentimentAnalysis from "./Sentiment/SentimentAnalysis";
 
 type TypeProp = {
   choice: number;
@@ -115,6 +116,7 @@ function AddTemplate() {
   return (
     <div>
       <h1>Add Template</h1>
+      {/* <SentimentAnalysis /> */}
     </div>
   );
 }
