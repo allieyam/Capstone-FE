@@ -18,10 +18,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Auth0Provider
-    // domain={process.env.REACT_APP_DOMAIN || ""}
-    // clientId={process.env.REACT_APP_CLIENTID || ""}
-    domain="dev-pq772rssbtn28kif.us.auth0.com"
-    clientId="IDtf5Qn4lnusn83NYdly6cxWR4MqqPNW"
+    domain={process.env.REACT_APP_DOMAIN || ""}
+    clientId={process.env.REACT_APP_CLIENTID || ""}
+    // domain="dev-pq772rssbtn28kif.us.auth0.com"
+    // clientId="IDtf5Qn4lnusn83NYdly6cxWR4MqqPNW"
     redirectUri={process.env.REACT_APP_REDIRECT_URI}
     audience={process.env.REACT_APP_AUDIENCE}
     scope={process.env.REACT_APP_SCOPE}
