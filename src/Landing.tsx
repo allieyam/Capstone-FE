@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styling/App.css";
 import Background from "./background.jpg";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Landing() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  // const { isAuthenticated }: any = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   // Background style:
   const heroBgImgStyle = {
@@ -25,12 +28,14 @@ function Landing() {
 
       <div className="block text-center mt-4">
         <button
-          onClick={() => {
-            navigate(`dashboard`);
-          }}
           className="p-4 bg-emerald-700 text-white rounded-full py-1 font-bold text-md"
+          onClick={() =>
+            loginWithRedirect({
+              redirectUri: "http://localhost:3001/dashboard",
+            })
+          }
         >
-          Sign in
+          Log In
         </button>
       </div>
     </div>

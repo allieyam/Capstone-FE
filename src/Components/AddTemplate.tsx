@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../styling/App.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -6,7 +6,8 @@ import Template1 from "./Templates/template1";
 import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
 // import SentimentAnalysis from "./Sentiment/SentimentAnalysis";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import { UserContext } from "../App";
 type TypeProp = {
   choice: number;
 };
@@ -18,16 +19,32 @@ function AddTemplate() {
   //useLocation to receive props
   const location = useLocation();
   console.log(location, "location", location.state);
+  const { getAccessTokenSilently }: any = useAuth0();
 
-  const user_id = 1;
+  const userId = Number(useContext(UserContext));
+
   const getUserData = async () => {
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
+    });
     let initialItems = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${user_id}`
+      `${process.env.REACT_APP_API_SERVER}/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
     );
 
-    let initialBlurb = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${user_id}/cv`
-    );
+    // let initialBlurb = await axios.get(
+    //   `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${accessToken}`,
+    //     },
+    //   }
+    // );
 
     let userData = initialItems.data[0];
     // let userBlurb = initialBlurb.data[0];
@@ -95,6 +112,7 @@ function AddTemplate() {
     });
   }
 
+  console.log(userId);
   function updateAll(name: string, value: string) {
     switch (name) {
       case "name":
@@ -117,16 +135,21 @@ function AddTemplate() {
       {(() => {
         if (templateChoice == 1) {
           return (
-            <Template1
-              username={userName}
-              email={userEmail}
-              keyskills={userSkills}
-              work={userWork}
-              education={userEducation}
-              phone={userPhone}
-              blurb={userBlurb}
-              user={1}
-            />
+            // <Template1
+            //   username={userName}
+            //   email={userEmail}
+            //   keyskills={userSkills}
+            //   work={userWork}
+            //   education={userEducation}
+            //   phone={userPhone}
+            //   // blurb={userBlurb}
+            //   user={userId}
+            // updateAll={updateAll}
+            // updateEducation={updateEducation}
+            // updateWork={updateWork}
+            // updateSkill={updateSkill}
+            // />
+            1
           );
         } else if (templateChoice == 2) {
           return (
@@ -137,8 +160,8 @@ function AddTemplate() {
               work={userWork}
               education={userEducation}
               phone={userPhone}
-              blurb={userBlurb}
-              user={1}
+              // blurb={userBlurb}
+              user={userId}
             />
           );
         } else if (templateChoice == 3) {
@@ -150,8 +173,8 @@ function AddTemplate() {
               work={userWork}
               education={userEducation}
               phone={userPhone}
-              blurb={userBlurb}
-              user={1}
+              // blurb={userBlurb}
+              user={userId}
             />
           );
         } else {

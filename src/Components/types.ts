@@ -10,12 +10,12 @@ export interface UserTypes {
   keyskills: Array<Skill>;
   work: Array<Work>;
   education: Array<Education>;
-  blurb?: string;
+  // blurb?: string;
   user: number;
-  updateEducation?: (index: number, name: string, value: string) => void;
-  updateAll?: (name: string, value: string) => void;
-  updateSkill?: (index: number, name: string, value: string) => void;
-  updateWork?: (index: number, name: string, value: string) => void;
+  // updateEducation?: (index: number, name: string, value: string) => void;
+  // updateAll?: (name: string, value: string) => void;
+  // updateSkill?: (index: number, name: string, value: string) => void;
+  // updateWork?: (index: number, name: string, value: string) => void;
 }
 
 interface Skill {
