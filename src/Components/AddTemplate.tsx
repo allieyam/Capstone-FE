@@ -22,6 +22,15 @@ function AddTemplate() {
   const { getAccessTokenSilently }: any = useAuth0();
 
   const userId = Number(useContext(UserContext));
+  // set state for one chosen out of the 3 templates
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [userWork, setUserWork] = useState<any[]>([]);
+  const [userEducation, setUserEducation] = useState<any[]>([]);
+  const [userSkills, setUserSkills] = useState<any[]>([]);
+  const [image, setImage] = useState("");
+  // const [userBlurb, setUserBlurb] = useState("");
 
   const getUserData = async () => {
     const accessToken = await getAccessTokenSilently({
@@ -45,7 +54,7 @@ function AddTemplate() {
     //     },
     //   }
     // );
-
+    console.log(initialItems);
     let userData = initialItems.data[0];
     // let userBlurb = initialBlurb.data[0];
     setUserName(userData.name);
@@ -54,22 +63,13 @@ function AddTemplate() {
     setUserWork(userData.workExperience);
     setUserEducation(userData.education);
     setUserSkills(userData.keySkills);
-
+    setImage(userData.image);
     console.log(initialItems.data[0]);
   };
 
   useEffect(() => {
     getUserData();
   }, []);
-
-  // set state for one chosen out of the 3 templates
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userPhone, setUserPhone] = useState("");
-  const [userWork, setUserWork] = useState<any[]>([]);
-  const [userEducation, setUserEducation] = useState<any[]>([]);
-  const [userSkills, setUserSkills] = useState<any[]>([]);
-  const [userBlurb, setUserBlurb] = useState("");
 
   function updateEducation(index: number, name: string, value: string) {
     setUserEducation((currentEducation) => {
@@ -130,26 +130,24 @@ function AddTemplate() {
 
   return (
     <div>
-      <h1>Add Template</h1>
       {/* <SentimentAnalysis /> */}
       {(() => {
         if (templateChoice == 1) {
           return (
-            // <Template1
-            //   username={userName}
-            //   email={userEmail}
-            //   keyskills={userSkills}
-            //   work={userWork}
-            //   education={userEducation}
-            //   phone={userPhone}
-            //   // blurb={userBlurb}
-            //   user={userId}
-            // updateAll={updateAll}
-            // updateEducation={updateEducation}
-            // updateWork={updateWork}
-            // updateSkill={updateSkill}
-            // />
-            1
+            <Template1
+              username={userName}
+              email={userEmail}
+              keyskills={userSkills}
+              work={userWork}
+              education={userEducation}
+              updateEducation={updateEducation}
+              updateAll={updateAll}
+              phone={userPhone}
+              user={userId}
+              updateSkill={updateSkill}
+              updateWork={updateWork}
+              image={image}
+            />
           );
         } else if (templateChoice == 2) {
           return (
@@ -159,9 +157,13 @@ function AddTemplate() {
               keyskills={userSkills}
               work={userWork}
               education={userEducation}
+              updateEducation={updateEducation}
+              updateAll={updateAll}
               phone={userPhone}
-              // blurb={userBlurb}
               user={userId}
+              updateSkill={updateSkill}
+              updateWork={updateWork}
+              image={image}
             />
           );
         } else if (templateChoice == 3) {
@@ -172,9 +174,13 @@ function AddTemplate() {
               keyskills={userSkills}
               work={userWork}
               education={userEducation}
+              updateEducation={updateEducation}
+              updateAll={updateAll}
               phone={userPhone}
-              // blurb={userBlurb}
               user={userId}
+              updateSkill={updateSkill}
+              updateWork={updateWork}
+              image={image}
             />
           );
         } else {

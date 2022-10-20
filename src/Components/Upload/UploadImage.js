@@ -37,7 +37,7 @@ const UpImage = ({ url, setUrl, userProfiles }) => {
           education: userProfiles.education,
           keySkills: userProfiles.keySkills,
           contact: userProfiles.contact,
-          image: url,
+          image: String(url),
         },
         {
           headers: {

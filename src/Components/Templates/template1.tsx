@@ -2,9 +2,10 @@ import React, { useState, useEffect, ChangeEvent } from "react";
 import { UserTypes } from "../types";
 import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
-import TemplateState from "./TemplateState";
 import { useAuth0 } from "@auth0/auth0-react";
-// import JsPDF from "jspdf";
+import { UserContext } from "../../App";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 //Define the interface here
 interface Style {
@@ -23,28 +24,30 @@ function Template1({
   education,
   phone,
   user,
-}: // updateAll,
-// updateEducation,
-// updateWork,
-UserTypes) {
+  image,
+  updateEducation,
+  updateAll,
+  updateSkill,
+  updateWork,
+}: UserTypes) {
   //set to editing mode
   const [toggle, setToggle] = useState(true);
+  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
 
   const toggleClicked = () => {
     setToggle(false);
   };
-  const { getAccessTokenSilently }: any = useAuth0();
 
   //resubmit data to backend
   const handleSubmit = async (event: any) => {
-    setToggle(true);
-    event.preventDefault();
-    console.log("clicked");
-    console.log(education);
     const accessToken = await getAccessTokenSilently({
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
     });
+    setToggle(true);
+    event.preventDefault();
+    console.log("clicked");
+    console.log(education);
     // Update in backend
     await axios
       .put(
@@ -55,6 +58,7 @@ UserTypes) {
           contact: phone,
           keySkills: keyskills,
           education: education,
+          image,
         },
         {
           headers: {
@@ -68,126 +72,73 @@ UserTypes) {
       });
   };
 
-  // function updateEducation(index: number, name: string, value: string) {
-  //   setUserEducation((currentEducation) => {
-  //     const newEducation = currentEducation.map(
-  //       (place: any, placeIndex: number) => {
-  //         if (index !== placeIndex) {
-  //           return place;
-  //         }
-  //         const newPlace = { ...place, [name]: value };
-  //         return newPlace;
-  //       }
-  //     );
-  //     return newEducation;
-  //   });
-  // }
+  const printDocument = () => {
+    const input = document.getElementById("divToPrint")!;
+    html2canvas(input).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, "JPEG", 15, 40, 180, 160);
+      pdf.save("download.pdf");
+    });
+  };
 
-  // function updateSkill(index: number, name: string, value: string) {
-  //   setUserSkills((currentSkill) => {
-  //     const newSkill = currentSkill.map((skills: any, skillIndex: number) => {
-  //       if (index !== skillIndex) {
-  //         return skills;
-  //       }
-  //       const theSkills = { ...skills, [name]: value };
-  //       return theSkills;
-  //     });
-  //     return newSkill;
-  //   });
-  // }
-
-  // function updateWork(index: number, name: string, value: string) {
-  //   setUserWork((currentWork) => {
-  //     const newWork = currentWork.map((company: any, workIndex: number) => {
-  //       if (index !== workIndex) {
-  //         return company;
-  //       }
-  //       const working = { ...company, [name]: value };
-  //       return working;
-  //     });
-  //     return newWork;
-  //   });
-  // }
-
-  function updateAll(name: string, value: string) {
-    //   switch (name) {
-    //     case "name":
-    //       setUserName(value);
-    //       break;
-    //     case "email":
-    //       setUserEmail(value);
-    //       break;
-    //     case "contact":
-    //       setUserPhone(value);
-    //       break;
-    //     default:
-    //   }
-    // }
-
-    // const generatePDF = () => {
-    //   const report = new JsPDF("portrait", "pt", "a4");
-    //   report.html(document.querySelector("#template1-container")).then(() => {
-    //     report.save("report.pdf");
-    //   });
-    // };
-    return (
-      <div className="template">
-        <div className="template1-container">
-          <div className="template1-header-container">
-            <div className="template1-name">
+  return (
+    <div className="template" id="divToPrint">
+      <div className="template1-container">
+        <div className="template1-header-container">
+          <div className="template1-name">
+            {toggle ? (
+              username
+            ) : (
+              <input
+                className=" text-gray-700 font-bold"
+                type="text"
+                name="name"
+                placeholder="name"
+                value={username}
+                onChange={(event) => updateAll("name", event.target.value)}
+              ></input>
+            )}
+          </div>
+          <div className="template1-contact-container">
+            <div className="template1-email">
+              {/* <FontAwesomeIcon icon="far fa-envelope" /> */}
+              📧
               {toggle ? (
-                username
+                email
               ) : (
                 <input
                   className=" text-gray-700 font-bold"
                   type="text"
-                  name="name"
-                  placeholder="name"
-                  value={username}
-                  onChange={(event) => updateAll("name", event.target.value)}
+                  name="email"
+                  placeholder="email"
+                  value={email}
+                  onChange={(event) => updateAll("email", event.target.value)}
                 ></input>
               )}
             </div>
-            <div className="template1-contact-container">
-              <div className="template1-email">
-                {/* <FontAwesomeIcon icon="far fa-envelope" /> */}
-                📧
-                {toggle ? (
-                  email
-                ) : (
-                  <input
-                    className=" text-gray-700 font-bold"
-                    type="text"
-                    name="email"
-                    placeholder="email"
-                    value={email}
-                    onChange={(event) => updateAll("email", event.target.value)}
-                  ></input>
-                )}
-              </div>
-              <div className="template1-phone">
-                📱
-                {toggle ? (
-                  phone
-                ) : (
-                  <input
-                    className=" text-gray-700 font-bold"
-                    type="text"
-                    name="contact"
-                    placeholder="contact"
-                    value={phone}
-                    // onChange={(event) => updateAll("contact", event.target.value)}
-                  ></input>
-                )}
-              </div>
+            <div className="template1-phone">
+              📱
+              {toggle ? (
+                phone
+              ) : (
+                <input
+                  className=" text-gray-700 font-bold"
+                  type="text"
+                  name="contact"
+                  placeholder="contact"
+                  value={phone}
+                  onChange={(event) => updateAll("contact", event.target.value)}
+                ></input>
+              )}
             </div>
           </div>
-          <div className="template1-blurb">Summary</div>
-          <div className="template1-bottom-headers">Work Experience</div>
-          <div className="template1-work">
-            {/* {  work !== null  ?  {work.map((company, index) => { */}
-
-            {work.map((company, index) => {
+        </div>
+        <div className="template1-blurb">Summary</div>
+        <div className="template1-bottom-headers">Work Experience</div>
+        <div className="template1-work">
+          {work &&
+            work.map((company, index) => {
               return toggle ? (
                 <div className="template1-workplace" key={index}>
                   {company.place}
@@ -206,9 +157,9 @@ UserTypes) {
                     name="place"
                     placeholder="COMPANY"
                     value={company.place}
-                    // onChange={(event) =>
-                    //   updateWork(index, "place", event.target.value)
-                    // }
+                    onChange={(event) =>
+                      updateWork(index, "place", event.target.value)
+                    }
                   />
                   <br />
                   <input
@@ -217,9 +168,9 @@ UserTypes) {
                     name="description"
                     placeholder="DESCRIPTION"
                     value={company.description}
-                    // onChange={(event) =>
-                    //   updateWork(index, "description", event.target.value)
-                    // }
+                    onChange={(event) =>
+                      updateWork(index, "description", event.target.value)
+                    }
                   />
                   <br />
                   <input
@@ -228,9 +179,9 @@ UserTypes) {
                     name="date_started"
                     placeholder="date_started"
                     value={company.date_started}
-                    // onChange={(event) =>
-                    //   updateWork(index, "date_started", event.target.value)
-                    // }
+                    onChange={(event) =>
+                      updateWork(index, "date_started", event.target.value)
+                    }
                   />
                   <br />
                   <input
@@ -239,19 +190,18 @@ UserTypes) {
                     name="date_ended"
                     placeholder="date_ended"
                     value={company.date_ended}
-                    // onChange={(event) =>
-                    //   updateWork(index, "date_ended", event.target.value)
-                    // }
+                    onChange={(event) =>
+                      updateWork(index, "date_ended", event.target.value)
+                    }
                   />
                 </div>
               );
             })}
-            {/* : null
-          } */}
-          </div>
-          <div className="template1-bottom-headers">Education</div>
-          <div className="template1-education">
-            {education.map((educationPlace, index) => {
+        </div>
+        <div className="template1-bottom-headers">Education</div>
+        <div className="template1-education">
+          {education &&
+            education.map((educationPlace, index) => {
               return toggle ? (
                 <div className="template1-educationplace" key={index}>
                   {educationPlace.place}
@@ -270,9 +220,9 @@ UserTypes) {
                     name="place"
                     placeholder="place"
                     value={educationPlace.place}
-                    // onChange={(event) =>
-                    //   updateEducation(index, "place", event.target.value)
-                    // }
+                    onChange={(event) =>
+                      updateEducation(index, "place", event.target.value)
+                    }
                   />
                   <br />
                   <input
@@ -280,10 +230,10 @@ UserTypes) {
                     type="text"
                     name="description"
                     placeholder="DESCRIPTION"
-                    value={educationPlace.description}
-                    // onChange={(event) =>
-                    //   updateEducation(index, "description", event.target.value)
-                    // }
+                    value={educationPlace.description || " "}
+                    onChange={(event) =>
+                      updateEducation(index, "description", event.target.value)
+                    }
                   />
                   <br />
                   <input
@@ -291,10 +241,10 @@ UserTypes) {
                     type="date"
                     name="date_started"
                     placeholder="date_started"
-                    value={educationPlace.date_started}
-                    // onChange={(event) =>
-                    //   updateEducation(index, "date_started", event.target.value)
-                    // }
+                    value={educationPlace.date_started || ""}
+                    onChange={(event) =>
+                      updateEducation(index, "date_started", event.target.value)
+                    }
                   />
                   <br />
                   <input
@@ -302,17 +252,18 @@ UserTypes) {
                     type="date"
                     name="date_ended"
                     placeholder="date_ended"
-                    value={educationPlace.date_ended}
-                    // onChange={(event) =>
-                    //   updateEducation(index, "date_ended", event.target.value)
-                    // }
+                    value={educationPlace.date_ended || ""}
+                    onChange={(event) =>
+                      updateEducation(index, "date_ended", event.target.value)
+                    }
                   />
                 </div>
               );
             })}
-          </div>
-          <div className="template1-bottom-headers">Key Skills</div>
-          {keyskills.map((keySk, index) => {
+        </div>
+        <div className="template1-bottom-headers">Key Skills</div>
+        {keyskills &&
+          keyskills.map((keySk, index) => {
             return toggle ? (
               <div className="template1-skill" key={index}>
                 {keySk.name}
@@ -326,37 +277,35 @@ UserTypes) {
                   type="text"
                   name="name"
                   placeholder="NAME"
-                  value={keySk.name}
-                  // onChange={(event) =>
-                  //   updateSkill(index, "name", event.target.value)
-                  // }
+                  value={keySk.name || ""}
+                  onChange={(event) =>
+                    updateSkill(index, "name", event.target.value)
+                  }
                 />
                 <br />
                 <input
                   className=" text-gray-700 font-bold"
                   type="text"
                   name="description"
-                  value={keySk.description}
+                  value={keySk.description || ""}
                   placeholder="DESCRIPTION"
-                  // onChange={(event) =>
-                  //   updateSkill(index, "description", event.target.value)
-                  // }
+                  onChange={(event) =>
+                    updateSkill(index, "description", event.target.value)
+                  }
                 />
               </div>
             );
           })}
-        </div>
-        {toggle ? (
-          <button onClick={() => toggleClicked()}>edit</button>
-        ) : (
-          <button onClick={(e) => handleSubmit(e)}>Submit</button>
-        )}
-        {/* <button onClick={generatePDF} type="button">
-        Export as PDF
-      </button> */}
       </div>
-    );
-  }
+      <button onClick={() => printDocument()}>Print</button>
+
+      {toggle ? (
+        <button onClick={() => toggleClicked()}>edit</button>
+      ) : (
+        <button onClick={(e) => handleSubmit(e)}>Submit</button>
+      )}
+    </div>
+  );
 }
 
 export default Template1;
