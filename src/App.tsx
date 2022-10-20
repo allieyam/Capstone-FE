@@ -9,20 +9,37 @@ import axios from "axios";
 export const UserContext = createContext("");
 
 function App() {
-  const [summary, setSummary] = useState("");
+  // const [summary, setSummary] = useState("");
   const [resume, setResume] = useState([]);
 
-  const { user, logout }: any = useAuth0();
+  const { user, getAccessTokenSilently }: any = useAuth0();
   const [userId, setUserId] = useState("");
 
   const getUserInfo = async () => {
-    const userInfo = await axios.post(`${process.env.REACT_APP_API_SERVER}`, {
-      name: user.nickname,
-      email: user.email,
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
     });
+    const userInfo = await axios.post(
+      `${process.env.REACT_APP_API_SERVER}`,
+      {
+        name: user.nickname,
+        email: user.email,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     setUserId(userInfo.data[0].id);
     const resumeInfo = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${userInfo.data[0].id}/cv`
+      `${process.env.REACT_APP_API_SERVER}/${userInfo.data[0].id}/cv`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
     );
     setResume(resumeInfo.data);
   };
@@ -37,10 +54,10 @@ function App() {
       <div className="App">
         <Navbar />
         <header className="App-header">
-          <h1 className="text-3xl font-bold text-purple-800 border-dotted">
+          {/* <h1 className="text-3xl font-bold text-purple-800 border-dotted">
             Hi!{" "}
           </h1>
-          <br />
+          <br /> */}
           <Outlet />
         </header>
       </div>

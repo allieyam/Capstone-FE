@@ -14,6 +14,11 @@ function Navbar() {
             <ul className="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
               <li>Logo here</li>
               <li>
+                <Link to="/userp" className=" text-white hover:underline">
+                  User Profile
+                </Link>
+              </li>
+              <li>
                 <Link to="/dashboard" className=" text-white hover:underline">
                   Dashboard
                 </Link>

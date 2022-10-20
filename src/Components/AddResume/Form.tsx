@@ -4,11 +4,13 @@ import "../../styling/App.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../App";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Form() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
+  const { getAccessTokenSilently } = useAuth0();
 
   const userId = useContext(UserContext);
   console.log(userId);
@@ -96,22 +98,28 @@ function Form() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("clicked");
-    console.log(workExperience);
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
+    });
     // Send request to create new resume in backend
     await axios
-      .put(`${process.env.REACT_APP_API_SERVER}/${userId}`, {
-        name,
-        email,
-        workExperience: workExperience,
-        education: formValues,
-        keySkills: allSkills,
-        contact,
-      })
-      // // Send request to create new resume in backend
-      // await axios
-      //   .post(`${process.env.REACT_APP_API_SERVER}/${user_id}/cv`, {
-      //     summary,
-      //   })
+      .put(
+        `${process.env.REACT_APP_API_SERVER}/${userId}`,
+        {
+          name,
+          email,
+          workExperience,
+          education: formValues,
+          keySkills: allSkills,
+          contact,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
       .then((res) => {
         // Clear form state
         setName("");
