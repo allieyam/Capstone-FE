@@ -4,14 +4,24 @@ import { Link } from "react-router-dom";
 // import Template from "./Components/Template";
 import { UserContext } from "./App";
 import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Dashboard() {
   const userId = useContext(UserContext);
   const [resume, setResume] = useState([]);
+  const { getAccessTokenSilently }: any = useAuth0();
 
   const getInitialData = async () => {
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
+    });
     axios
-      .get(`${process.env.REACT_APP_API_SERVER}/${userId}`)
+      .get(`${process.env.REACT_APP_API_SERVER}/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
       .then((response) => {
         console.log("response", response);
         setResume(response.data);

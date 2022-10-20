@@ -3,6 +3,7 @@ import { UserTypes } from "../types";
 import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
 import TemplateState from "./TemplateState";
+import { useAuth0 } from "@auth0/auth0-react";
 
 //Define the interface here
 interface Style {
@@ -32,6 +33,7 @@ function Template1({
   const toggleClicked = () => {
     setToggle(false);
   };
+  const { getAccessTokenSilently }: any = useAuth0();
 
   //resubmit data to backend
   const handleSubmit = async (event: any) => {
@@ -39,15 +41,27 @@ function Template1({
     event.preventDefault();
     console.log("clicked");
     console.log(education);
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
+    });
     // Update in backend
     await axios
-      .put(`${process.env.REACT_APP_API_SERVER}/${user}`, {
-        name: username,
-        email: email,
-        contact: phone,
-        keySkills: keyskills,
-        education: education,
-      })
+      .put(
+        `${process.env.REACT_APP_API_SERVER}/${user}`,
+        {
+          name: username,
+          email: email,
+          contact: phone,
+          keySkills: keyskills,
+          education: education,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
       .then((res) => {
         // Clear form state
         console.log(res);

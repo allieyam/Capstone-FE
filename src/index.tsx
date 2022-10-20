@@ -9,7 +9,7 @@ import Template from "./Components/Template";
 import AddTemplate from "./Components/AddTemplate";
 import Form from "../src/Components/AddResume/Form";
 import TemplateEdit from "./Components/Navigation/TemplateEdit";
-import UserProfile from "./backup/UserProfile";
+import UserProfile from "./Components/Upload/UserProfile";
 import TrainBrain from "./Components/AddResume/brain";
 import { Auth0Provider } from "@auth0/auth0-react";
 
@@ -25,6 +25,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Auth0Provider
+    // domain={process.env.REACT_APP_DOMAIN}
+    // clientId={process.env.REACT_APP_CLIENTID}
     domain="dev-pq772rssbtn28kif.us.auth0.com"
     clientId="IDtf5Qn4lnusn83NYdly6cxWR4MqqPNW"
     redirectUri={process.env.REACT_APP_REDIRECT_URI}
