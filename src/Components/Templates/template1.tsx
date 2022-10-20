@@ -298,7 +298,7 @@ function Template1({
           })}
       </div>
       <button onClick={() => printDocument()}>Print</button>
-
+      <br />
       {toggle ? (
         <button onClick={() => toggleClicked()}>edit</button>
       ) : (
