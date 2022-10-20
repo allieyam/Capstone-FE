@@ -3,6 +3,8 @@ import "../styling/App.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import Template1 from "./Templates/template1";
+import Template2 from "./Templates/template2";
+import Template3 from "./Templates/template3";
 // import SentimentAnalysis from "./Sentiment/SentimentAnalysis";
 
 type TypeProp = {
@@ -16,12 +18,6 @@ function AddTemplate() {
   //useLocation to receive props
   const location = useLocation();
   console.log(location, "location", location.state);
-
-  useEffect(() => {
-    if (templateChoice == 1) {
-      return;
-    }
-  }, []);
 
   const user_id = 1;
   const getUserData = async () => {
@@ -56,6 +52,7 @@ function AddTemplate() {
   const [userWork, setUserWork] = useState<any[]>([]);
   const [userEducation, setUserEducation] = useState<any[]>([]);
   const [userSkills, setUserSkills] = useState<any[]>([]);
+  const [userBlurb, setUserBlurb] = useState("");
 
   function updateEducation(index: number, name: string, value: string) {
     setUserEducation((currentEducation) => {
@@ -117,6 +114,50 @@ function AddTemplate() {
     <div>
       <h1>Add Template</h1>
       {/* <SentimentAnalysis /> */}
+      {(() => {
+        if (templateChoice == 1) {
+          return (
+            <Template1
+              username={userName}
+              email={userEmail}
+              keyskills={userSkills}
+              work={userWork}
+              education={userEducation}
+              phone={userPhone}
+              blurb={userBlurb}
+              user={1}
+            />
+          );
+        } else if (templateChoice == 2) {
+          return (
+            <Template2
+              username={userName}
+              email={userEmail}
+              keyskills={userSkills}
+              work={userWork}
+              education={userEducation}
+              phone={userPhone}
+              blurb={userBlurb}
+              user={1}
+            />
+          );
+        } else if (templateChoice == 3) {
+          return (
+            <Template3
+              username={userName}
+              email={userEmail}
+              keyskills={userSkills}
+              work={userWork}
+              education={userEducation}
+              phone={userPhone}
+              blurb={userBlurb}
+              user={1}
+            />
+          );
+        } else {
+          return <div>Template not chosen!</div>;
+        }
+      })()}
     </div>
   );
 }

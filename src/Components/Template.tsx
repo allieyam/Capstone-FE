@@ -2,7 +2,6 @@ import React, { useState, MouseEvent, useEffect } from "react";
 import "../styling/App.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import Template1 from "./Templates/template1";
 
 function Template() {
   const navigate = useNavigate();
