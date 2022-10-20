@@ -313,6 +313,7 @@ async function main() {
       metadata.index_from
     );
   }
+  return model;
 }
 
 if (require.main === module) {

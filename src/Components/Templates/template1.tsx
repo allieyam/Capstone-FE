@@ -3,6 +3,7 @@ import { UserTypes } from "../types";
 import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
 import TemplateState from "./TemplateState";
+import JsPDF from "jspdf";
 
 //Define the interface here
 interface Style {
@@ -21,13 +22,16 @@ function Template1({
   education,
   phone,
   user,
-  updateEducation,
-  updateAll,
-  updateSkill,
-  updateWork,
 }: UserTypes) {
   //set to editing mode
   const [toggle, setToggle] = useState(true);
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [userWork, setUserWork] = useState<any[]>([]);
+  const [userEducation, setUserEducation] = useState<any[]>([]);
+  const [userSkills, setUserSkills] = useState<any[]>([]);
+  const [userBlurb, setUserBlurb] = useState("");
 
   const toggleClicked = () => {
     setToggle(false);
@@ -54,6 +58,68 @@ function Template1({
       });
   };
 
+  function updateEducation(index: number, name: string, value: string) {
+    setUserEducation((currentEducation) => {
+      const newEducation = currentEducation.map(
+        (place: any, placeIndex: number) => {
+          if (index !== placeIndex) {
+            return place;
+          }
+          const newPlace = { ...place, [name]: value };
+          return newPlace;
+        }
+      );
+      return newEducation;
+    });
+  }
+
+  function updateSkill(index: number, name: string, value: string) {
+    setUserSkills((currentSkill) => {
+      const newSkill = currentSkill.map((skills: any, skillIndex: number) => {
+        if (index !== skillIndex) {
+          return skills;
+        }
+        const theSkills = { ...skills, [name]: value };
+        return theSkills;
+      });
+      return newSkill;
+    });
+  }
+
+  function updateWork(index: number, name: string, value: string) {
+    setUserWork((currentWork) => {
+      const newWork = currentWork.map((company: any, workIndex: number) => {
+        if (index !== workIndex) {
+          return company;
+        }
+        const working = { ...company, [name]: value };
+        return working;
+      });
+      return newWork;
+    });
+  }
+
+  function updateAll(name: string, value: string) {
+    switch (name) {
+      case "name":
+        setUserName(value);
+        break;
+      case "email":
+        setUserEmail(value);
+        break;
+      case "contact":
+        setUserPhone(value);
+        break;
+      default:
+    }
+  }
+
+  // const generatePDF = () => {
+  //   const report = new JsPDF("portrait", "pt", "a4");
+  //   report.html(document.querySelector("#template1-container")).then(() => {
+  //     report.save("report.pdf");
+  //   });
+  // };
   return (
     <div className="template">
       <div className="template1-container">
@@ -271,6 +337,9 @@ function Template1({
       ) : (
         <button onClick={(e) => handleSubmit(e)}>Submit</button>
       )}
+      {/* <button onClick={generatePDF} type="button">
+        Export as PDF
+      </button> */}
     </div>
   );
 }
