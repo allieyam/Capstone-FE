@@ -133,7 +133,7 @@ function Template1({
                 type="text"
                 name="name"
                 placeholder="name"
-                value={username}
+                defaultValue={username}
                 onChange={(event) => updateAll("name", event.target.value)}
               ></input>
             )}

@@ -12,12 +12,12 @@ type TypeProp = {
 };
 
 function AddTemplate() {
-  const [templateChoice, setTemplateChoice] = useState(1);
-  console.log("in add template");
-
   //useLocation to receive props
   const location = useLocation();
+  const template_id = location.state;
   console.log(location, "location", location.state);
+  const [templateChoice, setTemplateChoice] = useState(template_id);
+  console.log("in add template");
 
   const user_id = 1;
   const getUserData = async () => {
