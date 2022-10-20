@@ -46,7 +46,7 @@ function App() {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [user]);
 
   console.log(resume);
   return (
@@ -65,8 +65,4 @@ function App() {
   );
 }
 
-// export default App;
-
-export default withAuthenticationRequired(App, {
-  onRedirecting: () => <div>Redirecting you to the login page...</div>,
-});
+export default App;

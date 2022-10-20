@@ -8,7 +8,7 @@ import { UserContext } from "../../App";
 function UserProfile() {
   const userId = useContext(UserContext);
   const [userProfiles, setUserProfile] = useState([]);
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [url, setUrl] = useState("");
 
   const getInitialData = async () => {
@@ -16,7 +16,7 @@ function UserProfile() {
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
     });
-    axios
+    await axios
       .get(`${process.env.REACT_APP_API_SERVER}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -29,11 +29,11 @@ function UserProfile() {
       });
   };
 
+  console.log(userProfiles);
+
   useEffect(() => {
     getInitialData();
   }, []);
-
-  console.log(userProfiles);
 
   return (
     <div>
@@ -47,10 +47,19 @@ function UserProfile() {
             className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0"
           >
             <div className="p-4 md:p-12 text-center lg:text-left">
-              <div
-                className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
-                style={{ backgroundImage: `url(${userProfiles.image})` }}
-              ></div>
+              {userProfiles.image === null ? (
+                <div
+                  className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png)`,
+                  }}
+                ></div>
+              ) : (
+                <div
+                  className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${userProfiles.image})` }}
+                ></div>
+              )}
 
               <h1 className="text-3xl font-bold pt-8 lg:pt-0">
                 {" "}
@@ -107,10 +116,11 @@ function UserProfile() {
           </div>
 
           <div className="w-full lg:w-2/5">
-            <img
-              src="https://source.unsplash.com/MP0IUfwrn0A"
+            {/* <img
+              src='${url}'
               className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
-            />
+            /> */}
+            <img src={url} />
           </div>
         </div>
       </div>

@@ -10,14 +10,7 @@ import AddTemplate from "./Components/AddTemplate";
 import Form from "../src/Components/AddResume/Form";
 import TemplateEdit from "./Components/Navigation/TemplateEdit";
 import UserProfile from "./Components/Upload/UserProfile";
-import TrainBrain from "./Components/AddResume/brain";
 import { Auth0Provider } from "@auth0/auth0-react";
-
-export type Auth0Provider = {
-  domain: any;
-  clientId: string;
-  audience?: string;
-};
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -25,10 +18,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Auth0Provider
-    // domain={process.env.REACT_APP_DOMAIN}
-    // clientId={process.env.REACT_APP_CLIENTID}
-    domain="dev-pq772rssbtn28kif.us.auth0.com"
-    clientId="IDtf5Qn4lnusn83NYdly6cxWR4MqqPNW"
+    domain={process.env.REACT_APP_DOMAIN || ""}
+    clientId={process.env.REACT_APP_CLIENTID || ""}
+    // domain="dev-pq772rssbtn28kif.us.auth0.com"
+    // clientId="IDtf5Qn4lnusn83NYdly6cxWR4MqqPNW"
     redirectUri={process.env.REACT_APP_REDIRECT_URI}
     audience={process.env.REACT_APP_AUDIENCE}
     scope={process.env.REACT_APP_SCOPE}
@@ -43,7 +36,6 @@ root.render(
           <Route path="template" element={<Template />} />
           <Route path="add-template" element={<AddTemplate />} />
           <Route path="edit-template" element={<TemplateEdit />} />
-          {/* <Route path="brain" element={<TrainBrain />} /> */}
           <Route path="*" element={"Nothing here!"} />
         </Route>
       </Routes>
