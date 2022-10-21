@@ -3,7 +3,7 @@ import "./styling/App.css";
 import { Outlet } from "react-router-dom";
 // import axios from "axios";
 import Navbar from "./Components/Navigation/Navbar";
-import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 export const UserContext = createContext("");
@@ -15,6 +15,7 @@ function App() {
   const { user, getAccessTokenSilently }: any = useAuth0();
   const [userId, setUserId] = useState("");
 
+  console.log(user);
   const getUserInfo = async () => {
     const accessToken = await getAccessTokenSilently({
       audience: process.env.REACT_APP_AUDIENCE,
@@ -41,13 +42,27 @@ function App() {
         },
       }
     );
+
     setResume(resumeInfo.data);
+    {
+      const resumeInfo = await axios.get(
+        `${process.env.REACT_APP_API_SERVER}/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      console.log(resumeInfo);
+      setResume(resumeInfo.data);
+    }
   };
 
   useEffect(() => {
     getUserInfo();
-  }, [user]);
+  }, []);
 
+  console.log(userId);
   console.log(resume);
   return (
     <UserContext.Provider value={userId}>
