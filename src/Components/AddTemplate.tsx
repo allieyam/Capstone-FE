@@ -17,8 +17,10 @@ function AddTemplate() {
 
   const location = useLocation();
 
-  const template_choice = location.state;
+  const template_choice = location.state.templateChoice;
+  const summary_user = location.state.userSummary;
   const [templateChoice, setTemplateChoice] = useState(template_choice);
+  const [userSummary, setUserSummary] = useState(summary_user);
   console.log("in add template");
 
   const { getAccessTokenSilently }: any = useAuth0();

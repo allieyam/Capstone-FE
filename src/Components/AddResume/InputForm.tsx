@@ -4,6 +4,7 @@ import Education from "./education";
 import Work from "./work";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Popup from "./Popup";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function InputForm({
   name,
@@ -189,12 +190,15 @@ export default function InputForm({
               </>
             </div>
           </div>
-          <button
-            type="submit"
-            className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-          >
-            Submit
-          </button>
+
+          <Link to="/template" state={summary}>
+            <button
+              type="submit"
+              className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >
+              Submit
+            </button>
+          </Link>
         </div>
       </form>
     </div>
