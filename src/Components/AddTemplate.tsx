@@ -13,12 +13,14 @@ type TypeProp = {
 };
 
 function AddTemplate() {
-  const [templateChoice, setTemplateChoice] = useState(1);
+  //useLocation to receive props
+
+  const location = useLocation();
+
+  const template_choice = location.state;
+  const [templateChoice, setTemplateChoice] = useState(template_choice);
   console.log("in add template");
 
-  //useLocation to receive props
-  const location = useLocation();
-  console.log(location, "location", location.state);
   const { getAccessTokenSilently }: any = useAuth0();
 
   const userId = Number(useContext(UserContext));

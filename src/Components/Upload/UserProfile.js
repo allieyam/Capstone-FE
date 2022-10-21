@@ -12,6 +12,7 @@ function UserProfile() {
   const [url, setUrl] = useState("");
 
   const getInitialData = async () => {
+    console.log("getinitialdata", userId);
     const accessToken = await getAccessTokenSilently({
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
@@ -28,8 +29,6 @@ function UserProfile() {
         setUserProfile(response.data[userId - 1]);
       });
   };
-
-  console.log(userProfiles);
 
   useEffect(() => {
     getInitialData();
