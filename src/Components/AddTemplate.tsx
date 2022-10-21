@@ -5,19 +5,19 @@ import { useLocation } from "react-router-dom";
 import Template1 from "./Templates/template1";
 import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
-// import SentimentAnalysis from "./Sentiment/SentimentAnalysis";
 
 type TypeProp = {
   choice: number;
 };
 
 function AddTemplate() {
+  console.log("in add template");
+
   //useLocation to receive props
   const location = useLocation();
-  const template_id = location.state;
   console.log(location, "location", location.state);
-  const [templateChoice, setTemplateChoice] = useState(template_id);
-  console.log("in add template");
+  const template_choice = location.state;
+  const [templateChoice, setTemplateChoice] = useState(template_choice);
 
   const user_id = 1;
   const getUserData = async () => {
@@ -30,13 +30,14 @@ function AddTemplate() {
     );
 
     let userData = initialItems.data[0];
-    // let userBlurb = initialBlurb.data[0];
+    let userBlurb = initialBlurb.data[0];
     setUserName(userData.name);
     setUserEmail(userData.email);
     setUserPhone(userData.contact);
     setUserWork(userData.workExperience);
     setUserEducation(userData.education);
     setUserSkills(userData.keySkills);
+    setUserBlurb(userBlurb);
 
     console.log(initialItems.data[0]);
   };
@@ -53,62 +54,6 @@ function AddTemplate() {
   const [userEducation, setUserEducation] = useState<any[]>([]);
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [userBlurb, setUserBlurb] = useState("");
-
-  function updateEducation(index: number, name: string, value: string) {
-    setUserEducation((currentEducation) => {
-      const newEducation = currentEducation.map(
-        (place: any, placeIndex: number) => {
-          if (index !== placeIndex) {
-            return place;
-          }
-          const newPlace = { ...place, [name]: value };
-          return newPlace;
-        }
-      );
-      return newEducation;
-    });
-  }
-
-  function updateSkill(index: number, name: string, value: string) {
-    setUserSkills((currentSkill) => {
-      const newSkill = currentSkill.map((skills: any, skillIndex: number) => {
-        if (index !== skillIndex) {
-          return skills;
-        }
-        const theSkills = { ...skills, [name]: value };
-        return theSkills;
-      });
-      return newSkill;
-    });
-  }
-
-  function updateWork(index: number, name: string, value: string) {
-    setUserWork((currentWork) => {
-      const newWork = currentWork.map((company: any, workIndex: number) => {
-        if (index !== workIndex) {
-          return company;
-        }
-        const working = { ...company, [name]: value };
-        return working;
-      });
-      return newWork;
-    });
-  }
-
-  function updateAll(name: string, value: string) {
-    switch (name) {
-      case "name":
-        setUserName(value);
-        break;
-      case "email":
-        setUserEmail(value);
-        break;
-      case "contact":
-        setUserPhone(value);
-        break;
-      default:
-    }
-  }
 
   return (
     <div>
