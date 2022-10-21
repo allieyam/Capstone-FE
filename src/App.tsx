@@ -1,21 +1,22 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useCallback } from "react";
 import "./styling/App.css";
 import { Outlet } from "react-router-dom";
 // import axios from "axios";
 import Navbar from "./Components/Navigation/Navbar";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import axios from "axios";
+import { access } from "fs";
 
 export const UserContext = createContext("");
 
 function App() {
-  // const [summary, setSummary] = useState("");
-  const [resume, setResume] = useState([]);
+  const [resume, setResume] = useState("");
 
   const { user, getAccessTokenSilently }: any = useAuth0();
+  console.log(user);
+
   const [userId, setUserId] = useState("");
 
-  console.log(user);
   const getUserInfo = async () => {
     const accessToken = await getAccessTokenSilently({
       audience: process.env.REACT_APP_AUDIENCE,
@@ -42,7 +43,6 @@ function App() {
         },
       }
     );
-
     setResume(resumeInfo.data);
     {
       const resumeInfo = await axios.get(
@@ -58,21 +58,41 @@ function App() {
     }
   };
 
+  // const getUserInfo = async () => {
+  //   const accessToken = await getAccessTokenSilently({
+  //     audience: process.env.REACT_APP_AUDIENCE,
+  //     scope: process.env.REACT_APP_SCOPE,
+  //   });
+  //   const userInfo = await axios.post(
+  //     `${process.env.REACT_APP_API_SERVER}`,
+  //     {
+  //       name: user.nickname,
+  //       email: user.email,
+  //     },
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${accessToken}`,
+  //       },
+  //     }
+  //   );
+  // };
+
   useEffect(() => {
     getUserInfo();
   }, []);
 
-  console.log(userId);
-  console.log(resume);
+  //grab user
+  //check the user whether exists in the database
+  //backend use findOrCreate
+  //set the user
+  //post data
+
+  console.log("APp userId", userId);
   return (
     <UserContext.Provider value={userId}>
       <div className="App">
         <Navbar />
         <header className="App-header">
-          {/* <h1 className="text-3xl font-bold text-purple-800 border-dotted">
-            Hi!{" "}
-          </h1>
-          <br /> */}
           <Outlet />
         </header>
       </div>
@@ -80,4 +100,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticationRequired(App);
