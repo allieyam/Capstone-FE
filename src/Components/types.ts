@@ -11,7 +11,7 @@ export interface UserTypes {
   work: Array<Work>;
   education: Array<Education>;
   image: string;
-  // blurb?: string;
+  userSummary?: string;
   user: number;
   updateEducation: (index: number, name: string, value: string) => void;
   updateAll: (name: string, value: string) => void;

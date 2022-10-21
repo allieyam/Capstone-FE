@@ -1,11 +1,9 @@
-import React, { useState, createContext, useEffect, useCallback } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import "./styling/App.css";
 import { Outlet } from "react-router-dom";
-// import axios from "axios";
 import Navbar from "./Components/Navigation/Navbar";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import axios from "axios";
-import { access } from "fs";
 
 export const UserContext = createContext("");
 
@@ -34,9 +32,10 @@ function App() {
         },
       }
     );
+    console.log(userInfo);
     setUserId(userInfo.data[0].id);
     const resumeInfo = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${userInfo.data[0].id}/cv`,
+      `${process.env.REACT_APP_API_SERVER}/${userInfo.data[0].id}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -44,38 +43,7 @@ function App() {
       }
     );
     setResume(resumeInfo.data);
-    {
-      const resumeInfo = await axios.get(
-        `${process.env.REACT_APP_API_SERVER}/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      console.log(resumeInfo);
-      setResume(resumeInfo.data);
-    }
   };
-
-  // const getUserInfo = async () => {
-  //   const accessToken = await getAccessTokenSilently({
-  //     audience: process.env.REACT_APP_AUDIENCE,
-  //     scope: process.env.REACT_APP_SCOPE,
-  //   });
-  //   const userInfo = await axios.post(
-  //     `${process.env.REACT_APP_API_SERVER}`,
-  //     {
-  //       name: user.nickname,
-  //       email: user.email,
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     }
-  //   );
-  // };
 
   useEffect(() => {
     getUserInfo();

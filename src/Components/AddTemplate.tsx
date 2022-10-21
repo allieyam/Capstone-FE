@@ -60,7 +60,6 @@ function AddTemplate() {
     // );
     console.log(initialItems);
     let userData = initialItems.data[0];
-    // let userBlurb = initialBlurb.data[0];
     setUserName(userData.name);
     setUserEmail(userData.email);
     setUserPhone(userData.contact);
@@ -151,6 +150,7 @@ function AddTemplate() {
               updateSkill={updateSkill}
               updateWork={updateWork}
               image={image}
+              userSummary={userSummary}
             />
           );
         } else if (templateChoice == 2) {

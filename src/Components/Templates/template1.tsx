@@ -25,6 +25,7 @@ function Template1({
   phone,
   user,
   image,
+  userSummary,
   updateEducation,
   updateAll,
   updateSkill,
@@ -81,7 +82,7 @@ function Template1({
       pdf.save("download.pdf");
     });
   };
-
+  console.log(userSummary);
   return (
     <div className="template" id="divToPrint">
       <div className="template1-container">
@@ -134,7 +135,7 @@ function Template1({
             </div>
           </div>
         </div>
-        <div className="template1-blurb">Summary</div>
+        <div className="template1-blurb">{userSummary}</div>
         <div className="template1-bottom-headers">Work Experience</div>
         <div className="template1-work">
           {work &&
