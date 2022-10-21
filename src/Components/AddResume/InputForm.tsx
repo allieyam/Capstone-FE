@@ -20,6 +20,7 @@ export default function InputForm({
   setWorkExperience,
   formValues,
   setFormValues,
+  showNext,
 }: currUser) {
   const [summary, setSummary] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -190,15 +191,23 @@ export default function InputForm({
               </>
             </div>
           </div>
-
-          <Link to="/template" state={summary}>
+          {showNext === true ? (
+            <Link to="/template" state={summary}>
+              <button
+                type="button"
+                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              >
+                Next
+              </button>
+            </Link>
+          ) : (
             <button
               type="submit"
               className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
             >
               Submit
             </button>
-          </Link>
+          )}
         </div>
       </form>
     </div>

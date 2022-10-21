@@ -76,10 +76,10 @@ function Template1({
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
     html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
+      // const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
-      pdf.addImage(imgData, "JPEG", 15, 40, 180, 160);
-      pdf.save("download.pdf");
+      pdf.addImage(canvas, "pdf", 25, 50, 150, 200);
+      pdf.save("resume.pdf");
     });
   };
   console.log(userSummary);

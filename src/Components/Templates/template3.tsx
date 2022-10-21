@@ -5,6 +5,8 @@ import "../../styling/TemplateStyling/template3.css";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../../App";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 //Define the interface here
 interface Style {
@@ -70,8 +72,17 @@ function Template3({
       });
   };
 
+  const printDocument = () => {
+    const input = document.getElementById("divToPrint")!;
+    html2canvas(input).then((canvas) => {
+      const pdf = new jsPDF();
+      pdf.addImage(canvas, "pdf", 25, 50, 150, 200);
+      pdf.save("resume.pdf");
+    });
+  };
+
   return (
-    <div className="template">
+    <div className="template" id="divToPrint">
       <div className="template3-container">
         <div className="template3-info">
           <div className="template3-blurb">Bla bla blablablbalba</div>
@@ -82,9 +93,10 @@ function Template3({
                 return toggle ? (
                   <div className="template3-workplace" key={index}>
                     {company.place}
+                    <br />
                     {company.description}
-                    {company.date_started}
-                    {company.date_ended}
+                    <br />
+                    {company.date_started} to {company.date_ended}
                   </div>
                 ) : (
                   <div className="template1-educationplace" key={index}>
@@ -143,9 +155,10 @@ function Template3({
                 return toggle ? (
                   <div className="template3-educationplace" key={index}>
                     {educationPlace.place}
+                    <br />
                     {educationPlace.description}
-                    {educationPlace.date_started}
-                    {educationPlace.date_ended}
+                    <br />
+                    {educationPlace.date_started} to {educationPlace.date_ended}
                   </div>
                 ) : (
                   <div className="template1-educationplace" key={index}>
@@ -290,6 +303,8 @@ function Template3({
           </div>
         </div>
       </div>
+      <button onClick={() => printDocument()}>Print</button>
+      <br />
       {toggle ? (
         <button onClick={() => toggleClicked()}>edit</button>
       ) : (

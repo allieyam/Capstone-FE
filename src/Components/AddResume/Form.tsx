@@ -1,4 +1,10 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useContext,
+  useEffect,
+} from "react";
 import InputForm from "./InputForm";
 import "../../styling/App.css";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +17,7 @@ function Form() {
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const { getAccessTokenSilently } = useAuth0();
+  const [showNext, setShowNext] = useState(false);
 
   const userId = useContext(UserContext);
   console.log(userId);
@@ -129,7 +136,8 @@ function Form() {
         setContact("");
         setAllSkills(initialSkill);
         // Navigate to listing-specific page after submitting form
-        navigate(`/dashboard`);
+        setShowNext(true);
+        // navigate(`/template`);
       });
   };
 
@@ -148,6 +156,10 @@ function Form() {
     newSkill.splice(index, 1);
     setAllSkills(newSkill);
   };
+
+  useEffect(() => {
+    setShowNext(false);
+  }, []);
 
   return (
     <div>
@@ -169,6 +181,7 @@ function Form() {
           formValues={formValues}
           workExperience={workExperience}
           setWorkExperience={setWorkExperience}
+          showNext={showNext}
         />
       </p>
     </div>
