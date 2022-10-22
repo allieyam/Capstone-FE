@@ -26,6 +26,7 @@ function Template3({
   phone,
   user,
   image,
+  userSummary,
   updateEducation,
   updateAll,
   updateSkill,
@@ -85,7 +86,21 @@ function Template3({
     <div className="template" id="divToPrint">
       <div className="template3-container">
         <div className="template3-info">
-          <div className="template3-blurb">Bla bla blablablbalba</div>
+          <div className="template3-blurb">
+            {" "}
+            {toggle ? (
+              userSummary
+            ) : (
+              <input
+                className=" text-gray-700 font-bold"
+                type="text"
+                name="summary"
+                placeholder="summary"
+                value={userSummary}
+                onChange={(event) => updateAll("summary", event.target.value)}
+              ></input>
+            )}
+          </div>
           <div className="template3-bottom-headers">Work Experience</div>
           <div className="template3-work">
             {work &&
@@ -306,7 +321,7 @@ function Template3({
       <button onClick={() => printDocument()}>Print</button>
       <br />
       {toggle ? (
-        <button onClick={() => toggleClicked()}>edit</button>
+        <button onClick={() => toggleClicked()}>Edit</button>
       ) : (
         <button onClick={(e) => handleSubmit(e)}>Submit</button>
       )}

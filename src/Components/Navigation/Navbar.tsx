@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -8,7 +9,12 @@ function Navbar() {
 
   return (
     <div>
-      <nav className="items-center justify-start flex-wrap bg-teal-500 p-5">
+      <nav
+        className="items-center justify-start flex-wrap p-5"
+        style={{
+          backgroundColor: "rgb(148,148,148)",
+        }}
+      >
         <div className="py-3 px-4 mx-auto max-w-screen-xl md:px-6">
           <div className="flex items-center">
             <ul className="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">

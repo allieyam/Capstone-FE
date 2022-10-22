@@ -5,6 +5,7 @@ import Work from "./work";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Popup from "./Popup";
 import { Link, useNavigate } from "react-router-dom";
+import "98.css";
 
 export default function InputForm({
   name,
@@ -21,13 +22,14 @@ export default function InputForm({
   formValues,
   setFormValues,
   showNext,
+  summary,
+  handleSummary,
 }: currUser) {
-  const [summary, setSummary] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setSummary(event?.target.value);
-  };
+  // const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  //   setSummary(event?.target.value);
+  // };
 
   return (
     <div>
@@ -36,6 +38,7 @@ export default function InputForm({
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+              id="text22"
               placeholder="grid-name"
             >
               Name
@@ -102,15 +105,8 @@ export default function InputForm({
                 {allSkills.map((element: any, index) => (
                   <div className="form-inline" key={index}>
                     <form>
-                      <div className="flex flex-col p-5 w-full">
-                        <div className="col-lg-12 text-left">
-                          <h3>
-                            <b>
-                              <i className="fas fa-check-circle mr-1"></i>2
-                            </b>
-                          </h3>
-                        </div>
-                        <div className="col-lg-4 text-left">
+                      <div className="flex flex-col p-5 w-full ">
+                        <div className="col-lg-4 text-left flex justify-between">
                           <label>Skills*</label>
                           <input
                             className=" text-gray-700 font-bold"
@@ -119,7 +115,8 @@ export default function InputForm({
                             onChange={(event) => handleSkill(index, event)}
                           />
                         </div>
-                        <div className="col-lg-4 text-left">
+                        <br />
+                        <div className="col-lg-4 text-left flex justify-between">
                           <label>Description*</label>
                           <input
                             className=" text-gray-700 font-bold"
@@ -157,32 +154,34 @@ export default function InputForm({
               workExperience={workExperience}
               setWorkExperience={setWorkExperience}
             />
-            <div className="flex flex-wrap -mx-3 mb-6">
+            <div className="flex -mx-3 mb-6">
               <div className="w-full px-3">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                  Summary
-                </label>
-
+                <div className="card-body">
+                  <h3 className="card-title">Summary</h3>
+                  <hr />
+                </div>
                 <GrammarlyEditorPlugin clientId="client_CpFc5E3M1jpP8iwmtjGyZX">
                   <textarea
                     id="summary"
                     className="appearance-none font-small block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                     placeholder="Fill in the blurb..."
                     name="summary"
-                    rows={5}
                     value={summary}
+                    rows={5}
                     onChange={handleSummary}
                   ></textarea>
                 </GrammarlyEditorPlugin>
-              </div>
-              <>
                 <button
-                  className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                   type="button"
                   onClick={() => setShowModal(true)}
+                  style={{
+                    backgroundColor: "rgb(4,131,132)",
+                  }}
                 >
-                  Hint{" "}
+                  Suggestion{" "}
                 </button>
+              </div>
+              <>
                 {showModal ? (
                   <>
                     <Popup setShowModal={setShowModal} summary={summary} />

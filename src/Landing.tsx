@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./styling/App.css";
-import Background from "./background.jpg";
+import Background from "./styling/background.jpg";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./styling/landing.css";

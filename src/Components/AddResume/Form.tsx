@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../App";
 import { useAuth0 } from "@auth0/auth0-react";
+import "98.css";
 
 function Form() {
   const [name, setName] = useState("");
@@ -20,7 +21,6 @@ function Form() {
   const [showNext, setShowNext] = useState(false);
 
   const userId = useContext(UserContext);
-  console.log(userId);
   const initialFormValues = [
     {
       place: "",
@@ -70,9 +70,9 @@ function Form() {
       case "contact":
         setContact(event.target.value);
         break;
-      case "summary":
-        setSummary(event.target.value);
-        break;
+      // case "summary":
+      //   setSummary(event.target.value);
+      //   break;
       default:
     }
   };
@@ -104,7 +104,6 @@ function Form() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("clicked");
     const accessToken = await getAccessTokenSilently({
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
@@ -157,6 +156,10 @@ function Form() {
     setAllSkills(newSkill);
   };
 
+  const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setSummary(event?.target.value);
+  };
+
   useEffect(() => {
     setShowNext(false);
   }, []);
@@ -182,6 +185,7 @@ function Form() {
           workExperience={workExperience}
           setWorkExperience={setWorkExperience}
           showNext={showNext}
+          handleSummary={handleSummary}
         />
       </p>
     </div>

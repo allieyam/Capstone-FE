@@ -59,4 +59,5 @@ export interface currUser {
   formValues: Array<object>;
   setFormValues: Function;
   showNext: boolean;
+  handleSummary: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }

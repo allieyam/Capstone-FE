@@ -72,6 +72,7 @@
     "@types/babel__traverse": "^7.18.2",
     "@types/react-calendar": "^3.5.3",
     "@types/react-datepicker": "^4.4.2",
+    "@types/styled-components": "^5.1.26",
     "assert": "^2.0.0",
     "autoprefixer": "^10.4.12",
     "buffer": "^6.0.3",

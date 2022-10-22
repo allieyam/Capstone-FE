@@ -24,6 +24,7 @@ function Template2({
   phone,
   user,
   image,
+  userSummary,
   updateEducation,
   updateAll,
   updateSkill,
@@ -169,7 +170,21 @@ function Template2({
           </div>
         </div>
         <div className="template2-bottom">
-          <div className="template2-blurb">Bla bla blablablbalba</div>
+          <div className="template2-blurb">
+            {" "}
+            {toggle ? (
+              userSummary
+            ) : (
+              <input
+                className=" text-gray-700 font-bold"
+                type="text"
+                name="summary"
+                placeholder="summary"
+                value={userSummary}
+                onChange={(event) => updateAll("summary", event.target.value)}
+              ></input>
+            )}
+          </div>
           <div className="template2-bottom-headers">Work Experience</div>
           <div className="template2-work">
             {work &&
@@ -312,7 +327,7 @@ function Template2({
       <button onClick={() => printDocument()}>Print</button>
       <br />
       {toggle ? (
-        <button onClick={() => toggleClicked()}>edit</button>
+        <button onClick={() => toggleClicked()}>Edit</button>
       ) : (
         <button onClick={(e) => handleSubmit(e)}>Submit</button>
       )}

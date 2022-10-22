@@ -18,10 +18,9 @@ function AddTemplate() {
   const location = useLocation();
 
   const template_choice = location.state.templateChoice;
-  const summary_user = location.state.userSummary;
+  const summary_user = location.state.summary;
   const [templateChoice, setTemplateChoice] = useState(template_choice);
   const [userSummary, setUserSummary] = useState(summary_user);
-  console.log("in add template");
 
   const { getAccessTokenSilently }: any = useAuth0();
 
@@ -34,7 +33,7 @@ function AddTemplate() {
   const [userEducation, setUserEducation] = useState<any[]>([]);
   const [userSkills, setUserSkills] = useState<any[]>([]);
   const [image, setImage] = useState("");
-  // const [userBlurb, setUserBlurb] = useState("");
+  const [userBlurb, setUserBlurb] = useState("");
 
   const getUserData = async () => {
     const accessToken = await getAccessTokenSilently({
@@ -50,15 +49,7 @@ function AddTemplate() {
       }
     );
 
-    // let initialBlurb = await axios.get(
-    //   `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${accessToken}`,
-    //     },
-    //   }
-    // );
-    console.log(initialItems);
+    // console.log(initialItems);
     let userData = initialItems.data[0];
     setUserName(userData.name);
     setUserEmail(userData.email);
@@ -67,11 +58,76 @@ function AddTemplate() {
     setUserEducation(userData.education);
     setUserSkills(userData.keySkills);
     setImage(userData.image);
-    console.log(initialItems.data[0]);
+    // console.log(initialItems.data[0]);
+  };
+
+  // get the data from backend
+  // if there is data:
+  // case 1: if there is user summary and blurb - replace blurb with user summary, update it
+  //case 3: if there is only user summary - just show user summary, and set it
+  // case 2: if there is only blurb, just show blurb
+  // if there is no data:
+  // case 1: show please edit.
+
+  const getUserSummary = async () => {
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
+    });
+    axios
+      .get(`${process.env.REACT_APP_API_SERVER}/${userId}/cv`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        console.log("response", response.data);
+        setUserBlurb(response.data[0].summary);
+        // })
+        // .then(() => {
+        if (response.data[0].summary === "" && userSummary !== null) {
+          axios.put(
+            `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+            {
+              summary: userSummary,
+              templateId: templateChoice,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+          setUserSummary(userSummary);
+          console.log("run here 1");
+        } else if (response.data[0].summary !== null && userSummary !== null) {
+          axios.put(
+            `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+            {
+              summary: userSummary,
+              templateId: templateChoice,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+          setUserSummary(userSummary);
+          console.log("run here 2");
+        } else if (response.data[0].summary !== null && userSummary === null) {
+          setUserSummary(response.data[0].summary);
+          console.log("run here 3");
+        } else {
+          setUserSummary("Please edit the summary");
+          console.log("run here 3");
+        }
+      });
   };
 
   useEffect(() => {
     getUserData();
+    getUserSummary();
   }, []);
 
   function updateEducation(index: number, name: string, value: string) {
@@ -127,6 +183,9 @@ function AddTemplate() {
       case "contact":
         setUserPhone(value);
         break;
+      case "summary":
+        setUserSummary(value);
+        break;
       default:
     }
   }
@@ -168,6 +227,7 @@ function AddTemplate() {
               updateSkill={updateSkill}
               updateWork={updateWork}
               image={image}
+              userSummary={userSummary}
             />
           );
         } else if (templateChoice == 3) {
@@ -185,6 +245,7 @@ function AddTemplate() {
               updateSkill={updateSkill}
               updateWork={updateWork}
               image={image}
+              userSummary={userSummary}
             />
           );
         } else {

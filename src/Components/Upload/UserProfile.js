@@ -4,7 +4,7 @@ import axios from "axios";
 import UpImage from "./UploadImage";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../../App";
-import resumebg from "../../styling/bg.png";
+import resumebg from "../../styling/windows.jpg";
 
 function UserProfile() {
   const userId = useContext(UserContext);
