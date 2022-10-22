@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../../App";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
+import "98.css";
 
 //Define the interface here
 interface Style {
@@ -47,19 +48,30 @@ function Template1({
     });
     setToggle(true);
     event.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
     console.log(education);
     // Update in backend
+    await axios.put(
+      `${process.env.REACT_APP_API_SERVER}/${user}`,
+      {
+        name: username,
+        email: email,
+        contact: phone,
+        keySkills: keyskills,
+        education: education,
+        image,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     await axios
       .put(
-        `${process.env.REACT_APP_API_SERVER}/${user}`,
+        `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
-          name: username,
-          email: email,
-          contact: phone,
-          keySkills: keyskills,
-          education: education,
-          image,
+          summary: userSummary,
         },
         {
           headers: {
@@ -76,10 +88,10 @@ function Template1({
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
     html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
+      // const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
-      pdf.addImage(imgData, "JPEG", 15, 40, 180, 160);
-      pdf.save("download.pdf");
+      pdf.addImage(canvas, "pdf", 25, 50, 150, 200);
+      pdf.save("resume.pdf");
     });
   };
   console.log(userSummary);
@@ -135,7 +147,22 @@ function Template1({
             </div>
           </div>
         </div>
-        <div className="template1-blurb">{userSummary}</div>
+        <div className="template1-blurb">
+          <div className="template1-name">
+            {toggle ? (
+              userSummary
+            ) : (
+              <input
+                className=" text-gray-700 font-bold"
+                type="text"
+                name="summary"
+                placeholder="summary"
+                value={userSummary}
+                onChange={(event) => updateAll("summary", event.target.value)}
+              ></input>
+            )}
+          </div>
+        </div>
         <div className="template1-bottom-headers">Work Experience</div>
         <div className="template1-work">
           {work &&
@@ -301,7 +328,7 @@ function Template1({
       <button onClick={() => printDocument()}>Print</button>
       <br />
       {toggle ? (
-        <button onClick={() => toggleClicked()}>edit</button>
+        <button onClick={() => toggleClicked()}>Edit</button>
       ) : (
         <button onClick={(e) => handleSubmit(e)}>Submit</button>
       )}

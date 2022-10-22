@@ -73,14 +73,14 @@ function Work({ workExperience, setWorkExperience }: any) {
             <div className="form-inline" key={index}>
               <form>
                 <div className="flex flex-col p-5 w-full">
-                  <div className="col-lg-12 text-left">
+                  {/* <div className="col-lg-12 text-left">
                     <h3>
                       <b>
                         <i className="fas fa-check-circle mr-1"></i>3
                       </b>
                     </h3>
-                  </div>
-                  <div className="col-lg-4 text-left">
+                  </div> */}
+                  <div className="col-lg-4 text-left flex justify-between">
                     <label>Company*</label>
                     <input
                       className=" text-gray-700 font-bold"
@@ -89,7 +89,8 @@ function Work({ workExperience, setWorkExperience }: any) {
                       onChange={(event) => handleWork(index, event)}
                     />
                   </div>
-                  <div className="col-lg-4 text-left">
+                  <br />
+                  <div className="col-lg-4 text-left flex justify-between">
                     <label>Position*</label>
                     <input
                       className=" text-gray-700 font-bold"
@@ -98,7 +99,8 @@ function Work({ workExperience, setWorkExperience }: any) {
                       onChange={(event) => handleWork(index, event)}
                     />
                   </div>
-                  <div className="col-lg-4 text-left">
+                  <br />
+                  <div className="col-lg-4 text-left flex justify-between">
                     <label>Start Date</label>
                     <input
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -107,7 +109,8 @@ function Work({ workExperience, setWorkExperience }: any) {
                       onChange={(event) => handleWork(index, event)}
                     />
                   </div>
-                  <div className="col-lg-4 text-left">
+                  <br />
+                  <div className="col-lg-4 text-left flex justify-between">
                     <label>End Date*</label>
                     <input
                       className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -116,7 +119,8 @@ function Work({ workExperience, setWorkExperience }: any) {
                       onChange={(event) => handleWork(index, event)}
                     />
                   </div>
-                  <div className="col-lg-4 text-left">
+                  <br />
+                  <div className="col-lg-4 text-left flex justify-between">
                     <label>Description*</label>
                     <input
                       className=" text-gray-700 font-bold"

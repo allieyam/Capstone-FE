@@ -3,6 +3,8 @@ import { UserTypes } from "../types";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import "../../styling/TemplateStyling/template2.css";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 
 //Define the interface here
 interface Style {
@@ -22,6 +24,7 @@ function Template2({
   phone,
   user,
   image,
+  userSummary,
   updateEducation,
   updateAll,
   updateSkill,
@@ -68,8 +71,17 @@ function Template2({
       });
   };
 
+  const printDocument = () => {
+    const input = document.getElementById("divToPrint")!;
+    html2canvas(input).then((canvas) => {
+      const pdf = new jsPDF();
+      pdf.addImage(canvas, "pdf", 25, 50, 170, 320);
+      pdf.save("resume.pdf");
+    });
+  };
+
   return (
-    <div className="template">
+    <div className="template" id="divToPrint">
       <div className="template2-container">
         <div className="template2-header-container">
           <div className="template2-name">
@@ -158,7 +170,21 @@ function Template2({
           </div>
         </div>
         <div className="template2-bottom">
-          <div className="template2-blurb">Bla bla blablablbalba</div>
+          <div className="template2-blurb">
+            {" "}
+            {toggle ? (
+              userSummary
+            ) : (
+              <input
+                className=" text-gray-700 font-bold"
+                type="text"
+                name="summary"
+                placeholder="summary"
+                value={userSummary}
+                onChange={(event) => updateAll("summary", event.target.value)}
+              ></input>
+            )}
+          </div>
           <div className="template2-bottom-headers">Work Experience</div>
           <div className="template2-work">
             {work &&
@@ -172,9 +198,9 @@ function Template2({
                       </div>
                     </div>
                     <div className="template2-dates">
-                      {company.date_started}-{company.date_ended}
+                      {company.date_started} to {company.date_ended}
                     </div>
-
+                    <br />
                     <li>{company.description}</li>
                   </div>
                 ) : (
@@ -225,7 +251,6 @@ function Template2({
                   </div>
                 );
               })}
-            ;
           </div>
           <div className="template2-bottom-headers">Education</div>
           <div className="template2-education">
@@ -235,9 +260,10 @@ function Template2({
                 return toggle ? (
                   <div className="template2-educationplace" key={index}>
                     {educationPlace.place}
+                    <br />
+                    {educationPlace.date_started} to {educationPlace.date_ended}
+                    <br />
                     {educationPlace.description}
-                    {educationPlace.date_started}
-                    {educationPlace.date_ended}
                   </div>
                 ) : (
                   <div className="template1-educationplace" key={index}>
@@ -298,8 +324,10 @@ function Template2({
           </div>
         </div>
       </div>
+      <button onClick={() => printDocument()}>Print</button>
+      <br />
       {toggle ? (
-        <button onClick={() => toggleClicked()}>edit</button>
+        <button onClick={() => toggleClicked()}>Edit</button>
       ) : (
         <button onClick={(e) => handleSubmit(e)}>Submit</button>
       )}

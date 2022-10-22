@@ -58,4 +58,6 @@ export interface currUser {
   setWorkExperience: Function;
   formValues: Array<object>;
   setFormValues: Function;
+  showNext: boolean;
+  handleSummary: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }

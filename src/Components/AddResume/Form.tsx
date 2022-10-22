@@ -1,19 +1,26 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
+import React, {
+  useState,
+  ChangeEvent,
+  FormEvent,
+  useContext,
+  useEffect,
+} from "react";
 import InputForm from "./InputForm";
 import "../../styling/App.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../App";
 import { useAuth0 } from "@auth0/auth0-react";
+import "98.css";
 
 function Form() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const { getAccessTokenSilently } = useAuth0();
+  const [showNext, setShowNext] = useState(false);
 
   const userId = useContext(UserContext);
-  console.log(userId);
   const initialFormValues = [
     {
       place: "",
@@ -63,9 +70,9 @@ function Form() {
       case "contact":
         setContact(event.target.value);
         break;
-      case "summary":
-        setSummary(event.target.value);
-        break;
+      // case "summary":
+      //   setSummary(event.target.value);
+      //   break;
       default:
     }
   };
@@ -97,7 +104,6 @@ function Form() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("clicked");
     const accessToken = await getAccessTokenSilently({
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
@@ -129,7 +135,8 @@ function Form() {
         setContact("");
         setAllSkills(initialSkill);
         // Navigate to listing-specific page after submitting form
-        navigate(`/dashboard`);
+        setShowNext(true);
+        // navigate(`/template`);
       });
   };
 
@@ -148,6 +155,14 @@ function Form() {
     newSkill.splice(index, 1);
     setAllSkills(newSkill);
   };
+
+  const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setSummary(event?.target.value);
+  };
+
+  useEffect(() => {
+    setShowNext(false);
+  }, []);
 
   return (
     <div>
@@ -169,6 +184,8 @@ function Form() {
           formValues={formValues}
           workExperience={workExperience}
           setWorkExperience={setWorkExperience}
+          showNext={showNext}
+          handleSummary={handleSummary}
         />
       </p>
     </div>
