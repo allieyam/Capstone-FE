@@ -62,9 +62,9 @@ function AddTemplate() {
     setUserEducation(userData.education);
     setUserSkills(userData.keySkills);
     setImage(userData.image);
+    setUserBlurb(userBlurb);
     // console.log(initialItems.data[0]);
   };
-  setUserBlurb(userBlurb);
 
   // get the data from backend
   // if there is data:
@@ -210,7 +210,7 @@ function AddTemplate() {
               updateEducation={updateEducation}
               updateAll={updateAll}
               phone={userPhone}
-              user={userId}
+              user={1}
               updateSkill={updateSkill}
               updateWork={updateWork}
               image={image}
