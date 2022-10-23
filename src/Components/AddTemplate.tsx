@@ -18,15 +18,15 @@ function AddTemplate() {
   console.log(location, "location", location.state);
   const template_choice = location.state;
   const [templateChoice, setTemplateChoice] = useState(template_choice);
+  const [userId, setUserId] = useState(2);
 
-  const user_id = 1;
   const getUserData = async () => {
     let initialItems = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${user_id}`
+      `${process.env.REACT_APP_API_SERVER}/${userId}`
     );
 
     let initialBlurb = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${user_id}/cv`
+      `${process.env.REACT_APP_API_SERVER}/${userId}/cv`
     );
 
     let userData = initialItems.data[0];
@@ -70,7 +70,7 @@ function AddTemplate() {
               education={userEducation}
               phone={userPhone}
               blurb={userBlurb}
-              user={1}
+              user={userId}
             />
           );
         } else if (templateChoice == 2) {
@@ -83,7 +83,7 @@ function AddTemplate() {
               education={userEducation}
               phone={userPhone}
               blurb={userBlurb}
-              user={1}
+              user={2}
             />
           );
         } else if (templateChoice == 3) {

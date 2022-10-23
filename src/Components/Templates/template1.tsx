@@ -4,6 +4,7 @@ import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
 import TemplateState from "./TemplateState";
 import JsPDF from "jspdf";
+import Sentiment from "../Sentiment/Sentiment";
 
 //Define the interface here
 interface Style {
@@ -25,13 +26,14 @@ function Template1({
 }: UserTypes) {
   //set to editing mode
   const [toggle, setToggle] = useState(true);
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [userPhone, setUserPhone] = useState("");
-  const [userWork, setUserWork] = useState<any[]>([]);
-  const [userEducation, setUserEducation] = useState<any[]>([]);
-  const [userSkills, setUserSkills] = useState<any[]>([]);
+  const [userName, setUserName] = useState(username);
+  const [userEmail, setUserEmail] = useState(email);
+  const [userPhone, setUserPhone] = useState(phone);
+  const [userWork, setUserWork] = useState<any[]>(work);
+  const [userEducation, setUserEducation] = useState<any[]>(education);
+  const [userSkills, setUserSkills] = useState<any[]>(keyskills);
   const [userBlurb, setUserBlurb] = useState("");
+  console.log("user work", userWork, work);
 
   const toggleClicked = () => {
     setToggle(false);
@@ -42,7 +44,7 @@ function Template1({
     setToggle(true);
     event.preventDefault();
     console.log("clicked");
-    console.log(education);
+    console.log("education in handle submit", education);
     // Update in backend
     await axios
       .put(`${process.env.REACT_APP_API_SERVER}/${user}`, {
@@ -53,8 +55,7 @@ function Template1({
         education: education,
       })
       .then((res) => {
-        // Clear form state
-        console.log(res);
+        console.log("res in handlesubmit", res);
       });
   };
 
@@ -113,6 +114,12 @@ function Template1({
       default:
     }
   }
+
+  function dataML() {
+    console.log("user work in data ml", work);
+    Sentiment(work);
+  }
+  dataML();
 
   // const generatePDF = () => {
   //   const report = new JsPDF("portrait", "pt", "a4");
