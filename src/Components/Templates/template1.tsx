@@ -7,6 +7,7 @@ import { UserContext } from "../../App";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import "98.css";
+import Sentiment from "../Sentiment/Sentiment";
 
 //Define the interface here
 interface Style {
@@ -34,6 +35,14 @@ function Template1({
 }: UserTypes) {
   //set to editing mode
   const [toggle, setToggle] = useState(true);
+  const [userName, setUserName] = useState(username);
+  const [userEmail, setUserEmail] = useState(email);
+  const [userPhone, setUserPhone] = useState(phone);
+  const [userWork, setUserWork] = useState<any[]>(work);
+  const [userEducation, setUserEducation] = useState<any[]>(education);
+  const [userSkills, setUserSkills] = useState<any[]>(keyskills);
+  const [userBlurb, setUserBlurb] = useState("");
+  console.log("user work", userWork, work);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
 
   const toggleClicked = () => {
@@ -48,8 +57,8 @@ function Template1({
     });
     setToggle(true);
     event.preventDefault();
-    // console.log("clicked");
-    console.log(education);
+    console.log("clicked");
+    console.log("education in handle submit", education);
     // Update in backend
     await axios.put(
       `${process.env.REACT_APP_API_SERVER}/${user}`,
@@ -80,8 +89,7 @@ function Template1({
         }
       )
       .then((res) => {
-        // Clear form state
-        console.log(res);
+        console.log("res in handlesubmit", res);
       });
   };
 
@@ -94,7 +102,19 @@ function Template1({
       pdf.save("resume.pdf");
     });
   };
-  console.log(userSummary);
+
+  function dataML() {
+    console.log("user work in data ml", work);
+    Sentiment(work);
+  }
+  dataML();
+
+  // const generatePDF = () => {
+  //   const report = new JsPDF("portrait", "pt", "a4");
+  //   report.html(document.querySelector("#template1-container")).then(() => {
+  //     report.save("report.pdf");
+  //   });
+  // };
   return (
     <div className="template" id="divToPrint">
       <div className="template1-container">
@@ -108,7 +128,7 @@ function Template1({
                 type="text"
                 name="name"
                 placeholder="name"
-                value={username}
+                defaultValue={username}
                 onChange={(event) => updateAll("name", event.target.value)}
               ></input>
             )}

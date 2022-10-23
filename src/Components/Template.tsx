@@ -3,6 +3,7 @@ import "../styling/App.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Sentiment from "../Components/Sentiment/Sentiment";
 
 function Template() {
   const navigate = useNavigate();
@@ -23,6 +24,8 @@ function Template() {
   const handleClick3 = (e: MouseEvent) => {
     setTemplateChoice(3);
   };
+
+  // Sentiment();
 
   return (
     <div>

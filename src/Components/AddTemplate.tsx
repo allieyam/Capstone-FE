@@ -49,8 +49,12 @@ function AddTemplate() {
       }
     );
 
-    // console.log(initialItems);
+    let initialBlurb = await axios.get(
+      `${process.env.REACT_APP_API_SERVER}/${userId}/cv`
+    );
+
     let userData = initialItems.data[0];
+    let userBlurb = initialBlurb.data[0];
     setUserName(userData.name);
     setUserEmail(userData.email);
     setUserPhone(userData.contact);
@@ -60,6 +64,7 @@ function AddTemplate() {
     setImage(userData.image);
     // console.log(initialItems.data[0]);
   };
+  setUserBlurb(userBlurb);
 
   // get the data from backend
   // if there is data:
@@ -125,11 +130,6 @@ function AddTemplate() {
       });
   };
 
-  useEffect(() => {
-    getUserData();
-    getUserSummary();
-  }, []);
-
   function updateEducation(index: number, name: string, value: string) {
     setUserEducation((currentEducation) => {
       const newEducation = currentEducation.map(
@@ -189,6 +189,11 @@ function AddTemplate() {
       default:
     }
   }
+
+  useEffect(() => {
+    getUserData();
+    getUserSummary();
+  }, []);
 
   return (
     <div>
