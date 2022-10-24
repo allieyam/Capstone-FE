@@ -4,7 +4,7 @@ import axios from "axios";
 import UpImage from "./UploadImage";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../../App";
-import resumebg from "../../styling/windows.jpg";
+import resumebg from "../../styling/windows.png";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import { Link } from "react-router-dom";
@@ -48,9 +48,7 @@ function UserProfile() {
   };
 
   console.log(userProfiles);
-  // useEffect(() => {
-  //   getInitialData();
-  // }, [userId]);
+
   useEffect(() => {
     if (userId !== "") {
       getInitialData();
@@ -135,17 +133,17 @@ function UserProfile() {
               </p>
 
               <div className="pt-12 pb-8">
-                {/* <button
+                <button
                   className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
                   onClick={() => printDocument()}
                 >
-                  Send to email{" "}
-                </button> */}
-                <ButtonMailto
+                  Download{" "}
+                </button>
+                {/* <ButtonMailto
                   className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
-                  label={printDocument()}
+                  label="hi"
                   mailto={`mailto:${userProfiles.email}`}
-                />
+                ></ButtonMailto> */}
               </div>
             </div>
           </div>
