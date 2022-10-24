@@ -105,7 +105,7 @@ function Template1({
 
   function dataML() {
     console.log("user work in data ml", work);
-    Sentiment(work);
+    Sentiment([work]);
   }
   dataML();
 

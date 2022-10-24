@@ -24,7 +24,8 @@ function AddTemplate() {
 
   const { getAccessTokenSilently }: any = useAuth0();
 
-  const userId = Number(useContext(UserContext));
+  // const userId = Number(useContext(UserContext));
+  const userId = 1;
   // set state for one chosen out of the 3 templates
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -205,7 +206,22 @@ function AddTemplate() {
               username={userName}
               email={userEmail}
               keyskills={userSkills}
-              work={userWork}
+              work={[
+                {
+                  place: "apple",
+                  position: "hunky dory",
+                  description: "i worked at apple",
+                  date_started: "date started",
+                  date_ended: "date started",
+                },
+                {
+                  place: "pear",
+                  position: "semi head honcho",
+                  description: "i worked at pear",
+                  date_started: "date started",
+                  date_ended: "date started",
+                },
+              ]}
               education={userEducation}
               updateEducation={updateEducation}
               updateAll={updateAll}
