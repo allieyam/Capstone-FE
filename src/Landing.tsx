@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
-import "./styling/App.css";
-// import Background from "./styling/background.jpg";
+import React, { useEffect, useState, useRef, Suspense } from "react";
 import desktop from "./styling/desktop.jpg";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./styling/landing.css";
 import windows from "./styling/windows.png";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
+import "./styling/styles.css";
+import { motion, MotionConfig, useMotionValue } from "framer-motion";
+import useMeasure from "react-use-measure";
+import { Shapes } from "./styling/Shapes";
 
 export const transition = {
   type: "spring",
@@ -16,6 +18,16 @@ export const transition = {
 function Landing() {
   const { loginWithRedirect } = useAuth0();
   const [show, setShow] = useState(false);
+  const [ref, bounds] = useMeasure({ scroll: false });
+  const [isHover, setIsHover] = useState(false);
+  const [isPress, setIsPress] = useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const resetMousePosition = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   // Background style:
   const heroBgImgStyle = {
@@ -30,7 +42,7 @@ function Landing() {
 
   return (
     <div
-      className="w-full flex flex-col justify-center items-center min-h-screen bg-emerald-700 p-4 bg-no-repeat bg-cover bg-fixed bg-center"
+      className=" w-full flex flex-col justify-center items-center min-h-screen bg-emerald-700 p-4 bg-no-repeat bg-cover bg-fixed bg-center"
       style={heroBgImgStyle}
     >
       <h1 className="text-white flex flex-col text-center">
@@ -64,7 +76,7 @@ function Landing() {
           </div>
         ) : null}
       </div>
-      <div className="block text-center mt-4">
+      {/* <div className="block text-center mt-4">
         <button
           className="p-4 bg-emerald-700 text-white rounded-full py-1 font-bold text-md"
           onClick={() =>
@@ -75,6 +87,68 @@ function Landing() {
         >
           Log In
         </button>
+      </div> */}
+      <div className="outline-none">
+        <MotionConfig transition={transition}>
+          <motion.button
+            onClick={() =>
+              loginWithRedirect({
+                redirectUri: "http://localhost:3001/dashboard",
+              })
+            }
+            ref={ref}
+            initial={false}
+            animate={isHover ? "hover" : "rest"}
+            whileTap="press"
+            variants={{
+              rest: { scale: 1 },
+              hover: { scale: 1.5 },
+              press: { scale: 1.4 },
+            }}
+            onHoverStart={() => {
+              resetMousePosition();
+              setIsHover(true);
+            }}
+            onHoverEnd={() => {
+              resetMousePosition();
+              setIsHover(false);
+            }}
+            onTapStart={() => setIsPress(true)}
+            onTap={() => setIsPress(false)}
+            onTapCancel={() => setIsPress(false)}
+            onPointerMove={(e) => {
+              mouseX.set(e.clientX - bounds.x - bounds.width / 2);
+              mouseY.set(e.clientY - bounds.y - bounds.height / 2);
+            }}
+          >
+            <motion.div
+              className="shapes"
+              variants={{
+                rest: { opacity: 0 },
+                hover: { opacity: 1 },
+              }}
+            >
+              <div className="navy blush" />
+              <div className="yellow blush" />
+              <div className="container">
+                <Suspense fallback={null}>
+                  <Shapes
+                    isHover={isHover}
+                    isPress={isPress}
+                    mouseX={mouseX}
+                    mouseY={mouseY}
+                  />
+                </Suspense>
+              </div>
+            </motion.div>
+            <motion.div
+              variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}
+              className="label"
+            >
+              Login
+            </motion.div>
+          </motion.button>
+        </MotionConfig>
       </div>
     </div>
   );
