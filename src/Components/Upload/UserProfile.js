@@ -5,6 +5,9 @@ import UpImage from "./UploadImage";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../../App";
 import resumebg from "../../styling/windows.jpg";
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
+import { Link } from "react-router-dom";
 
 function UserProfile() {
   const userId = useContext(UserContext);
@@ -45,9 +48,37 @@ function UserProfile() {
   };
 
   console.log(userProfiles);
+  // useEffect(() => {
+  //   getInitialData();
+  // }, [userId]);
   useEffect(() => {
-    getInitialData();
-  }, []);
+    if (userId !== "") {
+      getInitialData();
+    }
+  }, [userId, url]);
+
+  const printDocument = () => {
+    const input = document.getElementById("divToPrint");
+    html2canvas(input).then((canvas) => {
+      const pdf = new jsPDF();
+      let pdfcontent = pdf.addImage(canvas, "pdf", 25, 50, 180, 180);
+      return pdfcontent;
+    });
+  };
+
+  const ButtonMailto = ({ mailto, label }) => {
+    return (
+      <Link
+        to="#"
+        onClick={(e) => {
+          window.location.href = mailto;
+          e.preventDefault();
+        }}
+      >
+        {label}
+      </Link>
+    );
+  };
 
   return (
     <div>
@@ -56,6 +87,7 @@ function UserProfile() {
         style={{
           backgroundImage: `url(${resumebg})`,
         }}
+        id="divToPrint"
       >
         <div className="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
           <div
@@ -103,20 +135,26 @@ function UserProfile() {
               </p>
 
               <div className="pt-12 pb-8">
-                <button className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-                  Contact me
-                </button>
+                {/* <button
+                  className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
+                  onClick={() => printDocument()}
+                >
+                  Send to email{" "}
+                </button> */}
+                <ButtonMailto
+                  className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
+                  label={printDocument()}
+                  mailto={`mailto:${userProfiles.email}`}
+                />
               </div>
             </div>
           </div>
 
-          <div className="w-full lg:w-2/5">
-            {/* <img
-                src='${url}'
-                className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
-              /> */}
+          {/* <div className="w-full lg:w-2/5">
+      
+        
             <img src={url} />
-          </div>
+          </div> */}
         </div>
       </div>
       <UpImage url={url} setUrl={setUrl} userProfiles={userProfiles} />
