@@ -1,11 +1,10 @@
-import "./navbar.css";
+import "./navbar2.css";
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
-import start from "../../styling/menu.png";
 
-export default function Navbar() {
+export default function Navbar2() {
   const { logout } = useAuth0();
 
   return (
@@ -19,7 +18,7 @@ export default function Navbar() {
         <div className="flex items-center">
           <div className="dropdown inline-block relative items-center">
             <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-              <span className="mr-1">Start menu</span>
+              <span className="mr-1">Dropdown</span>
               <svg
                 className="fill-current h-4 w-4"
                 xmlns="http://www.w3.org/2000/svg"
@@ -31,36 +30,28 @@ export default function Navbar() {
 
             <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
               <li className="">
-                <Link
-                  to="/userp"
+                <a
                   className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                  href="#"
                 >
-                  User Profile
-                </Link>
+                  One
+                </a>
               </li>
               <li className="">
-                <Link
-                  to="/dashboard"
-                  className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                <a
+                  className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                  href="#"
                 >
-                  Dashboard
-                </Link>
+                  Two
+                </a>
               </li>
-              <li>
-                <Link
-                  to="/form"
-                  className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+              <li className="">
+                <a
+                  className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                  href="#"
                 >
-                  Form
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/template"
-                  className="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
-                >
-                  Templates
-                </Link>
+                  Three is the magic number
+                </a>
               </li>
             </ul>
           </div>
