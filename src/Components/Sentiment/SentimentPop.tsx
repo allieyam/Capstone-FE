@@ -42,11 +42,15 @@ export default function SentimentPop({ results }: Props) {
       <br />
       <div className="sentiment-active-box">
         Active results:
-        {activeArray.map((results: any, index: number) => (
-          <div className="text-gray-500" key={index}>
-            {results.text}
-          </div>
-        ))}
+        {activeArray.length > 0 ? (
+          activeArray.map((results: any, index: number) => (
+            <div className="text-gray-500" key={index}>
+              {results.text}
+            </div>
+          ))
+        ) : (
+          <div>No active results, keep trying!</div>
+        )}
       </div>
     </div>
   );
