@@ -85,6 +85,10 @@ function Template1({
         console.log("res in handlesubmit", res);
       });
   };
+  function dataML() {
+    console.log("user work in data ml", work);
+    Sentiment(work);
+  }
 
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
@@ -96,6 +100,7 @@ function Template1({
     });
   };
   console.log(userSummary);
+  
 
   return (
     <div className="big-template-container">

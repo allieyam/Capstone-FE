@@ -72,7 +72,8 @@ function AddTemplate() {
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
     });
-    await axios
+    axios
+
       .get(`${process.env.REACT_APP_API_SERVER}/${userId}/cv`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -80,8 +81,10 @@ function AddTemplate() {
       })
       .then((response) => {
         console.log("response", response.data);
-        setUserBlurb(response.data);
-        if (response.data === undefined && userSummary !== null) {
+
+        setUserBlurb(response.data[0].summary);
+        if (response.data[0].summary === "" && userSummary !== null) {
+
           axios.put(
             `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
             {

@@ -3,11 +3,12 @@ import desktop from "./styling/desktop.jpg";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./styling/landing.css";
 import windows from "./styling/windows.png";
+// import { motion } from "framer-motion";
+import whale from "./styling/whale.png";
 import "./styling/styles.css";
 import { motion, MotionConfig, useMotionValue } from "framer-motion";
 import useMeasure from "react-use-measure";
 import { Shapes } from "./styling/Shapes";
-import whale from "./styling/whale.png";
 
 export const transition = {
   type: "spring",
