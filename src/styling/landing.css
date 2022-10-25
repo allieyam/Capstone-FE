@@ -3,3 +3,7 @@
 .logo {
   @apply h-[200px] w-[125px] md:h-[275px] md:w-[250px] object-contain;
 }
+
+#roundBtn:focus {
+  outline: none;
+}

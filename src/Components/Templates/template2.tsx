@@ -323,6 +323,14 @@ function Template2({
               })}
           </div>
         </div>
+        {toggle ? (
+          <button onClick={() => toggleClicked()}>edit</button>
+        ) : (
+          <button onClick={(e) => handleSubmit(e)}>Submit</button>
+        )}
+        {/* <button onClick={generatePDF} type="button">
+        Export as PDF
+      </button> */}
       </div>
       <button onClick={() => printDocument()}>Print</button>
       <br />

@@ -7,6 +7,7 @@ import { UserContext } from "../../App";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import "98.css";
+import Sentiment from "../Sentiment/Sentiment";
 
 //Define the interface here
 interface Style {
@@ -80,10 +81,15 @@ function Template1({
         }
       )
       .then((res) => {
-        // Clear form state
-        console.log(res);
+        console.log("res in handlesubmit", res);
       });
   };
+
+  function dataML() {
+    console.log("user work in data ml", work);
+    Sentiment(work);
+  }
+  dataML();
 
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
@@ -108,7 +114,7 @@ function Template1({
                 type="text"
                 name="name"
                 placeholder="name"
-                value={username}
+                defaultValue={username}
                 onChange={(event) => updateAll("name", event.target.value)}
               ></input>
             )}
