@@ -7,6 +7,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import "98.css";
 import graph from "./styling/graph.jpg";
+import whale from "./styling/whale.gif";
 
 function Dashboard() {
   const userId = useContext(UserContext);
@@ -68,6 +69,7 @@ function Dashboard() {
             </ul>
           </li>
         </ul>
+        <img src={whale} className="whale" />
       </div>
     </div>
   );
