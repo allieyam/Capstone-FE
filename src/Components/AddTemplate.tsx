@@ -206,27 +206,12 @@ function AddTemplate() {
               username={userName}
               email={userEmail}
               keyskills={userSkills}
-              work={[
-                {
-                  place: "apple",
-                  position: "hunky dory",
-                  description: "i worked at apple",
-                  date_started: "date started",
-                  date_ended: "date started",
-                },
-                {
-                  place: "pear",
-                  position: "semi head honcho",
-                  description: "i worked at pear",
-                  date_started: "date started",
-                  date_ended: "date started",
-                },
-              ]}
+              work={userWork}
               education={userEducation}
               updateEducation={updateEducation}
               updateAll={updateAll}
               phone={userPhone}
-              user={1}
+              user={userId}
               updateSkill={updateSkill}
               updateWork={updateWork}
               image={image}

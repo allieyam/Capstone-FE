@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { currUser } from "../types";
 import Education from "./education";
 import Work from "./work";
+import "../../styling/App.css";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Popup from "./Popup";
 import { Link, useNavigate } from "react-router-dom";
@@ -97,7 +98,7 @@ export default function InputForm({
         <div>
           <div className="card">
             <div className="card-body">
-              <h3 className="card-title">Skills</h3>
+              <h3 className="card-title ">Skills</h3>
               <hr />
             </div>
             <div>
@@ -154,32 +155,35 @@ export default function InputForm({
               workExperience={workExperience}
               setWorkExperience={setWorkExperience}
             />
-            <div className="flex -mx-3 mb-6">
-              <div className="w-full px-3">
-                <div className="card-body">
-                  <h3 className="card-title">Summary</h3>
-                  <hr />
+            <div className="summary-box">
+              <div className="flex -mx-3 mb-6 flex-col">
+                <div className="w-full px-3">
+                  <div className="card-body">
+                    <h3 className="card-title">Summary</h3>
+                    <hr />
+                  </div>
+                  <GrammarlyEditorPlugin clientId="client_CpFc5E3M1jpP8iwmtjGyZX">
+                    <textarea
+                      id="summary"
+                      className="summary-modal appearance-none  block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      placeholder="Fill in the blurb..."
+                      name="summary"
+                      value={summary}
+                      rows={5}
+                      onChange={handleSummary}
+                    ></textarea>
+                  </GrammarlyEditorPlugin>
+                  <button
+                    type="button"
+                    className="modal-button"
+                    onClick={() => setShowModal(true)}
+                    style={{
+                      backgroundColor: "rgb(4,131,132)",
+                    }}
+                  >
+                    Suggestion
+                  </button>
                 </div>
-                <GrammarlyEditorPlugin clientId="client_CpFc5E3M1jpP8iwmtjGyZX">
-                  <textarea
-                    id="summary"
-                    className="appearance-none font-small block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                    placeholder="Fill in the blurb..."
-                    name="summary"
-                    value={summary}
-                    rows={5}
-                    onChange={handleSummary}
-                  ></textarea>
-                </GrammarlyEditorPlugin>
-                <button
-                  type="button"
-                  onClick={() => setShowModal(true)}
-                  style={{
-                    backgroundColor: "rgb(4,131,132)",
-                  }}
-                >
-                  Suggestion{" "}
-                </button>
               </div>
               <>
                 {showModal ? (

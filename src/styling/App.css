@@ -3,7 +3,7 @@
 }
 
 .App-header {
-  background-color: #048384;
+  background-color: #d1d5db;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -45,3 +45,74 @@
   display: table;
   margin: auto;
 }
+
+/* embed {
+  height: 100px;
+  width: 75px;
+} */
+
+.form {
+  margin-top: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-family: "Pixelated MS Sans Serif", Arial;
+  color: #374151;
+}
+
+.dashboard-container,
+.summary-modal,
+.add,
+label {
+  color: #374151;
+  font-family: "Pixelated MS Sans Serif", Arial;
+}
+
+.summary-box {
+  flex-direction: column;
+}
+.dashboard-container {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.title-bar {
+  background: linear-gradient(
+    90deg,
+    var(--dialog-blue),
+    var(--dialog-blue-light)
+  );
+  padding: 3px 2px 3px 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Pixelated MS Sans Serif", Arial;
+  -webkit-font-smoothing: none;
+  font-size: 11px;
+}
+
+.title-bar-text {
+  font-weight: bold;
+  color: white;
+  letter-spacing: 0;
+  margin-right: 24px;
+}
+
+.title-bar-controls {
+  display: flex;
+  background-color: #d1d5db;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+
+.nav-container {
+  margin: 4px;
+}
+
+/* .component-container {
+  background-color: #d1d5db;
+  width: 98vw;
+  height: 100vh;
+} */

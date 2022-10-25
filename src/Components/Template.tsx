@@ -3,7 +3,7 @@ import "../styling/App.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import Sentiment from "../Components/Sentiment/Sentiment";
+import { motion } from "framer-motion";
 
 function Template() {
   const navigate = useNavigate();
@@ -30,15 +30,33 @@ function Template() {
   return (
     <div>
       <div className="template-button-container">
-        <button className="template1-button" onClick={(e) => handleClick1(e)}>
-          Template 1
-        </button>
-        <button className="template2-button" onClick={(e) => handleClick2(e)}>
-          Template 2
-        </button>
-        <button className="template3-button" onClick={(e) => handleClick3(e)}>
-          Template 3
-        </button>
+        <motion.a
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+          style={{ x: 100 }}
+        >
+          <button className="template1-button" onClick={(e) => handleClick1(e)}>
+            Template 1
+          </button>
+        </motion.a>
+        <motion.a
+          whileHover={{ scale: 1.2 }}
+          whileTap={{ scale: 0.8 }}
+          style={{ x: 100 }}
+        >
+          <button className="template2-button" onClick={(e) => handleClick2(e)}>
+            Template 2
+          </button>
+        </motion.a>
+        <motion.a
+          whileHover={{ rotate: 360 }}
+          whileTap={{ scale: 0.8 }}
+          style={{ x: 100 }}
+        >
+          <button className="template3-button" onClick={(e) => handleClick3(e)}>
+            Template 3
+          </button>
+        </motion.a>
       </div>
       <Link
         to="/add-template"

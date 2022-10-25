@@ -168,20 +168,18 @@ function Template1({
           </div>
         </div>
         <div className="template1-blurb">
-          <div className="template1-name">
-            {toggle ? (
-              userSummary
-            ) : (
-              <input
-                className=" text-gray-700 font-bold"
-                type="text"
-                name="summary"
-                placeholder="summary"
-                value={userSummary}
-                onChange={(event) => updateAll("summary", event.target.value)}
-              ></input>
-            )}
-          </div>
+          {toggle ? (
+            userSummary
+          ) : (
+            <input
+              className=" text-gray-700 font-bold"
+              type="text"
+              name="summary"
+              placeholder="summary"
+              value={userSummary}
+              onChange={(event) => updateAll("summary", event.target.value)}
+            ></input>
+          )}
         </div>
         <div className="template1-bottom-headers">Work Experience</div>
         <div className="template1-work">
@@ -191,6 +189,7 @@ function Template1({
                 <div className="template1-workplace" key={index}>
                   {company.place}
                   <br />
+                  {company.position}
                   {company.description}
                   <br />
                   {company.date_started}
@@ -251,14 +250,16 @@ function Template1({
           {education &&
             education.map((educationPlace, index) => {
               return toggle ? (
-                <div className="template1-educationplace" key={index}>
-                  {educationPlace.place}
+                <div className="template1-education-section" key={index}>
+                  <div className="template1-education-header">
+                    {educationPlace.place}
+                    {educationPlace.level}
+                    {educationPlace.date_started}
+                    {educationPlace.date_ended}
+                  </div>
                   <br />
                   {educationPlace.description}
                   <br />
-                  {educationPlace.date_started}
-                  <br />
-                  {educationPlace.date_ended}
                 </div>
               ) : (
                 <div className="template1-educationplace" key={index}>

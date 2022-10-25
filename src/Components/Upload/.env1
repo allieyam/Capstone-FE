@@ -1,7 +1,0 @@
-const cloudinary = require("cloudinary");
-cloudinary.config({
-  cloud_name: "dz4enslok",
-  api_key: "985623665443214",
-  api_secret: "OtjIID2OsJ2ALpo-l-jWfd2Ytx0",
-});
-module.exports = cloudinary;

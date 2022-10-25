@@ -8,7 +8,7 @@
   height: 29.7cm;
   background: white;
   color: black;
-  font-size: 20px;
+  font-size: 12pt;
 }
 
 .template1-name {
@@ -26,11 +26,13 @@
 
 .template1-blurb {
   padding: 10px;
+  font-size: 12pt;
+  font-weight: bold;
   border-bottom: 1px solid grey;
 }
 
 .template1-bottom-headers {
-  font-weight: bolder;
+  font-weight: bold;
   text-align: left;
   padding-left: 20px;
   padding-top: 20px;
