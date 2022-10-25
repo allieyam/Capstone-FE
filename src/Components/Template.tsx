@@ -12,7 +12,6 @@ function Template() {
   const location = useLocation();
   const summary_user = location.state;
   const [userSummary, setUserSummary] = useState(summary_user);
-  // console.log("in template for summary1", userSummary);
 
   const [templateChoice, setTemplateChoice] = useState(0);
 
