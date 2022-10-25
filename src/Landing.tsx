@@ -3,11 +3,11 @@ import desktop from "./styling/desktop.jpg";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./styling/landing.css";
 import windows from "./styling/windows.png";
-// import { motion } from "framer-motion";
 import "./styling/styles.css";
 import { motion, MotionConfig, useMotionValue } from "framer-motion";
 import useMeasure from "react-use-measure";
 import { Shapes } from "./styling/Shapes";
+import whale from "./styling/whale.png";
 
 export const transition = {
   type: "spring",
@@ -31,7 +31,7 @@ function Landing() {
 
   // Background style:
   const heroBgImgStyle = {
-    backgroundImage: "url(" + desktop + ")",
+    backgroundColor: "#018184",
   };
 
   const showPopup = () => {
@@ -46,14 +46,14 @@ function Landing() {
       style={heroBgImgStyle}
     >
       <h1 className="text-white flex flex-col text-center">
-        <span className="text-6xl lg:text-8xl font-light">Resume</span>
+        <span className="text-6xl lg:text-8xl font-light">Wallie</span>
         <span className="text-5xl lg:text-3xl font-bold">
           Build your resume with us
         </span>
       </h1>
       <div>
         <motion.div onClick={showPopup}>
-          <img src={windows} className="logo" />
+          <img src={whale} className="logo" />
         </motion.div>
         {show ? (
           <div className="window">
@@ -71,7 +71,7 @@ function Landing() {
             <div className="status-bar">
               <p className="status-bar-field">Press F1 for help</p>
               <p className="status-bar-field">Wallie</p>
-              <p className="status-bar-field">CPU Usage: 20%</p>
+              <p className="status-bar-field">CPU Usage: 10%</p>
             </div>
           </div>
         ) : null}

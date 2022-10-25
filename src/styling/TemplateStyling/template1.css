@@ -8,7 +8,7 @@
   height: 29.7cm;
   background: white;
   color: black;
-  font-size: 20px;
+  font-size: 12pt;
 }
 
 .template1-name {
@@ -26,14 +26,18 @@
 
 .template1-blurb {
   padding: 10px;
+  font-size: 12pt;
+  font-weight: bold;
   border-bottom: 1px solid grey;
 }
 
 .template1-bottom-headers {
-  font-weight: bolder;
+  font-weight: bold;
   text-align: left;
   padding-left: 20px;
   padding-top: 20px;
+  font-size: 14pt;
+  padding-bottom: 15px;
 }
 
 .template1-subheader {
@@ -44,21 +48,31 @@
   font-size: 18px;
 }
 
-.template1-place {
+/* .template1-place {
   font-weight: bold;
-}
+} */
 
-.template1-dates {
+/* .template1-dates {
   font-size: 18px;
   display: flex;
   justify-content: flex-end;
   padding-right: 20px;
-}
+} */
 
-.template1-place-skill {
+/* .template1-skill {
   display: flex;
   justify-content: flex-start;
   margin-left: 20px;
-  font-weight: bold;
-  font-size: 18px;
+} */
+
+.template1-place {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.template1-dates {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
 }

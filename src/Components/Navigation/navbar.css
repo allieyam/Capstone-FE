@@ -1703,4 +1703,5 @@ h2 {
 
 .dropdown:hover .dropdown-menu {
   display: block;
+  filter: drop-shadow(3px 10px 5px #222);
 }

@@ -49,7 +49,6 @@ function AddTemplate() {
       }
     );
 
-    // console.log(initialItems);
     let userData = initialItems.data[0];
     setUserName(userData.name);
     setUserEmail(userData.email);
@@ -58,7 +57,7 @@ function AddTemplate() {
     setUserEducation(userData.education);
     setUserSkills(userData.keySkills);
     setImage(userData.image);
-    // console.log(initialItems.data[0]);
+    setUserBlurb(userBlurb);
   };
 
   // get the data from backend
@@ -125,11 +124,6 @@ function AddTemplate() {
       });
   };
 
-  useEffect(() => {
-    getUserData();
-    getUserSummary();
-  }, []);
-
   function updateEducation(index: number, name: string, value: string) {
     setUserEducation((currentEducation) => {
       const newEducation = currentEducation.map(
@@ -190,6 +184,10 @@ function AddTemplate() {
     }
   }
 
+  useEffect(() => {
+    getUserData();
+    getUserSummary();
+  }, []);
   return (
     <div>
       {/* <SentimentAnalysis /> */}

@@ -166,7 +166,7 @@ function Form() {
 
   return (
     <div>
-      <p>
+      <div className="form">
         <InputForm
           name={name}
           contact={contact}
@@ -187,7 +187,7 @@ function Form() {
           showNext={showNext}
           handleSummary={handleSummary}
         />
-      </p>
+      </div>
     </div>
   );
 }
