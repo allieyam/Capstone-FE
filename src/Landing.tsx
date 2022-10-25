@@ -60,7 +60,7 @@ function Landing() {
             <div className="status-bar">
               <p className="status-bar-field">Press F1 for help</p>
               <p className="status-bar-field">Wallie</p>
-              <p className="status-bar-field">CPU Usage: 20%</p>
+              <p className="status-bar-field">CPU Usage: 10%</p>
             </div>
           </div>
         ) : null}
