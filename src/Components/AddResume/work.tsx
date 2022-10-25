@@ -132,21 +132,13 @@ function Work({ workExperience, setWorkExperience }: any) {
                 </div>
               </form>
               {index ? (
-                <button
-                  type="button"
-                  className="button remove"
-                  onClick={() => removeWorkField(index)}
-                >
+                <button type="button" onClick={() => removeWorkField(index)}>
                   Remove
                 </button>
               ) : null}
             </div>
           ))}
-          <button
-            className="button add"
-            type="button"
-            onClick={(e: any) => addWorkField()}
-          >
+          <button type="button" onClick={(e: any) => addWorkField()}>
             Add
           </button>
           <br />

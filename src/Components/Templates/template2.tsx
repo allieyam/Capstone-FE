@@ -45,19 +45,34 @@ function Template2({
     });
     setToggle(true);
     event.preventDefault();
-    console.log("clicked");
+    // console.log("clicked");
     console.log(education);
+    console.log("clicked");
+    console.log("education in handle submit", education);
     // Update in backend
+    await axios.put(
+      `${process.env.REACT_APP_API_SERVER}/${user}`,
+      {
+        name: username,
+        email: email,
+        contact: phone,
+        keySkills: keyskills,
+        education: education,
+        workExperience: work,
+
+        image,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
     await axios
       .put(
-        `${process.env.REACT_APP_API_SERVER}/${user}`,
+        `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
-          name: username,
-          email: email,
-          contact: phone,
-          keySkills: keyskills,
-          education: education,
-          image,
+          summary: userSummary,
         },
         {
           headers: {
@@ -66,8 +81,7 @@ function Template2({
         }
       )
       .then((res) => {
-        // Clear form state
-        console.log(res);
+        console.log("res in handlesubmit", res);
       });
   };
 
@@ -136,8 +150,7 @@ function Template2({
                 keyskills.map((keySk, index) => {
                   return toggle ? (
                     <div className="template2-skill" key={index}>
-                      {keySk.name}
-                      <br />
+                      <div className="template1-place"> {keySk.name}</div>
                       {keySk.description}
                     </div>
                   ) : (
@@ -190,18 +203,19 @@ function Template2({
             {work &&
               work.map((company, index) => {
                 return toggle ? (
-                  <div className="template2-workplace" key={index}>
+                  <div className="template2-work-section" key={index}>
                     <div className="template2-subheader">
-                      <div className="template2-place">{company.place}</div>
-                      <div className="template2-position">
-                        {company.position}
+                      <div className="template1-work-header">
+                        <div className="template1-place">
+                          {company.place}&nbsp; <i> {company.position}</i>
+                        </div>
+                        <div className="template1-dates">
+                          {company.date_started}-{company.date_ended}
+                        </div>
                       </div>
-                    </div>
-                    <div className="template2-dates">
-                      {company.date_started} to {company.date_ended}
+                      {company.description}
                     </div>
                     <br />
-                    <li>{company.description}</li>
                   </div>
                 ) : (
                   <div className="template1-educationplace" key={index}>
@@ -258,12 +272,20 @@ function Template2({
             {education &&
               education.map((educationPlace, index) => {
                 return toggle ? (
-                  <div className="template2-educationplace" key={index}>
-                    {educationPlace.place}
-                    <br />
-                    {educationPlace.date_started} to {educationPlace.date_ended}
-                    <br />
+                  <div className="template1-education-section" key={index}>
+                    <div className="template1-education-header">
+                      <div className="template1-place">
+                        {educationPlace.place}&nbsp;{" "}
+                        <i> {educationPlace.level}</i>
+                      </div>
+                      <div className="template1-dates">
+                        {educationPlace.date_started}-
+                        {educationPlace.date_ended}
+                      </div>
+                    </div>
+
                     {educationPlace.description}
+                    <br />
                   </div>
                 ) : (
                   <div className="template1-educationplace" key={index}>
@@ -323,14 +345,6 @@ function Template2({
               })}
           </div>
         </div>
-        {toggle ? (
-          <button onClick={() => toggleClicked()}>edit</button>
-        ) : (
-          <button onClick={(e) => handleSubmit(e)}>Submit</button>
-        )}
-        {/* <button onClick={generatePDF} type="button">
-        Export as PDF
-      </button> */}
       </div>
       <button onClick={() => printDocument()}>Print</button>
       <br />

@@ -72,13 +72,6 @@ function Education({ formValues, setFormValues }: any) {
             <div className="form-inline" key={index}>
               <form>
                 <div className="flex flex-col p-5 w-full">
-                  {/* <div className="col-lg-12 text-left">
-                    <h3>
-                      <b>
-                        <i className="fas fa-check-circle mr-1"></i>1
-                      </b>
-                    </h3>
-                  </div> */}
                   <div className="col-lg-4 text-left flex justify-between">
                     <label>Institute/Organisation*</label>
                     <input
@@ -122,21 +115,13 @@ function Education({ formValues, setFormValues }: any) {
                 </div>
               </form>
               {index ? (
-                <button
-                  type="button"
-                  className="button remove"
-                  onClick={() => removeFormFields(index)}
-                >
+                <button type="button" onClick={() => removeFormFields(index)}>
                   Remove
                 </button>
               ) : null}
             </div>
           ))}
-          <button
-            className="button add"
-            type="button"
-            onClick={() => addFormFields()}
-          >
+          <button type="button" onClick={() => addFormFields()}>
             Add
           </button>
           <br />

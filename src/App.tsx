@@ -62,7 +62,9 @@ function App() {
       <div className="App">
         <Navbar />
         <header className="App-header">
-          <Outlet />
+          <div className="component-container">
+            <Outlet />
+          </div>
         </header>
       </div>
     </UserContext.Provider>

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "./App";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
+import "98.css";
 
 function Dashboard() {
   const userId = useContext(UserContext);
@@ -37,8 +38,16 @@ function Dashboard() {
   console.log(resume);
 
   return (
-    <div>
+    <div className="dashboard-container">
       <p>Dashboard</p>
+      <embed
+        width="600"
+        height="300"
+        src="https://data.gov.sg/dataset/job-vacancy-by-industry-and-occupational-group-quarterly/resource/ed6ca640-a1e6-4435-b06a-493981a620cd/view/321179ff-1985-4e82-91a8-9f3adeb53e90"
+      />
+      <div className="graph-header">
+        Job Vacancy by Industry and Occupational Group, Quarterly
+      </div>
       <Link to="/template">View your templates</Link>
       <br />
       <Link to="/form">Add details here</Link>

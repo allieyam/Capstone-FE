@@ -5,7 +5,12 @@
   display: flex;
   flex-direction: row;
   color: black;
-  font-size: 20px;
+  font-size: 12pt;
+}
+
+.template2-work,
+.template2-education {
+  width: 100%;
 }
 
 .template2-name {
@@ -62,4 +67,16 @@
   margin-left: 20px;
   font-weight: bold;
   font-size: 18px;
+}
+
+.template1-place {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.template1-dates {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
 }

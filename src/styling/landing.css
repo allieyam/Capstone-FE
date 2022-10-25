@@ -2,6 +2,12 @@
 
 .logo {
   @apply h-[200px] w-[125px] md:h-[275px] md:w-[250px] object-contain;
+  filter: drop-shadow(5px 15px 5px #222);
+  z-index: 1;
+}
+
+.window {
+  height: 18vh;
 }
 
 #roundBtn:focus {
