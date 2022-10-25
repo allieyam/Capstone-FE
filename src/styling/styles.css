@@ -3,18 +3,15 @@ button {
   --navy: rgb(76, 0, 255);
   --yellow: rgb(255, 242, 0);
 
-  appearance: auto;
   cursor: pointer;
-  outline-style: none;
-  color: #fff;
-  border-radius: 60px;
-  outline: none;
+  color: whitesmoke;
+  border-radius: 9999px;
   margin: 0;
   padding: 12px 25px;
   font-family: "Poppins";
-  font-size: 48px;
+  font-size: 50px;
   font-weight: 600;
-  line-height: 48px;
+  line-height: 20px;
   letter-spacing: -1px;
   position: relative;
   text-align: center;
@@ -28,7 +25,7 @@ button {
   left: -1px;
   right: -1px;
   bottom: -1px;
-  border-radius: 60px;
+  border-radius: 9999px;
   background: linear-gradient(60deg, var(--navy) 0%, var(--red) 70%);
 }
 

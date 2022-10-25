@@ -76,19 +76,8 @@ function Landing() {
           </div>
         ) : null}
       </div>
-      {/* <div className="block text-center mt-4">
-        <button
-          className="p-4 bg-emerald-700 text-white rounded-full py-1 font-bold text-md"
-          onClick={() =>
-            loginWithRedirect({
-              redirectUri: "http://localhost:3001/dashboard",
-            })
-          }
-        >
-          Log In
-        </button>
-      </div> */}
-      <div className="outline-none">
+
+      <div>
         <MotionConfig transition={transition}>
           <motion.button
             onClick={() =>
@@ -120,6 +109,7 @@ function Landing() {
               mouseX.set(e.clientX - bounds.x - bounds.width / 2);
               mouseY.set(e.clientY - bounds.y - bounds.height / 2);
             }}
+            className="rounded-full text-xl"
           >
             <motion.div
               className="shapes"
