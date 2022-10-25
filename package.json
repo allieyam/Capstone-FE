@@ -48,7 +48,7 @@
     "yarn": "^1.22.19"
   },
   "scripts": {
-    "start": "WATCHPACK_POLLING=true react-scripts start",
+    "start": "WATCHPACK_POLLING=true react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
@@ -78,6 +78,7 @@
     "@types/react-calendar": "^3.5.3",
     "@types/react-datepicker": "^4.4.2",
     "@types/styled-components": "^5.1.26",
+    "@types/three": "^0.144.0",
     "assert": "^2.0.0",
     "autoprefixer": "^10.4.12",
     "buffer": "^6.0.3",

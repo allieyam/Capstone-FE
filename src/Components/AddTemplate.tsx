@@ -265,8 +265,8 @@ function AddTemplate() {
               ]}
               updateEducation={updateEducation}
               updateAll={updateAll}
-              phone={"1234 5678"}
-              user={1}
+              phone={userPhone}
+              user={userId}
               updateSkill={updateSkill}
               updateWork={updateWork}
               image={image}

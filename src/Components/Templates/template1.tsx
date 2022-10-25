@@ -35,14 +35,6 @@ function Template1({
 }: UserTypes) {
   //set to editing mode
   const [toggle, setToggle] = useState(true);
-  const [userName, setUserName] = useState(username);
-  const [userEmail, setUserEmail] = useState(email);
-  const [userPhone, setUserPhone] = useState(phone);
-  const [userWork, setUserWork] = useState<any[]>(work);
-  const [userEducation, setUserEducation] = useState<any[]>(education);
-  const [userSkills, setUserSkills] = useState<any[]>(keyskills);
-  const [userBlurb, setUserBlurb] = useState("");
-  console.log("user work", userWork, work);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
 
   const toggleClicked = () => {
@@ -61,8 +53,8 @@ function Template1({
     });
     setToggle(true);
     event.preventDefault();
-    console.log("clicked");
-    console.log("education in handle submit", education);
+    // console.log("clicked");
+    console.log(education);
     // Update in backend
     await axios.put(
       `${process.env.REACT_APP_API_SERVER}/${user}`,
@@ -97,6 +89,12 @@ function Template1({
       });
   };
 
+  function dataML() {
+    console.log("user work in data ml", work);
+    Sentiment(work);
+  }
+  dataML();
+
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
     html2canvas(input).then((canvas) => {
@@ -106,18 +104,7 @@ function Template1({
       pdf.save("resume.pdf");
     });
   };
-
-  function dataML() {
-    console.log("user work in data ml", work);
-    Sentiment([work]);
-  }
-
-  // const generatePDF = () => {
-  //   const report = new JsPDF("portrait", "pt", "a4");
-  //   report.html(document.querySelector("#template1-container")).then(() => {
-  //     report.save("report.pdf");
-  //   });
-  // };
+  console.log(userSummary);
   return (
     <div className="template" id="divToPrint">
       <div className="template1-container">
