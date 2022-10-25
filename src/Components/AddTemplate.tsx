@@ -88,7 +88,7 @@ function AddTemplate() {
       })
       .then((response) => {
         console.log("response", response.data);
-        setUserBlurb(response.data[0].summary);
+        setUserBlurb(response.data);
         // })
         // .then(() => {
         if (response.data[0].summary === "" && userSummary !== null) {
