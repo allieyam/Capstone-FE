@@ -36,23 +36,11 @@ function Template1({
 }: UserTypes) {
   //set to editing mode
   const [toggle, setToggle] = useState(true);
-  const [userName, setUserName] = useState(username);
-  const [userEmail, setUserEmail] = useState(email);
-  const [userPhone, setUserPhone] = useState(phone);
-  const [userWork, setUserWork] = useState<any[]>(work);
-  const [userEducation, setUserEducation] = useState<any[]>(education);
-  const [userSkills, setUserSkills] = useState<any[]>(keyskills);
-  const [userBlurb, setUserBlurb] = useState("");
-  console.log("user work", userWork, work);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [brainData, setBrainData] = useState<any[]>();
   const toggleClicked = () => {
     setToggle(false);
   };
-
-  useEffect(() => {
-    dataML();
-  }, []);
 
   //resubmit data to backend
   const handleSubmit = async (event: any) => {
@@ -62,6 +50,8 @@ function Template1({
     });
     setToggle(true);
     event.preventDefault();
+    // console.log("clicked");
+    console.log(education);
     console.log("clicked");
     console.log("education in handle submit", education);
     // Update in backend
@@ -73,6 +63,7 @@ function Template1({
         contact: phone,
         keySkills: keyskills,
         education: education,
+        workExperience: work,
         image,
       },
       {
@@ -97,6 +88,10 @@ function Template1({
         console.log("res in handlesubmit", res);
       });
   };
+  function dataML() {
+    console.log("user work in data ml", work);
+    Sentiment(work);
+  }
 
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
@@ -107,19 +102,9 @@ function Template1({
       pdf.save("resume.pdf");
     });
   };
+  console.log(userSummary);
+  
 
-  function dataML() {
-    console.log("user work in data ml", work);
-    const data = Sentiment([work]);
-    setBrainData(data);
-  }
-
-  // const generatePDF = () => {
-  //   const report = new JsPDF("portrait", "pt", "a4");
-  //   report.html(document.querySelector("#template1-container")).then(() => {
-  //     report.save("report.pdf");
-  //   });
-  // };
   return (
     <div className="big-template-container">
       <div className="template" id="divToPrint">

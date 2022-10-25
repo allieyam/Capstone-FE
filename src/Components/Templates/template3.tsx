@@ -60,6 +60,8 @@ function Template3({
           contact: phone,
           keySkills: keyskills,
           education: education,
+          workExperience: work,
+
           image,
         },
         {
@@ -84,8 +86,8 @@ function Template3({
   };
 
   return (
-    <div className="template" id="divToPrint">
-      <div className="template3-container">
+    <div className="template">
+      <div className="template3-container" id="divToPrint">
         <div className="template3-info">
           <div className="template3-blurb">
             {" "}

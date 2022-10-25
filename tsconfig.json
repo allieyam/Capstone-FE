@@ -14,8 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
-    "stream": ["./node_modules/readable-stream/readable.js"]
+    "jsx": "react-jsx"
   },
   "include": ["src"]
 }

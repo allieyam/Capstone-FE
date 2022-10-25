@@ -24,8 +24,7 @@ function AddTemplate() {
 
   const { getAccessTokenSilently }: any = useAuth0();
 
-  // const userId = Number(useContext(UserContext));
-  const userId = 1;
+  const userId = Number(useContext(UserContext));
   // set state for one chosen out of the 3 templates
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -50,12 +49,7 @@ function AddTemplate() {
       }
     );
 
-    let initialBlurb = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${userId}/cv`
-    );
-
     let userData = initialItems.data[0];
-    let userBlurb = initialBlurb.data[0];
     setUserName(userData.name);
     setUserEmail(userData.email);
     setUserPhone(userData.contact);
@@ -63,8 +57,6 @@ function AddTemplate() {
     setUserEducation(userData.education);
     setUserSkills(userData.keySkills);
     setImage(userData.image);
-    setUserBlurb(userBlurb);
-    // console.log(initialItems.data[0]);
   };
 
   // get the data from backend
@@ -80,6 +72,7 @@ function AddTemplate() {
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
     });
+
     axios
       .get(`${process.env.REACT_APP_API_SERVER}/${userId}/cv`, {
         headers: {
@@ -88,7 +81,10 @@ function AddTemplate() {
       })
       .then((response) => {
         console.log("response", response.data);
-        setUserBlurb(response.data);
+        setUserBlurb(response.data[0].summary);
+        // setUserBlurb(
+        //   " Individual with over 2 years of experience working with different levels in organizations. Looking to further my career in a place that allows for growth and support."
+        // );
         // })
         // .then(() => {
         if (response.data[0].summary === "" && userSummary !== null) {
@@ -198,7 +194,6 @@ function AddTemplate() {
 
   return (
     <div>
-      {/* <SentimentAnalysis /> */}
       {(() => {
         if (templateChoice == 1) {
           return (
