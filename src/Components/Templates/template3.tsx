@@ -48,21 +48,32 @@ function Template3({
     });
     setToggle(true);
     event.preventDefault();
-    console.log("clicked");
-    console.log(education);
     // Update in backend
+    await axios.put(
+      `${process.env.REACT_APP_API_SERVER}/${user}`,
+      {
+        name: username,
+        email: email,
+        contact: phone,
+        keySkills: keyskills,
+        education: education,
+        workExperience: work,
+
+        image,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    console.log("usersummary", userSummary);
+
     await axios
       .put(
-        `${process.env.REACT_APP_API_SERVER}/${user}`,
+        `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
-          name: username,
-          email: email,
-          contact: phone,
-          keySkills: keyskills,
-          education: education,
-          workExperience: work,
-
-          image,
+          summary: userSummary,
         },
         {
           headers: {
@@ -71,8 +82,7 @@ function Template3({
         }
       )
       .then((res) => {
-        // Clear form state
-        console.log(res);
+        console.log("res in handlesubmit", res);
       });
   };
 

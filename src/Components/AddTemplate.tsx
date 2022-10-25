@@ -72,7 +72,7 @@ function AddTemplate() {
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
     });
-    axios
+    await axios
       .get(`${process.env.REACT_APP_API_SERVER}/${userId}/cv`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -80,10 +80,8 @@ function AddTemplate() {
       })
       .then((response) => {
         console.log("response", response.data);
-        setUserBlurb(response.data[0].summary);
-        // })
-        // .then(() => {
-        if (response.data[0].summary === "" && userSummary !== null) {
+        setUserBlurb(response.data);
+        if (response.data === undefined && userSummary !== null) {
           axios.put(
             `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
             {
@@ -98,7 +96,7 @@ function AddTemplate() {
           );
           setUserSummary(userSummary);
           console.log("run here 1");
-        } else if (response.data[0].summary !== null && userSummary !== null) {
+        } else if (userBlurb !== null && userSummary !== null) {
           axios.put(
             `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
             {
@@ -113,7 +111,7 @@ function AddTemplate() {
           );
           setUserSummary(userSummary);
           console.log("run here 2");
-        } else if (response.data[0].summary !== null && userSummary === null) {
+        } else if (response.data !== null && userSummary === null) {
           setUserSummary(response.data[0].summary);
           console.log("run here 3");
         } else {
@@ -191,7 +189,7 @@ function AddTemplate() {
   return (
     <div>
       {(() => {
-        if (templateChoice == 1) {
+        if (templateChoice === 1) {
           return (
             <Template1
               username={userName}
@@ -209,7 +207,7 @@ function AddTemplate() {
               userSummary={userSummary}
             />
           );
-        } else if (templateChoice == 2) {
+        } else if (templateChoice === 2) {
           return (
             <Template2
               username={userName}
@@ -227,7 +225,7 @@ function AddTemplate() {
               userSummary={userSummary}
             />
           );
-        } else if (templateChoice == 3) {
+        } else if (templateChoice === 3) {
           return (
             <Template3
               username={userName}
