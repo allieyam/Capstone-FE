@@ -28,42 +28,54 @@ function Template() {
   // Sentiment();
 
   return (
-    <div>
-      <div className="template-button-container">
-        <motion.a
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.8 }}
-          style={{ x: 100 }}
+    <div className="template-big">
+      <div className="template-ok">
+        <div className="template-button-container">
+          <motion.a
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.8 }}
+            style={{ x: 100 }}
+          >
+            <button
+              className="template1-button"
+              onClick={(e) => handleClick1(e)}
+            >
+              Template 1
+            </button>
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.8 }}
+            style={{ x: 100 }}
+          >
+            <button
+              className="template2-button"
+              onClick={(e) => handleClick2(e)}
+            >
+              Template 2
+            </button>
+          </motion.a>
+          <motion.a
+            whileHover={{ rotate: 360 }}
+            whileTap={{ scale: 0.8 }}
+            style={{ x: 100 }}
+          >
+            <button
+              className="template3-button"
+              onClick={(e) => handleClick3(e)}
+            >
+              Template 3
+            </button>
+          </motion.a>
+        </div>
+        <Link
+          to="/add-template"
+          className="add-template-button"
+          state={{ templateChoice: templateChoice, summary: userSummary }}
         >
-          <button className="template1-button" onClick={(e) => handleClick1(e)}>
-            Template 1
-          </button>
-        </motion.a>
-        <motion.a
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.8 }}
-          style={{ x: 100 }}
-        >
-          <button className="template2-button" onClick={(e) => handleClick2(e)}>
-            Template 2
-          </button>
-        </motion.a>
-        <motion.a
-          whileHover={{ rotate: 360 }}
-          whileTap={{ scale: 0.8 }}
-          style={{ x: 100 }}
-        >
-          <button className="template3-button" onClick={(e) => handleClick3(e)}>
-            Template 3
-          </button>
-        </motion.a>
+          Add a Template
+        </Link>
       </div>
-      <Link
-        to="/add-template"
-        state={{ templateChoice: templateChoice, summary: userSummary }}
-      >
-        Add a Template
-      </Link>
     </div>
   );
 }
