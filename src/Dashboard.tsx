@@ -48,7 +48,7 @@ function Dashboard() {
       <div className="graph-header">
         Job Vacancy by Industry and Occupational Group, Quarterly
       </div>
-      <Link to="/template">View your templates</Link>
+      <Link to="/template">View templates</Link>
       <br />
       <Link to="/form">Add details here</Link>
       <br />

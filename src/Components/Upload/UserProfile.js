@@ -7,7 +7,8 @@ import { UserContext } from "../../App";
 import resumebg from "../../styling/wallpaper.jpg";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 function UserProfile() {
   const userId = useContext(UserContext);
@@ -55,27 +56,57 @@ function UserProfile() {
     }
   }, [userId, url]);
 
-  const printDocument = () => {
+  // const sendEmail = (content) => {
+  //   emailjs.sendForm = ("service_7m2yy4s",
+  //   "template_e93gtb4",
+  //   content,
+  //   "o9jAxzS-sMul68gLn").then(
+  //     (result) => {
+  //       console.log(result.text);
+  //     },
+  //     (error) => {
+  //       console.log(error.text);
+  //     }
+  //   );
+  // };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
     const input = document.getElementById("divToPrint");
     html2canvas(input).then((canvas) => {
       const pdf = new jsPDF();
       let pdfcontent = pdf.addImage(canvas, "pdf", 25, 50, 180, 180);
-      return pdfcontent;
     });
+
+    var templateParams = {
+      name: "Will",
+      notes: html2canvas(input).jsPDF,
+    };
+
+    emailjs
+      .send(
+        "service_7m2yy4s",
+        "template_e93gtb4",
+        templateParams,
+        "o9jAxzS-sMul68gLn"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
 
-  // const ButtonMailto = ({ mailto, label }) => {
-  //   return (
-  //     <Link
-  //       to="#"
-  //       onClick={(e) => {
-  //         window.location.href = mailto;
-  //         e.preventDefault();
-  //       }}
-  //     >
-  //       {label}
-  //     </Link>
-  //   );
+  // const sendDoc = () => {
+  //   const input = document.getElementById("divToPrint");
+  //   html2canvas(input).then((canvas) => {
+  //     const pdf = new jsPDF();
+  //     let pdfcontent = pdf.addImage(canvas, "pdf", 25, 50, 180, 180);
+  //     sendEmail(pdfcontent);
+  //   });
   // };
 
   return (
@@ -135,9 +166,9 @@ function UserProfile() {
               <div className="pt-12 pb-8">
                 <button
                   className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
-                  onClick={() => printDocument()}
+                  onClick={sendEmail}
                 >
-                  Print{" "}
+                  Send to email{" "}
                 </button>
                 {/* <ButtonMailto
                   className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
