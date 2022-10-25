@@ -36,14 +36,10 @@ function Template1({
   //set to editing mode
   const [toggle, setToggle] = useState(true);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
-
+  const [brainData, setBrainData] = useState<any[]>();
   const toggleClicked = () => {
     setToggle(false);
   };
-
-  useEffect(() => {
-    dataML();
-  }, []);
 
   //resubmit data to backend
   const handleSubmit = async (event: any) => {
@@ -55,6 +51,8 @@ function Template1({
     event.preventDefault();
     // console.log("clicked");
     console.log(education);
+    console.log("clicked");
+    console.log("education in handle submit", education);
     // Update in backend
     await axios.put(
       `${process.env.REACT_APP_API_SERVER}/${user}`,
@@ -64,6 +62,7 @@ function Template1({
         contact: phone,
         keySkills: keyskills,
         education: education,
+        workExperience: work,
         image,
       },
       {
@@ -88,12 +87,10 @@ function Template1({
         console.log("res in handlesubmit", res);
       });
   };
-
   function dataML() {
     console.log("user work in data ml", work);
     Sentiment(work);
   }
-  dataML();
 
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
