@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import Sentiment from "../Components/Sentiment/Sentiment";
 
 function Template() {
   const navigate = useNavigate();

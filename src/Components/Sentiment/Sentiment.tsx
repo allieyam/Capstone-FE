@@ -153,6 +153,7 @@ export default function Sentiment(props: any) {
     }
   };
   runningData();
+  return newArray;
 
   /**
    * Printing the output on the console

@@ -24,8 +24,7 @@ function AddTemplate() {
 
   const { getAccessTokenSilently }: any = useAuth0();
 
-  // const userId = Number(useContext(UserContext));
-  const userId = 1;
+  const userId = Number(useContext(UserContext));
   // set state for one chosen out of the 3 templates
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -50,12 +49,7 @@ function AddTemplate() {
       }
     );
 
-    let initialBlurb = await axios.get(
-      `${process.env.REACT_APP_API_SERVER}/${userId}/cv`
-    );
-
     let userData = initialItems.data[0];
-    let userBlurb = initialBlurb.data[0];
     setUserName(userData.name);
     setUserEmail(userData.email);
     setUserPhone(userData.contact);
@@ -63,8 +57,6 @@ function AddTemplate() {
     setUserEducation(userData.education);
     setUserSkills(userData.keySkills);
     setImage(userData.image);
-    setUserBlurb(userBlurb);
-    // console.log(initialItems.data[0]);
   };
 
   // get the data from backend
@@ -198,7 +190,6 @@ function AddTemplate() {
 
   return (
     <div>
-      {/* <SentimentAnalysis /> */}
       {(() => {
         if (templateChoice == 1) {
           return (
@@ -221,48 +212,11 @@ function AddTemplate() {
         } else if (templateChoice == 2) {
           return (
             <Template2
-              username={"John Smith"}
-              email={"john@john.com"}
-              keyskills={[
-                {
-                  name: "Javascript",
-                  description: "im really good at this",
-                },
-              ]}
-              work={[
-                {
-                  place: "Apple",
-                  position: "Marketing Executive",
-                  description:
-                    "Developed and executed online, social media, and print marketing strategies for new projects.",
-                  date_ended: "20/10/2019",
-                  date_started: "10/11/2016",
-                },
-                {
-                  place: "Pear",
-                  position: "Designer",
-                  description:
-                    "Created 3D models, renderings, and video animations.",
-                  date_ended: "6/10/2016",
-                  date_started: "7/6/2014",
-                },
-              ]}
-              education={[
-                {
-                  place: "Orange",
-                  level: "BSc in Computer Science (Hons)",
-                  description: "Dean's List Candidate",
-                  date_started: "10/3/2010",
-                  date_ended: "6/3/2014",
-                },
-                {
-                  place: "Mangosteen",
-                  level: "'A'-levels",
-                  description: "School Board Treasurer",
-                  date_started: "1/1/2007",
-                  date_ended: "31/12/2009",
-                },
-              ]}
+              username={userName}
+              email={userEmail}
+              keyskills={userSkills}
+              work={userWork}
+              education={userEducation}
               updateEducation={updateEducation}
               updateAll={updateAll}
               phone={userPhone}

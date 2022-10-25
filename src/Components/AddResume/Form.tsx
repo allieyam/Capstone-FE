@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../App";
 import { useAuth0 } from "@auth0/auth0-react";
-import "98.css";
 
 function Form() {
   const [name, setName] = useState("");
