@@ -187,3 +187,10 @@ label {
   align-items: flex-start;
   gap: 20px;
 }
+
+.whale {
+  width: 500px;
+  height: 500px;
+  margin-right: -100px;
+  pointer-events: none;
+}
