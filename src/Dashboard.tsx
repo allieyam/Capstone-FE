@@ -6,6 +6,7 @@ import { UserContext } from "./App";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import "98.css";
+import graph from "./styling/graph.jpg";
 
 function Dashboard() {
   const userId = useContext(UserContext);
@@ -48,6 +49,7 @@ function Dashboard() {
       <div className="graph-header">
         Job Vacancy by Industry and Occupational Group, Quarterly
       </div>
+      <img src={graph} width="600" height="300" />
       <Link to="/template">View your templates</Link>
       <br />
       <Link to="/form">Add details here</Link>

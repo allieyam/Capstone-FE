@@ -35,15 +35,21 @@ function Template2({
   const [toggle, setToggle] = useState(true);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [getData, setGetData] = useState();
+  console.log("work in tempalte 2", work);
 
   const toggleClicked = () => {
     setToggle(false);
   };
 
   useEffect(() => {
-    dataFunc();
-    console.log("work in useeffect", work);
-  }, []);
+    if (work.length > 1 || work !== undefined) {
+      console.log("work is not null", work);
+      dataFunc();
+    } else {
+      console.log("work in useeffect", work);
+      return;
+    }
+  }, [work]);
 
   //resubmit data to backend
   const handleSubmit = async (event: any) => {
@@ -217,7 +223,8 @@ function Template2({
                             {company.place}&nbsp; <i> {company.position}</i>
                           </div>
                           <div className="template1-dates">
-                            {company.date_started}-{company.date_ended}
+                            {company.date_started}&nbsp;to&nbsp;
+                            {company.date_ended}
                           </div>
                         </div>
                         {company.description}
@@ -286,7 +293,7 @@ function Template2({
                           <i> {educationPlace.level}</i>
                         </div>
                         <div className="template1-dates">
-                          {educationPlace.date_started}-
+                          {educationPlace.date_started}&nbsp;to&nbsp;
                           {educationPlace.date_ended}
                         </div>
                       </div>
@@ -365,6 +372,7 @@ function Template2({
           <button onClick={(e) => handleSubmit(e)}>Submit</button>
         )}
       </div>
+
       <SentimentPop results={getData} />
     </div>
   );

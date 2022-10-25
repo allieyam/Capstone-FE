@@ -72,7 +72,7 @@ function AddTemplate() {
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
     });
-    console.log("inuser summary", accessToken);
+
     axios
       .get(`${process.env.REACT_APP_API_SERVER}/${userId}/cv`, {
         headers: {
