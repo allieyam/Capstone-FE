@@ -27,6 +27,11 @@ export default function SentimentPop({ results }: Props) {
   console.log("passive array", passiveArray, "active array", activeArray);
   return (
     <div className="sentiment-pop-container">
+      <div className="sentiment-what">
+        Using active voice will engage your reader better than passive voice.
+        Here's some help figuring out what needs changing!
+      </div>
+      <br />
       <div className="sentiment-passive-box">
         Passive results:
         {passiveArray.length > 0 ? (
