@@ -82,6 +82,9 @@ function AddTemplate() {
       .then((response) => {
         console.log("response", response.data);
         setUserBlurb(response.data[0].summary);
+        // setUserBlurb(
+        //   " Individual with over 2 years of experience working with different levels in organizations. Looking to further my career in a place that allows for growth and support."
+        // );
         // })
         // .then(() => {
         if (response.data[0].summary === "" && userSummary !== null) {
