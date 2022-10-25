@@ -50,10 +50,6 @@ function Template1({
     });
     setToggle(true);
     event.preventDefault();
-    // console.log("clicked");
-    console.log(education);
-    console.log("clicked");
-    console.log("education in handle submit", education);
     // Update in backend
     await axios.put(
       `${process.env.REACT_APP_API_SERVER}/${user}`,
@@ -72,6 +68,7 @@ function Template1({
         },
       }
     );
+    console.log("usersummary", userSummary);
     await axios
       .put(
         `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
