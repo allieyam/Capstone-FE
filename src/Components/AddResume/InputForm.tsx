@@ -6,7 +6,6 @@ import "../../styling/App.css";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Popup from "./Popup";
 import { Link, useNavigate } from "react-router-dom";
-import "98.css";
 
 export default function InputForm({
   name,
@@ -131,7 +130,7 @@ export default function InputForm({
                 {index ? (
                   <button
                     type="button"
-                    className="button remove"
+                    // className="button remove"
                     onClick={() => removeSkills(index)}
                   >
                     Remove
@@ -140,7 +139,7 @@ export default function InputForm({
               </div>
             ))}
             <button
-              className="button add"
+              // className="button add"
               type="button"
               onClick={(e: any) => addSkillfields(e)}
             >
@@ -167,7 +166,7 @@ export default function InputForm({
                   <GrammarlyEditorPlugin clientId="client_CpFc5E3M1jpP8iwmtjGyZX">
                     <textarea
                       id="summary"
-                      className="summary-modal appearance-none  block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                      className="text-lg summary-modal appearance-none  block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                       placeholder="Fill in the blurb..."
                       name="summary"
                       value={summary}
@@ -190,7 +189,11 @@ export default function InputForm({
               <>
                 {showModal ? (
                   <>
-                    <Popup setShowModal={setShowModal} summary={summary} />
+                    <Popup
+                      setShowModal={setShowModal}
+                      summary={summary}
+                      className="select-text"
+                    />
                   </>
                 ) : null}
               </>

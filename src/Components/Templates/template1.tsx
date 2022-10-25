@@ -62,6 +62,7 @@ function Template1({
         contact: phone,
         keySkills: keyskills,
         education: education,
+        workExperience: work,
         image,
       },
       {
@@ -87,15 +88,6 @@ function Template1({
       });
   };
 
-  // function dataML() {
-  //   console.log("user work in data ml", work);
-  //   Sentiment(work);
-  // }
-  // dataML();
-  // useEffect(() => {
-  //   dataML();
-  // }, []);
-
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
     html2canvas(input).then((canvas) => {
@@ -107,12 +99,6 @@ function Template1({
   };
   console.log(userSummary);
 
-  // const generatePDF = () => {
-  //   const report = new JsPDF("portrait", "pt", "a4");
-  //   report.html(document.querySelector("#template1-container")).then(() => {
-  //     report.save("report.pdf");
-  //   });
-  // };
   return (
     <div className="template" id="divToPrint">
       <div className="template1-container">

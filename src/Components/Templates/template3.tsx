@@ -60,6 +60,8 @@ function Template3({
           contact: phone,
           keySkills: keyskills,
           education: education,
+          workExperience: work,
+
           image,
         },
         {

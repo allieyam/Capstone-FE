@@ -57,7 +57,6 @@ function AddTemplate() {
     setUserEducation(userData.education);
     setUserSkills(userData.keySkills);
     setImage(userData.image);
-    setUserBlurb(userBlurb);
   };
 
   // get the data from backend
@@ -188,9 +187,9 @@ function AddTemplate() {
     getUserData();
     getUserSummary();
   }, []);
+
   return (
     <div>
-      {/* <SentimentAnalysis /> */}
       {(() => {
         if (templateChoice == 1) {
           return (
