@@ -8,6 +8,11 @@
   font-size: 12pt;
 }
 
+.template2-work,
+.template2-education {
+  width: 100%;
+}
+
 .template2-name {
   font-weight: bold;
   font-size: 30px;

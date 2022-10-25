@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserTypes } from "../types";
 import "../../styling/TemplateStyling/template3.css";
+import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../../App";
@@ -106,12 +107,17 @@ function Template3({
             {work &&
               work.map((company, index) => {
                 return toggle ? (
-                  <div className="template3-workplace" key={index}>
-                    {company.place}
-                    <br />
+                  <div className="template1-work-section" key={index}>
+                    <div className="template1-work-header">
+                      <div className="template1-place">
+                        {company.place}&nbsp; <i> {company.position}</i>
+                      </div>
+                      <div className="template1-dates">
+                        {company.date_started}-{company.date_ended}
+                      </div>
+                    </div>
                     {company.description}
                     <br />
-                    {company.date_started} to {company.date_ended}
                   </div>
                 ) : (
                   <div className="template1-educationplace" key={index}>
@@ -168,12 +174,20 @@ function Template3({
             {education &&
               education.map((educationPlace, index) => {
                 return toggle ? (
-                  <div className="template3-educationplace" key={index}>
-                    {educationPlace.place}
-                    <br />
+                  <div className="template1-education-section" key={index}>
+                    <div className="template1-education-header">
+                      <div className="template1-place">
+                        {educationPlace.place}&nbsp;{" "}
+                        <i> {educationPlace.level}</i>
+                      </div>
+                      <div className="template1-dates">
+                        {educationPlace.date_started}-
+                        {educationPlace.date_ended}
+                      </div>
+                    </div>
+
                     {educationPlace.description}
                     <br />
-                    {educationPlace.date_started} to {educationPlace.date_ended}
                   </div>
                 ) : (
                   <div className="template1-educationplace" key={index}>
@@ -238,7 +252,8 @@ function Template3({
               keyskills.map((keySk, index) => {
                 return toggle ? (
                   <div className="template1-skill" key={index}>
-                    {keySk.name}:{keySk.description}
+                    <div className="template1-place"> {keySk.name}</div>
+                    {keySk.description}
                   </div>
                 ) : (
                   <div>
