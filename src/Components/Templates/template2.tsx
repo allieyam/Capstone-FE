@@ -42,6 +42,7 @@ function Template2({
   };
 
   useEffect(() => {
+    console.log("in use effect");
     if (work.length > 1 || work !== undefined) {
       console.log("work is not null", work);
       dataFunc();
@@ -102,8 +103,8 @@ function Template2({
 
   return (
     <div className="big-template-container">
-      <div className="template" id="divToPrint">
-        <div className="template2-container">
+      <div className="template">
+        <div className="template2-container" id="divToPrint">
           <div className="template2-header-container">
             <div className="template2-name">
               {" "}
@@ -364,16 +365,23 @@ function Template2({
             </div>
           </div>
         </div>
-        <button onClick={() => printDocument()}>Print</button>
-        <br />
-        {toggle ? (
-          <button onClick={() => toggleClicked()}>Edit</button>
-        ) : (
-          <button onClick={(e) => handleSubmit(e)}>Submit</button>
-        )}
+        <div>
+          <button className="templatebutton" onClick={() => printDocument()}>
+            Print
+          </button>
+          <br />
+          {toggle ? (
+            <button className="templatebutton" onClick={() => toggleClicked()}>
+              Edit
+            </button>
+          ) : (
+            <button className="templatebutton" onClick={(e) => handleSubmit(e)}>
+              Submit
+            </button>
+          )}
+        </div>
       </div>
-
-      <SentimentPop results={getData} />
+      {work !== null ? <SentimentPop results={getData} /> : null}
     </div>
   );
 }
