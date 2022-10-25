@@ -51,8 +51,25 @@
   width: 75px;
 } */
 
+.form-container {
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+}
+
 .form {
   margin-top: 20px;
+}
+.form-left,
+.form-right {
+  width: 50%;
+}
+
+.inputform {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  width: 50vw;
 }
 
 .card-title {

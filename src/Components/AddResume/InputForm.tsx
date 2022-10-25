@@ -34,123 +34,125 @@ export default function InputForm({
 
   return (
     <div>
-      <form className="w-full max-w-sm" onSubmit={handleSubmit}>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              id="text22"
-              placeholder="grid-name"
-            >
-              Name
-            </label>
-            <input
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              id="grid-name"
-              type="text"
-              placeholder="Test"
-              name="name"
-              value={name}
-              onChange={handleChange}
-            />
-            <p className="text-red-500 text-xs italic">
-              Please fill out this field.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 px-3">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              placeholder="grid-contact"
-            >
-              Contact
-            </label>
-            <input
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              id="grid-contact"
-              type="text"
-              placeholder="Test"
-              name="contact"
-              value={contact}
-              onChange={handleChange}
-            />
-            <p className="text-gray-600 text-xs italic">Contact number here </p>
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              placeholder="grid-email"
-            >
-              Email
-            </label>
-            <input
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              id="grid-email"
-              type="email"
-              placeholder="example@example.com"
-              name="email"
-              value={email}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        <div>
-          <div className="card">
-            <div className="card-body">
-              <h3 className="card-title ">Skills</h3>
-              <hr />
-            </div>
-            <div>
-              <>
-                {allSkills.map((element: any, index) => (
-                  <div className="form-inline" key={index}>
-                    <form>
-                      <div className="flex flex-col p-5 w-full ">
-                        <div className="col-lg-4 text-left flex justify-between">
-                          <label>Skills*</label>
-                          <input
-                            className=" text-gray-700 font-bold"
-                            type="text"
-                            name="name"
-                            onChange={(event) => handleSkill(index, event)}
-                          />
-                        </div>
-                        <br />
-                        <div className="col-lg-4 text-left flex justify-between">
-                          <label>Description*</label>
-                          <input
-                            className=" text-gray-700 font-bold"
-                            type="text"
-                            name="description"
-                            onChange={(event) => handleSkill(index, event)}
-                          />
-                        </div>
-                      </div>
-                    </form>
-                    {index ? (
-                      <button
-                        type="button"
-                        className="button remove"
-                        onClick={() => removeSkills(index)}
-                      >
-                        Remove
-                      </button>
-                    ) : null}
-                  </div>
-                ))}
-                <button
-                  className="button add"
-                  type="button"
-                  onClick={(e: any) => addSkillfields(e)}
+      <div className="form-container">
+        <form className="inputform" onSubmit={handleSubmit}>
+          <div className="form-right">
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  id="text22"
+                  placeholder="grid-name"
                 >
-                  Add
-                </button>
-                <br />
-                <br />
-              </>
+                  Name
+                </label>
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="grid-name"
+                  type="text"
+                  placeholder="Test"
+                  name="name"
+                  value={name}
+                  onChange={handleChange}
+                />
+                <p className="text-red-500 text-xs italic">
+                  Please fill out this field.
+                </p>
+              </div>
+              <div className="w-full md:w-1/2 px-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  placeholder="grid-contact"
+                >
+                  Contact
+                </label>
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="grid-contact"
+                  type="text"
+                  placeholder="Test"
+                  name="contact"
+                  value={contact}
+                  onChange={handleChange}
+                />
+                <p className="text-gray-600 text-xs italic">
+                  Contact number here{" "}
+                </p>
+              </div>
             </div>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full px-3">
+                <label
+                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  placeholder="grid-email"
+                >
+                  Email
+                </label>
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  id="grid-email"
+                  type="email"
+                  placeholder="example@example.com"
+                  name="email"
+                  value={email}
+                  onChange={handleChange}
+                />
+              </div>
+            </div>
+
+            <h3 className="card-title ">Skills</h3>
+            <hr />
+
+            {allSkills.map((element: any, index) => (
+              <div className="form-inline" key={index}>
+                <form>
+                  <div className="flex flex-col p-5 w-full ">
+                    <div className="col-lg-4 text-left flex justify-between">
+                      <label>Skills*</label>
+                      <input
+                        className=" text-gray-700 font-bold"
+                        type="text"
+                        name="name"
+                        onChange={(event) => handleSkill(index, event)}
+                      />
+                    </div>
+                    <br />
+                    <div className="col-lg-4 text-left flex justify-between">
+                      <label>Description*</label>
+                      <input
+                        className=" text-gray-700 font-bold"
+                        type="text"
+                        name="description"
+                        onChange={(event) => handleSkill(index, event)}
+                      />
+                    </div>
+                  </div>
+                </form>
+                {index ? (
+                  <button
+                    type="button"
+                    className="button remove"
+                    onClick={() => removeSkills(index)}
+                  >
+                    Remove
+                  </button>
+                ) : null}
+              </div>
+            ))}
+            <button
+              className="button add"
+              type="button"
+              onClick={(e: any) => addSkillfields(e)}
+            >
+              Add
+            </button>
+            <br />
+            <br />
+
             <Education formValues={formValues} setFormValues={setFormValues} />
+          </div>
+
+          <div className="form-left">
             <Work
               workExperience={workExperience}
               setWorkExperience={setWorkExperience}
@@ -193,26 +195,26 @@ export default function InputForm({
                 ) : null}
               </>
             </div>
-          </div>
-          {showNext === true ? (
-            <Link to="/template" state={summary}>
+            {showNext === true ? (
+              <Link to="/template" state={summary}>
+                <button
+                  type="button"
+                  className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                >
+                  Next
+                </button>
+              </Link>
+            ) : (
               <button
-                type="button"
+                type="submit"
                 className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
               >
-                Next
+                Submit
               </button>
-            </Link>
-          ) : (
-            <button
-              type="submit"
-              className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-            >
-              Submit
-            </button>
-          )}
-        </div>
-      </form>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

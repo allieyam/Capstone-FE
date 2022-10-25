@@ -221,15 +221,52 @@ function AddTemplate() {
         } else if (templateChoice == 2) {
           return (
             <Template2
-              username={userName}
-              email={userEmail}
-              keyskills={userSkills}
-              work={userWork}
-              education={userEducation}
+              username={"John Smith"}
+              email={"john@john.com"}
+              keyskills={[
+                {
+                  name: "Javascript",
+                  description: "im really good at this",
+                },
+              ]}
+              work={[
+                {
+                  place: "Apple",
+                  position: "Marketing Executive",
+                  description:
+                    "Developed and executed online, social media, and print marketing strategies for new projects.",
+                  date_ended: "20/10/2019",
+                  date_started: "10/11/2016",
+                },
+                {
+                  place: "Pear",
+                  position: "Designer",
+                  description:
+                    "Created 3D models, renderings, and video animations.",
+                  date_ended: "6/10/2016",
+                  date_started: "7/6/2014",
+                },
+              ]}
+              education={[
+                {
+                  place: "Orange",
+                  level: "BSc in Computer Science (Hons)",
+                  description: "Dean's List Candidate",
+                  date_started: "10/3/2010",
+                  date_ended: "6/3/2014",
+                },
+                {
+                  place: "Mangosteen",
+                  level: "'A'-levels",
+                  description: "School Board Treasurer",
+                  date_started: "1/1/2007",
+                  date_ended: "31/12/2009",
+                },
+              ]}
               updateEducation={updateEducation}
               updateAll={updateAll}
-              phone={userPhone}
-              user={userId}
+              phone={"1234 5678"}
+              user={1}
               updateSkill={updateSkill}
               updateWork={updateWork}
               image={image}

@@ -49,6 +49,10 @@ function Template1({
     setToggle(false);
   };
 
+  useEffect(() => {
+    dataML();
+  }, []);
+
   //resubmit data to backend
   const handleSubmit = async (event: any) => {
     const accessToken = await getAccessTokenSilently({
@@ -107,7 +111,6 @@ function Template1({
     console.log("user work in data ml", work);
     Sentiment([work]);
   }
-  dataML();
 
   // const generatePDF = () => {
   //   const report = new JsPDF("portrait", "pt", "a4");
@@ -186,15 +189,17 @@ function Template1({
           {work &&
             work.map((company, index) => {
               return toggle ? (
-                <div className="template1-workplace" key={index}>
-                  {company.place}
-                  <br />
-                  {company.position}
+                <div className="template1-work-section" key={index}>
+                  <div className="template1-work-header">
+                    <div className="template1-place">
+                      {company.place}&nbsp; <i> {company.position}</i>
+                    </div>
+                    <div className="template1-dates">
+                      {company.date_started}-{company.date_ended}
+                    </div>
+                  </div>
                   {company.description}
                   <br />
-                  {company.date_started}
-                  <br />
-                  {company.date_ended}
                 </div>
               ) : (
                 <div className="template1-educationplace" key={index}>
@@ -252,12 +257,15 @@ function Template1({
               return toggle ? (
                 <div className="template1-education-section" key={index}>
                   <div className="template1-education-header">
-                    {educationPlace.place}
-                    {educationPlace.level}
-                    {educationPlace.date_started}
-                    {educationPlace.date_ended}
+                    <div className="template1-place">
+                      {educationPlace.place}&nbsp;{" "}
+                      <i> {educationPlace.level}</i>
+                    </div>
+                    <div className="template1-dates">
+                      {educationPlace.date_started}-{educationPlace.date_ended}
+                    </div>
                   </div>
-                  <br />
+
                   {educationPlace.description}
                   <br />
                 </div>
@@ -315,8 +323,7 @@ function Template1({
           keyskills.map((keySk, index) => {
             return toggle ? (
               <div className="template1-skill" key={index}>
-                {keySk.name}
-                <br />
+                <div className="template1-place"> {keySk.name}</div>
                 {keySk.description}
               </div>
             ) : (
