@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Sign In with Auth0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    body,
+    html {
+      height: 100%;
+      background-color: #0f172a;
+      font-family: "Inter", sans-serif;
+    }
+
+    button {
+      background: none;
+      border: none;
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    .login-box {
+      padding: 25px;
+      background-color: #fff;
+      border-radius: 10px;
+      border: 1px solid #e9e9e9;
+      width: 350px;
+    }
+
+    .login-header {
+      text-align: center;
+      padding: 22px 0;
+    }
+
+    .login-header-text {
+      padding-top: 10px;
+      font-weight: bold;
+    }
+
+    .login-header img {
+      width: 40px;
+    }
+
+    .form-control {
+      box-shadow: 0 0 0;
+      padding: 20px 14px;
+      border-radius: 8px;
+    }
+
+    .btn {
+      padding: 10px;
+      font-weight: 500;
+      border-radius: 8px;
+      text-transform: uppercase;
+    }
+
+    .link-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+      width: 350px;
+    }
+
+    .link-text {
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    #error-message {
+      display: none;
+      white-space: break-spaces;
+    }
+  </style>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <div class="login-header">
+          <img src="https://bentley-assets.s3.amazonaws.com/bentley-logo.svg" />
+          <h3 class="login-header-text">Bentley Login System</h3>
+        </div>
+        <div id="error-message" class="alert alert-danger"></div>
+        <form onsubmit="return false;" method="post">
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <div class="form-group">
+            <div class="captcha-container form-group"></div>
+          </div>
+          <div id="login" class="form-group">
+            <button
+              type="submit"
+              id="btn-login"
+              class="btn btn-primary btn-block"
+            >
+              Log In
+            </button>
+          </div>
+          <div id="signup" class="form-group">
+            <button
+              type="button"
+              id="btn-signup"
+              class="btn btn-primary btn-block"
+            >
+              Sign Up
+            </button>
+          </div>
+          <div id="forgot" class="form-group">
+            <button
+              type="button"
+              id="btn-forgot"
+              class="btn btn-primary btn-block"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="link-container">
+        <button id="link-text-forgot" class="link-text">
+          Forgot password?
+        </button>
+        <button id="link-text-signup" class="link-text">New user?</button>
+        <button id="link-text-login" class="link-text">Have an account?</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.auth0.com/js/auth0/9.16/auth0.min.js"></script>
+    <script src="https://cdn.auth0.com/js/polyfills/1.0/object-assign.min.js"></script>
+    <script>
+      document.getElementById("btn-signup").style.display = "none";
+      document.getElementById("btn-forgot").style.display = "none";
+      document.getElementById("link-text-login").style.display = "none";
+
+      window.addEventListener("load", function () {
+        // Hide/show functions
+        function showSignup() {
+          document.getElementById("password").style.display = "block";
+
+          document.getElementById("btn-login").style.display = "none";
+          document.getElementById("btn-forgot").style.display = "none";
+          document.getElementById("btn-signup").style.display = "block";
+          document.getElementById("link-text-login").style.display = "block";
+          document.getElementById("link-text-signup").style.display = "none";
+        }
+
+        function showLogin() {
+          document.getElementById("password").style.display = "block";
+
+          document.getElementById("btn-login").style.display = "block";
+          document.getElementById("btn-signup").style.display = "none";
+          document.getElementById("btn-forgot").style.display = "none";
+          document.getElementById("link-text-login").style.display = "none";
+          document.getElementById("link-text-signup").style.display = "block";
+        }
+
+        function showForgot() {
+          document.getElementById("password").style.display = "none";
+
+          document.getElementById("btn-login").style.display = "none";
+          document.getElementById("btn-signup").style.display = "none";
+          document.getElementById("btn-forgot").style.display = "block";
+          document.getElementById("link-text-login").style.display = "block";
+          document.getElementById("link-text-signup").style.display = "none";
+        }
+
+        document
+          .getElementById("link-text-signup")
+          .addEventListener("click", showSignup);
+
+        document
+          .getElementById("link-text-login")
+          .addEventListener("click", showLogin);
+
+        document
+          .getElementById("link-text-forgot")
+          .addEventListener("click", showForgot);
+
+        // Auth configuration
+        var config = JSON.parse(
+          decodeURIComponent(escape(window.atob("@@config@@")))
+        );
+
+        var leeway = config.internalOptions.leeway;
+        if (leeway) {
+          var convertedLeeway = parseInt(leeway);
+
+          if (!isNaN(convertedLeeway)) {
+            config.internalOptions.leeway = convertedLeeway;
+          }
+        }
+
+        var params = Object.assign(
+          {
+            overrides: {
+              __tenant: config.auth0Tenant,
+              __token_issuer: config.authorizationServer.issuer,
+            },
+            domain: config.auth0Domain,
+            clientID: config.clientID,
+            redirectUri: config.callbackURL,
+            responseType: "code",
+          },
+          config.internalOptions
+        );
+
+        var webAuth = new auth0.WebAuth(params);
+        var databaseConnection = "Username-Password-Authentication";
+        var captcha = webAuth.renderCaptcha(
+          document.querySelector(".captcha-container")
+        );
+
+        function login(e) {
+          e.preventDefault();
+          var button = this;
+          var username = document.getElementById("email").value;
+          var password = document.getElementById("password").value;
+          button.disabled = true;
+          webAuth.login(
+            {
+              realm: databaseConnection,
+              username: username,
+              password: password,
+              captcha: captcha.getValue(),
+            },
+            function (err) {
+              if (err) displayError(err);
+              button.disabled = false;
+            }
+          );
+        }
+
+        function signup() {
+          var button = this;
+          var email = document.getElementById("email").value;
+          var password = document.getElementById("password").value;
+
+          button.disabled = true;
+          webAuth.redirect.signupAndLogin(
+            {
+              connection: databaseConnection,
+              email: email,
+              password: password,
+              captcha: captcha.getValue(),
+            },
+            function (err) {
+              if (err) displayError(err);
+              button.disabled = false;
+            }
+          );
+        }
+
+        function displayError(err) {
+          captcha.reload();
+          var errorMessage = document.getElementById("error-message");
+          errorMessage.innerHTML = err.policy || err.description;
+          errorMessage.style.display = "block";
+        }
+
+        document.getElementById("btn-login").addEventListener("click", login);
+        document.getElementById("btn-signup").addEventListener("click", signup);
+      });
+    </script>
+  </body>
+</html>

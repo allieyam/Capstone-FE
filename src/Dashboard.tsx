@@ -58,7 +58,7 @@ function Dashboard() {
             Dashboard
             <ul>
               <li>
-                <Link to="/template">View your templates</Link>
+                <Link to="/template">View templates</Link>
               </li>
               <li>
                 <Link to="/form">Add details here</Link>

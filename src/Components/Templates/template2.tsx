@@ -43,13 +43,15 @@ function Template2({
 
   useEffect(() => {
     console.log("in use effect");
-    if (work.length > 1 || work !== undefined) {
-      console.log("work is not null", work);
-      dataFunc();
-    } else {
-      console.log("work in useeffect", work);
-      return;
-    }
+    if (work !== null) {
+      if (work.length > 1 || work !== undefined) {
+        console.log("work is not null", work);
+        dataFunc();
+      } else {
+        console.log("work in useeffect", work);
+        return;
+      }
+    } else console.log("nothing");
   }, [work]);
 
   //resubmit data to backend
@@ -125,6 +127,9 @@ function Template2({
       <div className="template">
         <div className="template2-container" id="divToPrint">
           <div className="template2-header-container">
+            {image ? (
+              <img src={image} alt="Avatar" className="rounded-full" />
+            ) : null}
             <div className="template2-name">
               {" "}
               {toggle ? (
