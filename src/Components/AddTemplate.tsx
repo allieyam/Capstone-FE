@@ -81,46 +81,46 @@ function AddTemplate() {
       })
       .then((response) => {
         console.log("response", response.data);
-
-        setUserBlurb(response.data[0].summary);
-        if (response.data[0].summary === "" && userSummary !== null) {
-
-          axios.put(
-            `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
-            {
-              summary: userSummary,
-              templateId: templateChoice,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
+        if (response.data.length !== 0) {
+          setUserBlurb(response.data[0].summary);
+          if (response.data[0].summary === "" && userSummary !== null) {
+            axios.put(
+              `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+              {
+                summary: userSummary,
+                templateId: templateChoice,
               },
-            }
-          );
-          setUserSummary(userSummary);
-          console.log("run here 1");
-        } else if (userBlurb !== null && userSummary !== null) {
-          axios.put(
-            `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
-            {
-              summary: userSummary,
-              templateId: templateChoice,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              }
+            );
+            setUserSummary(userSummary);
+            console.log("run here 1");
+          } else if (userBlurb !== null && userSummary !== null) {
+            axios.put(
+              `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+              {
+                summary: userSummary,
+                templateId: templateChoice,
               },
-            }
-          );
-          setUserSummary(userSummary);
-          console.log("run here 2");
-        } else if (response.data !== null && userSummary === null) {
-          setUserSummary(response.data[0].summary);
-          console.log("run here 3");
-        } else {
-          setUserSummary("Please edit the summary");
-          console.log("run here 3");
-        }
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              }
+            );
+            setUserSummary(userSummary);
+            console.log("run here 2");
+          } else if (response.data !== null && userSummary === null) {
+            setUserSummary(response.data[0].summary);
+            console.log("run here 3");
+          } else {
+            setUserSummary("Please edit the summary");
+            console.log("run here 3");
+          }
+        } else console.log("nothing");
       });
   };
 

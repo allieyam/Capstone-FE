@@ -1,6 +1,6 @@
 import TrainBrain from "./brain";
 
-export default function Popup({ setShowModal, summary }: any) {
+export default function Popup({ setShowModal }: any) {
   return (
     <div>
       <div className="select-all justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -9,7 +9,6 @@ export default function Popup({ setShowModal, summary }: any) {
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/*header*/}
             <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t .text-gray-900">
-              <h3 className="text-3xl font-semibold">Suggestion</h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                 onClick={() => setShowModal(false)}
@@ -22,7 +21,7 @@ export default function Popup({ setShowModal, summary }: any) {
             {/*body*/}
             <div className="relative p-6 flex-auto">
               <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                <TrainBrain summary={summary} />
+                <TrainBrain />
               </p>
             </div>
             {/*footer*/}

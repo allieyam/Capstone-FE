@@ -43,13 +43,15 @@ function Template2({
 
   useEffect(() => {
     console.log("in use effect");
-    if (work.length > 1 || work !== undefined) {
-      console.log("work is not null", work);
-      dataFunc();
-    } else {
-      console.log("work in useeffect", work);
-      return;
-    }
+    if (work !== null) {
+      if (work.length > 1 || work !== undefined) {
+        console.log("work is not null", work);
+        dataFunc();
+      } else {
+        console.log("work in useeffect", work);
+        return;
+      }
+    } else console.log("nothing");
   }, [work]);
 
   //resubmit data to backend
