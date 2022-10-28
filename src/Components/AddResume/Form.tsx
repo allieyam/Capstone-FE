@@ -69,9 +69,7 @@ function Form() {
       case "contact":
         setContact(event.target.value);
         break;
-      // case "summary":
-      //   setSummary(event.target.value);
-      //   break;
+
       default:
     }
   };
@@ -133,9 +131,7 @@ function Form() {
         setFormValues(initialFormValues);
         setContact("");
         setAllSkills(initialSkill);
-        // Navigate to listing-specific page after submitting form
         setShowNext(true);
-        // navigate(`/template`);
       });
   };
 

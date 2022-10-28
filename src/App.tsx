@@ -4,7 +4,6 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Components/Navigation/Navbar";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import axios from "axios";
-import Navbar2 from "./backup/navbar2";
 
 export const UserContext = createContext("");
 

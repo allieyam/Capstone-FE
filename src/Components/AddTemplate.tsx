@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 import Template1 from "./Templates/template1";
 import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
-// import SentimentAnalysis from "./Sentiment/SentimentAnalysis";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../App";
 type TypeProp = {
@@ -58,14 +57,6 @@ function AddTemplate() {
     setUserSkills(userData.keySkills);
     setImage(userData.image);
   };
-
-  // get the data from backend
-  // if there is data:
-  // case 1: if there is user summary and blurb - replace blurb with user summary, update it
-  //case 3: if there is only user summary - just show user summary, and set it
-  // case 2: if there is only blurb, just show blurb
-  // if there is no data:
-  // case 1: show please edit.
 
   const getUserSummary = async () => {
     const accessToken = await getAccessTokenSilently({

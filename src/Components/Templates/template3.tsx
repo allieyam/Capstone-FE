@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserTypes } from "../types";
 import "../../styling/TemplateStyling/template3.css";
 import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserContext } from "../../App";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 

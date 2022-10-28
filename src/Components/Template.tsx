@@ -1,14 +1,10 @@
 import React, { useState, MouseEvent, useEffect } from "react";
 import "../styling/App.css";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import Sentiment from "../Components/Sentiment/Sentiment";
 
 function Template() {
-  const navigate = useNavigate();
-
   const location = useLocation();
   const summary_user = location.state;
   const [userSummary, setUserSummary] = useState(summary_user);
@@ -24,8 +20,6 @@ function Template() {
   const handleClick3 = (e: MouseEvent) => {
     setTemplateChoice(3);
   };
-
-  // Sentiment();
 
   return (
     <div className="template-big">

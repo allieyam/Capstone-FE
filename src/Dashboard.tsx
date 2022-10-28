@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./styling/App.css";
 import { Link } from "react-router-dom";
-// import Template from "./Components/Template";
 import { UserContext } from "./App";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
