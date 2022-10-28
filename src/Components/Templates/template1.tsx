@@ -38,6 +38,8 @@ function Template1({
   const [toggle, setToggle] = useState(true);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [brainData, setBrainData] = useState<any[]>();
+  const [getData, setGetData] = useState();
+
   const toggleClicked = () => {
     setToggle(false);
   };
@@ -100,7 +102,25 @@ function Template1({
     });
   };
   console.log(userSummary);
-  
+
+  const dataFunc = async () => {
+    const data = await Sentiment([work]);
+    setGetData(data);
+    console.log("data in data func", data, work);
+  };
+
+  useEffect(() => {
+    console.log("in use effect");
+    if (work !== null) {
+      if (work.length > 1 || work !== undefined) {
+        console.log("work is not null", work);
+        dataFunc();
+      } else {
+        console.log("work in useeffect", work);
+        return;
+      }
+    } else console.log("nothing");
+  }, [work]);
 
   return (
     <div className="big-template-container">
@@ -357,7 +377,7 @@ function Template1({
           <button onClick={(e) => handleSubmit(e)}>Submit</button>
         )}
       </div>
-      <SentimentPop results={brainData} />
+      {work !== null ? <SentimentPop results={getData} /> : null}
     </div>
   );
 }

@@ -1,11 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { currUser } from "../types";
 import Education from "./education";
 import Work from "./work";
 import "../../styling/App.css";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Popup from "./Popup";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function InputForm({
   name,
@@ -26,10 +26,6 @@ export default function InputForm({
   handleSummary,
 }: currUser) {
   const [showModal, setShowModal] = useState(false);
-
-  // const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //   setSummary(event?.target.value);
-  // };
 
   return (
     <div>
@@ -128,21 +124,13 @@ export default function InputForm({
                   </div>
                 </form>
                 {index ? (
-                  <button
-                    type="button"
-                    // className="button remove"
-                    onClick={() => removeSkills(index)}
-                  >
+                  <button type="button" onClick={() => removeSkills(index)}>
                     Remove
                   </button>
                 ) : null}
               </div>
             ))}
-            <button
-              // className="button add"
-              type="button"
-              onClick={(e: any) => addSkillfields(e)}
-            >
+            <button type="button" onClick={(e: any) => addSkillfields(e)}>
               Add
             </button>
             <br />
