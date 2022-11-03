@@ -84,16 +84,28 @@ function Template2({
     );
     console.log("usersummary", userSummary);
 
+    await axios.put(
+      `${process.env.REACT_APP_API_SERVER}/${user}`,
+      {
+        name: username,
+        email: email,
+        contact: phone,
+        keySkills: keyskills,
+        education: education,
+        image,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    console.log("usersummary", userSummary);
     await axios
       .put(
-        `${process.env.REACT_APP_API_SERVER}/${user}`,
+        `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
-          name: username,
-          email: email,
-          contact: phone,
-          keySkills: keyskills,
-          education: education,
-          image,
+          summary: userSummary,
         },
         {
           headers: {
@@ -102,8 +114,7 @@ function Template2({
         }
       )
       .then((res) => {
-        // Clear form state
-        console.log(res);
+        console.log("res in handlesubmit", res);
       });
   };
 

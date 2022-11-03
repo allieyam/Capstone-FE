@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Components/Navigation/Navbar";
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import axios from "axios";
+import { userInfo } from "os";
 
 export const UserContext = createContext("");
 
@@ -56,6 +57,7 @@ function App() {
   //post data
 
   console.log("APp userId", userId);
+
   return (
     <UserContext.Provider value={userId}>
       <div className="App">
