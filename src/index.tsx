@@ -10,6 +10,7 @@ import AddTemplate from "./Components/AddTemplate";
 import Form from "../src/Components/AddResume/Form";
 import UserProfile from "./Components/Upload/UserProfile";
 import { Auth0Provider } from "@auth0/auth0-react";
+import Summary from "./Components/Summary";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,8 +18,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <Auth0Provider
-    domain={process.env.REACT_APP_DOMAIN || ""}
-    clientId={process.env.REACT_APP_CLIENTID || ""}
+    // domain={process.env.REACT_APP_DOMAIN}
+    domain="dev-pq772rssbtn28kif.us.auth0.com"
+    clientId="IDtf5Qn4lnusn83NYdly6cxWR4MqqPNW"
+    // clientId={process.env.REACT_APP_CLIENTID}
     redirectUri={process.env.REACT_APP_REDIRECT_URI}
     audience={process.env.REACT_APP_AUDIENCE}
     scope={process.env.REACT_APP_SCOPE}
@@ -31,6 +34,7 @@ root.render(
           <Route path="form" element={<Form />} />
           <Route path="userp" element={<UserProfile />} />
           <Route path="template" element={<Template />} />
+          <Route path="summary" element={<Summary />} />
           <Route path="add-template" element={<AddTemplate />} />
           <Route path="*" element={"Nothing here!"} />
         </Route>
