@@ -31,7 +31,7 @@ export default function Summary() {
 
   useEffect(() => {
     getUserCV();
-  }, []);
+  }, [userId]);
 
   const handleDelete = async (id: number, templateId: number) => {
     const accessToken = await getAccessTokenSilently({

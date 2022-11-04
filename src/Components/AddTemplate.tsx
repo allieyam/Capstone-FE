@@ -68,29 +68,32 @@ function AddTemplate() {
     });
     console.log(cvId);
     //get user summary
-    let result = await axios
+    await axios
       .get(`${process.env.REACT_APP_API_SERVER}/${userId}/cv`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
-      // .then((result) => {
-      //   const job = result.data.find((item: any) => item.id === cvId);
-      //   console.log(job);
-      // })
-      .then((response: any) => {
-        if (response !== null) {
-          console.log("resId", cvId);
+      .then((result) => {
+        const job = result.data.find((item: any) => item.id === cvId);
+        return job;
+      })
+      .then((response) => {
+        console.log(response);
+        if (response !== undefined) {
           setUserBlurb(response.summary);
           setTemplateName(response.name);
+          console.log("resId", cvId);
           console.log(userSummary, userBlurb);
-          if (userBlurb === "" && userSummary !== undefined) {
+
+          if (response.summary === "" && userSummary !== undefined) {
             axios.put(
               `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
               {
                 summary: userSummary,
                 templateId: templateChoice,
                 name: templateName,
+                cvId: cvId,
               },
               {
                 headers: {
@@ -104,9 +107,10 @@ function AddTemplate() {
             axios.put(
               `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
               {
-                summary: userSummary,
+                summary: userBlurb,
                 templateId: templateChoice,
                 name: templateName,
+                cvId: cvId,
               },
               {
                 headers: {
@@ -123,7 +127,7 @@ function AddTemplate() {
             setUserSummary("Please edit the summary");
             console.log("run here 3");
           }
-        } else console.log("nothing");
+        } else setUserSummary("Please edit the summary");
       });
   };
 
@@ -190,7 +194,7 @@ function AddTemplate() {
   useEffect(() => {
     getUserData();
     getUserSummary();
-  }, []);
+  }, [cvId, userBlurb]);
 
   return (
     <div>
@@ -211,6 +215,10 @@ function AddTemplate() {
               updateWork={updateWork}
               image={image}
               userSummary={userSummary}
+              userBlurb={userBlurb}
+              templateName={templateName}
+              templateChoice={templateChoice}
+              cvId={cvId}
             />
           );
         } else if (templateChoice === 2) {
@@ -229,6 +237,10 @@ function AddTemplate() {
               updateWork={updateWork}
               image={image}
               userSummary={userSummary}
+              userBlurb={userBlurb}
+              templateName={templateName}
+              templateChoice={templateChoice}
+              cvId={cvId}
             />
           );
         } else if (templateChoice === 3) {
@@ -247,6 +259,10 @@ function AddTemplate() {
               updateWork={updateWork}
               image={image}
               userSummary={userSummary}
+              userBlurb={userBlurb}
+              templateName={templateName}
+              templateChoice={templateChoice}
+              cvId={cvId}
             />
           );
         } else {
