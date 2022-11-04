@@ -31,6 +31,9 @@ function Template2({
   updateAll,
   updateSkill,
   updateWork,
+  templateName,
+  templateChoice,
+  cvId,
 }: UserTypes) {
   const [toggle, setToggle] = useState(true);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
@@ -106,6 +109,9 @@ function Template2({
         `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
           summary: userSummary,
+          name: templateName,
+          templateId: templateChoice,
+          cvId: cvId,
         },
         {
           headers: {

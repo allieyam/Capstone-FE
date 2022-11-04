@@ -33,6 +33,9 @@ function Template1({
   updateAll,
   updateSkill,
   updateWork,
+  templateName,
+  templateChoice,
+  cvId,
 }: UserTypes) {
   //set to editing mode
   const [toggle, setToggle] = useState(true);
@@ -76,6 +79,9 @@ function Template1({
         `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
           summary: userSummary,
+          name: templateName,
+          templateId: templateChoice,
+          cvId: cvId,
         },
         {
           headers: {

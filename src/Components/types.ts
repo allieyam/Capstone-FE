@@ -17,6 +17,10 @@ export interface UserTypes {
   updateAll: (name: string, value: string) => void;
   updateSkill: (index: number, name: string, value: string) => void;
   updateWork: (index: number, name: string, value: string) => void;
+  templateName: string;
+  templateChoice: Number;
+  cvId: Number;
+  userBlurb: string;
 }
 
 interface Skill {

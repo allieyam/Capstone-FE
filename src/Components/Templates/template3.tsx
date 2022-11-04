@@ -31,9 +31,14 @@ function Template3({
   updateAll,
   updateSkill,
   updateWork,
+  templateName,
+  templateChoice,
+  cvId,
+  userBlurb,
 }: UserTypes) {
   const [toggle, setToggle] = useState(true);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const [cvNo, setCvNo] = useState(0);
 
   const toggleClicked = () => {
     setToggle(false);
@@ -67,22 +72,59 @@ function Template3({
       }
     );
     console.log("usersummary", userSummary);
-
-    await axios
-      .put(
-        `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
-        {
-          summary: userSummary,
-        },
-        {
+    if (cvId !== null) {
+      await axios
+        .put(
+          `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
+          {
+            summary: userSummary,
+            name: templateName,
+            templateId: templateChoice,
+            cvId: cvId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log("res in handlesubmit", res);
+        });
+    } else
+      await axios
+        .get(`${process.env.REACT_APP_API_SERVER}/${user}/cv`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        }
-      )
-      .then((res) => {
-        console.log("res in handlesubmit", res);
-      });
+        })
+        .then((result) => {
+          const job = result.data.find(
+            (item: any) => item.name === templateName
+          );
+          return job;
+        })
+        .then((response) => {
+          console.log(response);
+          setCvNo(response.id);
+          axios.put(
+            `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
+            {
+              summary: userBlurb,
+              name: templateName,
+              templateId: templateChoice,
+              cvId: cvNo,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+        })
+        .then((res) => {
+          console.log("res in handlesubmit", res);
+        });
   };
 
   const printDocument = () => {
