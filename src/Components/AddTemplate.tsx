@@ -68,23 +68,24 @@ function AddTemplate() {
     });
     console.log(cvId);
     //get user summary
-    let result = await axios
+    await axios
       .get(`${process.env.REACT_APP_API_SERVER}/${userId}/cv`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
-      // .then((result) => {
-      //   const job = result.data.find((item: any) => item.id === cvId);
-      //   console.log(job);
-      // })
-      .then((response: any) => {
+      .then((result) => {
+        const job = result.data.find((item: any) => item.id === cvId);
+        return job;
+      })
+      .then((response) => {
+        console.log(response);
         if (response !== null) {
           console.log("resId", cvId);
           setUserBlurb(response.summary);
           setTemplateName(response.name);
           console.log(userSummary, userBlurb);
-          if (userBlurb === "" && userSummary !== undefined) {
+          if (response.summary === "" && userSummary !== undefined) {
             axios.put(
               `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
               {
