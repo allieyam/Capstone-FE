@@ -1,22 +1,12 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { UserTypes } from "../types";
 import "../../styling/TemplateStyling/template3.css";
 import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserContext } from "../../App";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-
-//Define the interface here
-interface Style {
-  data: {
-    font: string;
-    fontSize: number;
-    color: string;
-  };
-}
 
 function Template3({
   username,
@@ -32,9 +22,13 @@ function Template3({
   updateAll,
   updateSkill,
   updateWork,
+  templateName,
+  templateChoice,
+  cvId,
+  userBlurb,
 }: UserTypes) {
   const [toggle, setToggle] = useState(true);
-  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const toggleClicked = () => {
     setToggle(false);
@@ -74,6 +68,9 @@ function Template3({
         `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
           summary: userSummary,
+          name: templateName,
+          templateId: templateChoice,
+          cvId: cvId,
         },
         {
           headers: {

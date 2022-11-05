@@ -1,23 +1,13 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { UserTypes } from "../types";
 import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserContext } from "../../App";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import "98.css";
 import Sentiment from "../Sentiment/Sentiment";
 import SentimentPop from "../Sentiment/SentimentPop";
-
-//Define the interface here
-interface Style {
-  data: {
-    font: string;
-    fontSize: number;
-    color: string;
-  };
-}
 
 function Template1({
   username,
@@ -33,11 +23,16 @@ function Template1({
   updateAll,
   updateSkill,
   updateWork,
+  templateName,
+  templateChoice,
+  cvId,
 }: UserTypes) {
   //set to editing mode
   const [toggle, setToggle] = useState(true);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [brainData, setBrainData] = useState<any[]>();
+  const [getData, setGetData] = useState();
+
   const toggleClicked = () => {
     setToggle(false);
   };
@@ -74,6 +69,9 @@ function Template1({
         `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
           summary: userSummary,
+          name: templateName,
+          templateId: templateChoice,
+          cvId: cvId,
         },
         {
           headers: {
@@ -100,7 +98,25 @@ function Template1({
     });
   };
   console.log(userSummary);
-  
+
+  const dataFunc = async () => {
+    const data = await Sentiment([work]);
+    setGetData(data);
+    console.log("data in data func", data, work);
+  };
+
+  useEffect(() => {
+    console.log("in use effect");
+    if (work !== null) {
+      if (work.length > 1 || work !== undefined) {
+        console.log("work is not null", work);
+        dataFunc();
+      } else {
+        console.log("work in useeffect", work);
+        return;
+      }
+    } else console.log("nothing");
+  }, [work]);
 
   return (
     <div className="big-template-container">
@@ -357,7 +373,7 @@ function Template1({
           <button onClick={(e) => handleSubmit(e)}>Submit</button>
         )}
       </div>
-      <SentimentPop results={brainData} />
+      {work !== null ? <SentimentPop results={getData} /> : null}
     </div>
   );
 }

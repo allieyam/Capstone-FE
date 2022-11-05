@@ -1,9 +1,6 @@
-import React, { useEffect, useState, useRef, Suspense } from "react";
-import desktop from "./styling/desktop.jpg";
+import React, { useState, Suspense } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./styling/landing.css";
-import windows from "./styling/windows.png";
-// import { motion } from "framer-motion";
 import whale from "./styling/whale.png";
 import "./styling/styles.css";
 import { motion, MotionConfig, useMotionValue } from "framer-motion";

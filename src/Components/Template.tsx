@@ -1,31 +1,94 @@
-import React, { useState, MouseEvent, useEffect } from "react";
+import React, { useState, MouseEvent, useEffect, useContext } from "react";
 import "../styling/App.css";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import Sentiment from "../Components/Sentiment/Sentiment";
+import axios from "axios";
+import { useAuth0 } from "@auth0/auth0-react";
+import { UserContext } from "../App";
 
 function Template() {
-  const navigate = useNavigate();
-
   const location = useLocation();
   const summary_user = location.state;
   const [userSummary, setUserSummary] = useState(summary_user);
-
+  const [templateName, setTemplateName] = useState("");
   const [templateChoice, setTemplateChoice] = useState(0);
+  const { getAccessTokenSilently }: any = useAuth0();
+  const userId = Number(useContext(UserContext));
+  const [cvId, setCvId] = useState(0);
 
-  const handleClick1 = (e: MouseEvent) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTemplateName(event.target.value);
+  };
+
+  const handleClick1 = async (e: MouseEvent) => {
     setTemplateChoice(1);
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
+    });
+    let response = await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+      {
+        templateId: 1,
+        summary: userSummary,
+        name: templateName,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    setCvId(response.data[0].id);
+    console.log("resId", cvId);
   };
-  const handleClick2 = (e: MouseEvent) => {
+  const handleClick2 = async (e: MouseEvent) => {
     setTemplateChoice(2);
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
+    });
+    let response = await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+      {
+        summary: userSummary,
+        templateId: 2,
+        name: templateName,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    setCvId(response.data[0].id);
+    console.log("resId", cvId);
   };
-  const handleClick3 = (e: MouseEvent) => {
+  const handleClick3 = async (e: MouseEvent) => {
     setTemplateChoice(3);
+    const accessToken = await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUDIENCE,
+      scope: process.env.REACT_APP_SCOPE,
+    });
+    let response = await axios.post(
+      `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+      {
+        summary: userSummary,
+        templateId: 3,
+        name: templateName,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    setCvId(response.data[0].id);
+    console.log("resId", cvId);
   };
 
-  // Sentiment();
+  const enabled = templateName.length > 0;
 
   return (
     <div className="template-big">
@@ -68,13 +131,36 @@ function Template() {
             </button>
           </motion.a>
         </div>
-        <Link
-          to="/add-template"
-          className="add-template-button"
-          state={{ templateChoice: templateChoice, summary: userSummary }}
-        >
-          Add a Template
-        </Link>
+        <br />
+        <br />
+        <input
+          className="text-lg appearance-none text-gray-700 border focus:border-gray-500 "
+          type="text"
+          placeholder="Name of your Résumé"
+          value={templateName}
+          onChange={handleChange}
+        ></input>
+        {enabled ? (
+          <Link
+            to="/add-template"
+            className="add-template-button"
+            state={{
+              templateChoice: templateChoice,
+              summary: userSummary,
+              templateName: templateName,
+            }}
+          >
+            Add a Template
+          </Link>
+        ) : (
+          <Link
+            to="/"
+            className="disabledCursor"
+            onClick={(event) => event.preventDefault()}
+          >
+            Add A Template
+          </Link>
+        )}
       </div>
     </div>
   );

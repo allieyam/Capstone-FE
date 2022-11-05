@@ -31,6 +31,9 @@ function Template2({
   updateAll,
   updateSkill,
   updateWork,
+  templateName,
+  templateChoice,
+  cvId,
 }: UserTypes) {
   const [toggle, setToggle] = useState(true);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
@@ -43,13 +46,15 @@ function Template2({
 
   useEffect(() => {
     console.log("in use effect");
-    if (work.length > 1 || work !== undefined) {
-      console.log("work is not null", work);
-      dataFunc();
-    } else {
-      console.log("work in useeffect", work);
-      return;
-    }
+    if (work !== null) {
+      if (work.length > 1 || work !== undefined) {
+        console.log("work is not null", work);
+        dataFunc();
+      } else {
+        console.log("work in useeffect", work);
+        return;
+      }
+    } else console.log("nothing");
   }, [work]);
 
   //resubmit data to backend
@@ -82,16 +87,31 @@ function Template2({
     );
     console.log("usersummary", userSummary);
 
+    await axios.put(
+      `${process.env.REACT_APP_API_SERVER}/${user}`,
+      {
+        name: username,
+        email: email,
+        contact: phone,
+        keySkills: keyskills,
+        education: education,
+        image,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    console.log("usersummary", userSummary);
     await axios
       .put(
-        `${process.env.REACT_APP_API_SERVER}/${user}`,
+        `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
         {
-          name: username,
-          email: email,
-          contact: phone,
-          keySkills: keyskills,
-          education: education,
-          image,
+          summary: userSummary,
+          name: templateName,
+          templateId: templateChoice,
+          cvId: cvId,
         },
         {
           headers: {
@@ -100,8 +120,7 @@ function Template2({
         }
       )
       .then((res) => {
-        // Clear form state
-        console.log(res);
+        console.log("res in handlesubmit", res);
       });
   };
 

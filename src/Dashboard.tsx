@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./styling/App.css";
 import { Link } from "react-router-dom";
-// import Template from "./Components/Template";
 import { UserContext } from "./App";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -58,7 +57,7 @@ function Dashboard() {
             Dashboard
             <ul>
               <li>
-                <Link to="/template">View your templates</Link>
+                <Link to="/template">View templates</Link>
               </li>
               <li>
                 <Link to="/form">Add details here</Link>
