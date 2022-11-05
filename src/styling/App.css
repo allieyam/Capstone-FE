@@ -63,11 +63,6 @@
   margin: auto;
 }
 
-/* embed {
-  height: 100px;
-  width: 75px;
-} */
-
 .form-container {
   display: flex;
   justify-content: center;
@@ -165,7 +160,7 @@ label {
   align-items: center;
   justify-content: center;
   width: 98vw;
-  height: 100vh;
+  height: auto;
 }
 
 /* --border-raised-outer: inset -1px -1px #0a0a0a;

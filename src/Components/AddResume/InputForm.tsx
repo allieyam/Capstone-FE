@@ -5,8 +5,7 @@ import Work from "./work";
 import "../../styling/App.css";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Popup from "./Popup";
-import { Link, useNavigate } from "react-router-dom";
-import loading from "../../styling/loading.gif";
+import { Link } from "react-router-dom";
 
 export default function InputForm({
   name,
