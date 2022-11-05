@@ -8,6 +8,7 @@ import Template3 from "./Templates/template3";
 // import SentimentAnalysis from "./Sentiment/SentimentAnalysis";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../App";
+
 type TypeProp = {
   choice: number;
 };
@@ -84,7 +85,6 @@ function AddTemplate() {
 
         setUserBlurb(response.data[0].summary);
         if (response.data[0].summary === "" && userSummary !== null) {
-
           axios.put(
             `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
             {

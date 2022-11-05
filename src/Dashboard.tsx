@@ -8,6 +8,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "98.css";
 import graph from "./styling/graph.jpg";
 import whale from "./styling/whale.gif";
+import powerbook from "./styling/ads/powerbook.gif";
+import pet from "./styling/ads/williepetstore.png";
+import click from "./styling/ads/willieclick.jpg";
+import congrats from "./styling/ads/congratulations.gif";
+import first from "./styling/ads/firstad.png";
+import smiley from "./styling/ads/smiley.jpg";
 
 function Dashboard() {
   const userId = useContext(UserContext);
@@ -42,6 +48,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="graph-container">
+        <img src={congrats} className="congrats" />
         Job Vacancy by Industry and Occupational Group, Quarterly
         <embed
           width="600"
@@ -70,6 +77,13 @@ function Dashboard() {
           </li>
         </ul>
         <img src={whale} className="whale" />
+      </div>
+      <div className="ad-container">
+        <img src={first} className="first" />
+        <img src={powerbook} className="powerbook" />
+        <img src={pet} className="petstore" />
+        <img src={click} className="clickad" />
+        <img src={smiley} className="smiley" />
       </div>
     </div>
   );

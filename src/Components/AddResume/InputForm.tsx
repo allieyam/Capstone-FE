@@ -6,6 +6,7 @@ import "../../styling/App.css";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Popup from "./Popup";
 import { Link, useNavigate } from "react-router-dom";
+import loading from "../../styling/loading.gif";
 
 export default function InputForm({
   name,
@@ -26,6 +27,7 @@ export default function InputForm({
   handleSummary,
 }: currUser) {
   const [showModal, setShowModal] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   // const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
   //   setSummary(event?.target.value);
@@ -177,13 +179,16 @@ export default function InputForm({
                   <button
                     type="button"
                     className="modal-button"
-                    onClick={() => setShowModal(true)}
+                    onClick={() => [setShowModal(true), setShowLoader(true)]}
                     style={{
                       backgroundColor: "rgb(4,131,132)",
                     }}
                   >
                     Suggestion
                   </button>
+                  {showLoader ? (
+                    <img src={loading} className="loading" />
+                  ) : null}
                 </div>
               </div>
               <>
