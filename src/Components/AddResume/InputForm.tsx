@@ -172,6 +172,9 @@ export default function InputForm({
                   >
                     Suggestion
                   </button>
+                  {/* {showLoader ? (
+                    <img src={loading} className="loading" />
+                  ) : null} */}
                 </div>
               </div>
               <>
