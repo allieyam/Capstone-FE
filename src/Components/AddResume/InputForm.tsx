@@ -5,7 +5,8 @@ import Work from "./work";
 import "../../styling/App.css";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import Popup from "./Popup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import loading from "../../styling/loading.gif";
 
 export default function InputForm({
   name,
@@ -172,6 +173,9 @@ export default function InputForm({
                   >
                     Suggestion
                   </button>
+                  {/* {showLoader ? (
+                    <img src={loading} className="loading" />
+                  ) : null} */}
                 </div>
               </div>
               <>

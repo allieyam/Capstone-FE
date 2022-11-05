@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  cursor: url(cursor.png), auto;
 }
 
 .App-header {
@@ -110,14 +111,15 @@ label {
   font-size: 20px;
   font-weight: bold;
   height: 80vh;
-  width: 80vw;
+  width: 90vw;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 50px;
 }
 
 .contents-container {
-  height: 30vh;
+  height: 20vh;
   width: 30vw;
 }
 
@@ -157,11 +159,14 @@ label {
   margin: 4px;
 }
 
-/* .component-container {
-  background-color: #d1d5db;
+.component-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 98vw;
   height: 100vh;
-} */
+}
 
 /* --border-raised-outer: inset -1px -1px #0a0a0a;
 --border-raised-inner: inset -2px -2px #808080; */
@@ -189,10 +194,33 @@ label {
 }
 
 .whale {
-  width: 500px;
+  width: 600px;
   height: 500px;
   margin-right: -100px;
   pointer-events: none;
+}
+
+.advertcontainer {
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  width: 20vw;
+}
+
+.petstore,
+.powerbook,
+.smiley,
+.click {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: auto;
+  width: 100%;
+  box-shadow: 1px 1px 0 0 black;
+}
+
+.loading {
+  height: 50px;
+  width: 50px;
 }
 
 .templatecontainer1 {
