@@ -200,7 +200,7 @@ label {
   pointer-events: none;
 }
 
-.ad-container {
+.advertcontainer {
   display: flex;
   flex-direction: column;
   height: 50vh;
@@ -221,4 +221,30 @@ label {
 .loading {
   height: 50px;
   width: 50px;
+}
+
+.templatecontainer1 {
+  background-image: url("./template1.jpg");
+  height: 40vh;
+  background-size: cover;
+  width: 15vw;
+}
+
+.templatecontainer2 {
+  background-image: url("./template2.jpg");
+  height: 40vh;
+  background-size: cover;
+  width: 15vw;
+}
+
+.templatecontainer3 {
+  background-image: url("./template3.jpg");
+  height: 40vh;
+  background-size: cover;
+  width: 15vw;
+}
+
+.disabledCursor {
+  cursor: default;
+  color: #808080;
 }

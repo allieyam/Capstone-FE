@@ -61,9 +61,6 @@ const UpImage = ({ url, setUrl, userProfiles }) => {
         <button onClick={uploadImage}>Upload</button>
       </div>
       <br />
-      {/* <div>
-        <img src={url} />
-      </div> */}
     </div>
   );
 };

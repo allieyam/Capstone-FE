@@ -5,13 +5,8 @@ import { useLocation } from "react-router-dom";
 import Template1 from "./Templates/template1";
 import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
-// import SentimentAnalysis from "./Sentiment/SentimentAnalysis";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../App";
-
-type TypeProp = {
-  choice: number;
-};
 
 function AddTemplate() {
   //useLocation to receive props
@@ -20,10 +15,13 @@ function AddTemplate() {
 
   const template_choice = location.state.templateChoice;
   const summary_user = location.state.summary;
+  const template_name = location.state.templateName;
+  const cv_id = location.state.cvId;
   const [templateChoice, setTemplateChoice] = useState(template_choice);
   const [userSummary, setUserSummary] = useState(summary_user);
-
+  const [templateName, setTemplateName] = useState(template_name);
   const { getAccessTokenSilently }: any = useAuth0();
+  const [cvId, setCvId] = useState(cv_id);
 
   const userId = Number(useContext(UserContext));
   // set state for one chosen out of the 3 templates
@@ -60,67 +58,73 @@ function AddTemplate() {
     setImage(userData.image);
   };
 
-  // get the data from backend
-  // if there is data:
-  // case 1: if there is user summary and blurb - replace blurb with user summary, update it
-  //case 3: if there is only user summary - just show user summary, and set it
-  // case 2: if there is only blurb, just show blurb
-  // if there is no data:
-  // case 1: show please edit.
-
   const getUserSummary = async () => {
     const accessToken = await getAccessTokenSilently({
       audience: process.env.REACT_APP_AUDIENCE,
       scope: process.env.REACT_APP_SCOPE,
     });
-    axios
-
+    console.log(cvId);
+    //get user summary
+    await axios
       .get(`${process.env.REACT_APP_API_SERVER}/${userId}/cv`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
+      .then((result) => {
+        const job = result.data.find((item: any) => item.id === cvId);
+        return job;
+      })
       .then((response) => {
-        console.log("response", response.data);
+        console.log(response);
+        if (response !== undefined) {
+          setUserBlurb(response.summary);
+          setTemplateName(response.name);
+          console.log("resId", cvId);
+          console.log(userSummary, userBlurb);
 
-        setUserBlurb(response.data[0].summary);
-        if (response.data[0].summary === "" && userSummary !== null) {
-          axios.put(
-            `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
-            {
-              summary: userSummary,
-              templateId: templateChoice,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
+          if (response.summary === "" && userSummary !== undefined) {
+            axios.put(
+              `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+              {
+                summary: userSummary,
+                templateId: templateChoice,
+                name: templateName,
+                cvId: cvId,
               },
-            }
-          );
-          setUserSummary(userSummary);
-          console.log("run here 1");
-        } else if (userBlurb !== null && userSummary !== null) {
-          axios.put(
-            `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
-            {
-              summary: userSummary,
-              templateId: templateChoice,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              }
+            );
+            setUserSummary(userSummary);
+            console.log("run here 1");
+          } else if (userBlurb !== "" && userSummary !== undefined) {
+            axios.put(
+              `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+              {
+                summary: userBlurb,
+                templateId: templateChoice,
+                name: templateName,
+                cvId: cvId,
               },
-            }
-          );
-          setUserSummary(userSummary);
-          console.log("run here 2");
-        } else if (response.data !== null && userSummary === null) {
-          setUserSummary(response.data[0].summary);
-          console.log("run here 3");
-        } else {
-          setUserSummary("Please edit the summary");
-          console.log("run here 3");
-        }
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              }
+            );
+            setUserSummary(userBlurb);
+            console.log("run here 2", userSummary);
+          } else if (userBlurb !== "" && userSummary === undefined) {
+            setUserSummary(response.summary);
+            console.log("run here 3");
+          } else {
+            setUserSummary("Please edit the summary");
+            console.log("run here 3");
+          }
+        } else setUserSummary("Please edit the summary");
       });
   };
 
@@ -187,7 +191,7 @@ function AddTemplate() {
   useEffect(() => {
     getUserData();
     getUserSummary();
-  }, []);
+  }, [cvId, userBlurb]);
 
   return (
     <div>
@@ -208,6 +212,10 @@ function AddTemplate() {
               updateWork={updateWork}
               image={image}
               userSummary={userSummary}
+              userBlurb={userBlurb}
+              templateName={templateName}
+              templateChoice={templateChoice}
+              cvId={cvId}
             />
           );
         } else if (templateChoice === 2) {
@@ -226,6 +234,10 @@ function AddTemplate() {
               updateWork={updateWork}
               image={image}
               userSummary={userSummary}
+              userBlurb={userBlurb}
+              templateName={templateName}
+              templateChoice={templateChoice}
+              cvId={cvId}
             />
           );
         } else if (templateChoice === 3) {
@@ -244,6 +256,10 @@ function AddTemplate() {
               updateWork={updateWork}
               image={image}
               userSummary={userSummary}
+              userBlurb={userBlurb}
+              templateName={templateName}
+              templateChoice={templateChoice}
+              cvId={cvId}
             />
           );
         } else {

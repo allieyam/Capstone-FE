@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { currUser } from "../types";
 import Education from "./education";
 import Work from "./work";
@@ -27,11 +27,6 @@ export default function InputForm({
   handleSummary,
 }: currUser) {
   const [showModal, setShowModal] = useState(false);
-  const [showLoader, setShowLoader] = useState(false);
-
-  // const handleSummary = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-  //   setSummary(event?.target.value);
-  // };
 
   return (
     <div>
@@ -130,21 +125,13 @@ export default function InputForm({
                   </div>
                 </form>
                 {index ? (
-                  <button
-                    type="button"
-                    // className="button remove"
-                    onClick={() => removeSkills(index)}
-                  >
+                  <button type="button" onClick={() => removeSkills(index)}>
                     Remove
                   </button>
                 ) : null}
               </div>
             ))}
-            <button
-              // className="button add"
-              type="button"
-              onClick={(e: any) => addSkillfields(e)}
-            >
+            <button type="button" onClick={(e: any) => addSkillfields(e)}>
               Add
             </button>
             <br />
@@ -179,16 +166,16 @@ export default function InputForm({
                   <button
                     type="button"
                     className="modal-button"
-                    onClick={() => [setShowModal(true), setShowLoader(true)]}
+                    onClick={() => setShowModal(true)}
                     style={{
                       backgroundColor: "rgb(4,131,132)",
                     }}
                   >
                     Suggestion
                   </button>
-                  {showLoader ? (
+                  {/* {showLoader ? (
                     <img src={loading} className="loading" />
-                  ) : null}
+                  ) : null} */}
                 </div>
               </div>
               <>

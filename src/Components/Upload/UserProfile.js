@@ -7,7 +7,6 @@ import { UserContext } from "../../App";
 import resumebg from "../../styling/wallpaper.jpg";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
-import { Link } from "react-router-dom";
 
 function UserProfile() {
   const userId = useContext(UserContext);
@@ -55,31 +54,34 @@ function UserProfile() {
     }
   }, [userId, url]);
 
+  // let pdfstring = "";
+  // const sendDoc = async (e) => {
+  //   const accessToken = await getAccessTokenSilently({
+  //     audience: process.env.REACT_APP_AUDIENCE,
+  //     scope: process.env.REACT_APP_SCOPE,
+  //   });
+  //   e.preventDefault();
+  //   const input = document.getElementById("divToPrint");
+  //   html2canvas(input).then((canvas) => {
+  //     const pdf = new jsPDF();
+  //     pdf.addImage(canvas, "pdf", 25, 50, 180, 180);
+  //     pdfstring = pdf.output("datauristring");
+  //   });
+  //   console.log("pdfstring", pdfstring);
+  // };
+
   const printDocument = () => {
     const input = document.getElementById("divToPrint");
     html2canvas(input).then((canvas) => {
+      // const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF();
-      let pdfcontent = pdf.addImage(canvas, "pdf", 25, 50, 180, 180);
-      return pdfcontent;
+      pdf.addImage(canvas, "pdf", 25, 50, 175, 200);
+      pdf.save("card.pdf");
     });
   };
 
-  // const ButtonMailto = ({ mailto, label }) => {
-  //   return (
-  //     <Link
-  //       to="#"
-  //       onClick={(e) => {
-  //         window.location.href = mailto;
-  //         e.preventDefault();
-  //       }}
-  //     >
-  //       {label}
-  //     </Link>
-  //   );
-  // };
-
   return (
-    <div>
+    <div className="justify-center">
       <div
         className="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover"
         style={{
@@ -131,24 +133,17 @@ function UserProfile() {
                 Welcome to our app! Feel free to use the add your explore and
                 create your very first Professional Resume.
               </p>
-
-              <div className="pt-12 pb-8">
-                <button
-                  className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
-                  onClick={() => printDocument()}
-                >
-                  Print{" "}
-                </button>
-                {/* <ButtonMailto
-                  className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
-                  label="hi"
-                  mailto={`mailto:${userProfiles.email}`}
-                ></ButtonMailto> */}
-              </div>
             </div>
+            <div className="pt-12 pb-8"></div>
           </div>
         </div>
       </div>
+      <button
+        className="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full"
+        onClick={() => printDocument()}
+      >
+        Download{" "}
+      </button>
       <UpImage url={url} setUrl={setUrl} userProfiles={userProfiles} />
     </div>
   );
