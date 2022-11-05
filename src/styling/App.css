@@ -62,11 +62,6 @@
   margin: auto;
 }
 
-/* embed {
-  height: 100px;
-  width: 75px;
-} */
-
 .form-container {
   display: flex;
   justify-content: center;
@@ -157,14 +152,6 @@ label {
   margin: 4px;
 }
 
-/* .component-container {
-  background-color: #d1d5db;
-  width: 98vw;
-  height: 100vh;
-} */
-
-/* --border-raised-outer: inset -1px -1px #0a0a0a;
---border-raised-inner: inset -2px -2px #808080; */
 .add-template-button {
   box-sizing: border-box;
   border: none;
