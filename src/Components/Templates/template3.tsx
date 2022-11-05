@@ -8,15 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
-//Define the interface here
-interface Style {
-  data: {
-    font: string;
-    fontSize: number;
-    color: string;
-  };
-}
-
 function Template3({
   username,
   email,
@@ -37,7 +28,7 @@ function Template3({
   userBlurb,
 }: UserTypes) {
   const [toggle, setToggle] = useState(true);
-  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   const toggleClicked = () => {
     setToggle(false);
