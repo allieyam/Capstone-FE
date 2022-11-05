@@ -133,8 +133,8 @@ function Template2({
   const printDocument = () => {
     const input = document.getElementById("divToPrint")!;
     html2canvas(input).then((canvas) => {
-      const pdf = new jsPDF();
-      pdf.addImage(canvas, "pdf", 25, 50, 170, 320);
+      const pdf = new jsPDF("p", "mm", [297, 210]);
+      pdf.addImage(canvas, "pdf", 0, 0, 210, 250);
       pdf.save("resume.pdf");
     });
   };
