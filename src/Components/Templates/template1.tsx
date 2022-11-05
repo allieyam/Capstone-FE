@@ -1,23 +1,13 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { UserTypes } from "../types";
 import "../../styling/TemplateStyling/template1.css";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserContext } from "../../App";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import "98.css";
 import Sentiment from "../Sentiment/Sentiment";
 import SentimentPop from "../Sentiment/SentimentPop";
-
-//Define the interface here
-interface Style {
-  data: {
-    font: string;
-    fontSize: number;
-    color: string;
-  };
-}
 
 function Template1({
   username,

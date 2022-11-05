@@ -8,15 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
-//Define the interface here
-interface Style {
-  data: {
-    font: string;
-    fontSize: number;
-    color: string;
-  };
-}
-
 function Template3({
   username,
   email,
@@ -37,8 +28,7 @@ function Template3({
   userBlurb,
 }: UserTypes) {
   const [toggle, setToggle] = useState(true);
-  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
-  const [cvNo, setCvNo] = useState(0);
+  const { getAccessTokenSilently } = useAuth0();
 
   const toggleClicked = () => {
     setToggle(false);
@@ -72,59 +62,25 @@ function Template3({
       }
     );
     console.log("usersummary", userSummary);
-    if (cvId !== null) {
-      await axios
-        .put(
-          `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
-          {
-            summary: userSummary,
-            name: templateName,
-            templateId: templateChoice,
-            cvId: cvId,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        )
-        .then((res) => {
-          console.log("res in handlesubmit", res);
-        });
-    } else
-      await axios
-        .get(`${process.env.REACT_APP_API_SERVER}/${user}/cv`, {
+
+    await axios
+      .put(
+        `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
+        {
+          summary: userSummary,
+          name: templateName,
+          templateId: templateChoice,
+          cvId: cvId,
+        },
+        {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        })
-        .then((result) => {
-          const job = result.data.find(
-            (item: any) => item.name === templateName
-          );
-          return job;
-        })
-        .then((response) => {
-          console.log(response);
-          setCvNo(response.id);
-          axios.put(
-            `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
-            {
-              summary: userBlurb,
-              name: templateName,
-              templateId: templateChoice,
-              cvId: cvNo,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
-          );
-        })
-        .then((res) => {
-          console.log("res in handlesubmit", res);
-        });
+        }
+      )
+      .then((res) => {
+        console.log("res in handlesubmit", res);
+      });
   };
 
   const printDocument = () => {

@@ -88,15 +88,10 @@ function Template() {
     console.log("resId", cvId);
   };
 
+  const enabled = templateName.length > 0;
+
   return (
     <div className="template-big">
-      <input
-        className="text-lg appearance-none text-gray-700 border focus:border-gray-500"
-        type="text"
-        placeholder="name"
-        value={templateName}
-        onChange={handleChange}
-      ></input>
       <div className="template-ok">
         <div className="template-button-container">
           <motion.a
@@ -136,17 +131,36 @@ function Template() {
             </button>
           </motion.a>
         </div>
-        <Link
-          to="/add-template"
-          className="add-template-button"
-          state={{
-            templateChoice: templateChoice,
-            summary: userSummary,
-            templateName: templateName,
-          }}
-        >
-          Add a Template
-        </Link>
+        <br />
+        <br />
+        <input
+          className="text-lg appearance-none text-gray-700 border focus:border-gray-500 "
+          type="text"
+          placeholder="Name of your Résumé"
+          value={templateName}
+          onChange={handleChange}
+        ></input>
+        {enabled ? (
+          <Link
+            to="/add-template"
+            className="add-template-button"
+            state={{
+              templateChoice: templateChoice,
+              summary: userSummary,
+              templateName: templateName,
+            }}
+          >
+            Add a Template
+          </Link>
+        ) : (
+          <Link
+            to="/"
+            className="disabledCursor"
+            onClick={(event) => event.preventDefault()}
+          >
+            Add A Template
+          </Link>
+        )}
       </div>
     </div>
   );

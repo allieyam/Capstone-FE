@@ -144,9 +144,6 @@ function Template2({
       <div className="template">
         <div className="template2-container" id="divToPrint">
           <div className="template2-header-container">
-            {image ? (
-              <img src={image} alt="Avatar" className="rounded-full" />
-            ) : null}
             <div className="template2-name">
               {" "}
               {toggle ? (

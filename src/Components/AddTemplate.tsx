@@ -7,9 +7,6 @@ import Template2 from "./Templates/template2";
 import Template3 from "./Templates/template3";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserContext } from "../App";
-type TypeProp = {
-  choice: number;
-};
 
 function AddTemplate() {
   //useLocation to receive props
