@@ -38,7 +38,7 @@ function Template2({
   const [toggle, setToggle] = useState(true);
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
   const [getData, setGetData] = useState();
-  console.log("work in tempalte 2", work);
+  // console.log("work in tempalte 2", work);
 
   const toggleClicked = () => {
     setToggle(false);
@@ -48,10 +48,10 @@ function Template2({
     console.log("in use effect");
     if (work !== null) {
       if (work.length > 1 || work !== undefined) {
-        console.log("work is not null", work);
+        // console.log("work is not null", work);
         dataFunc();
       } else {
-        console.log("work in useeffect", work);
+        // console.log("work in useeffect", work);
         return;
       }
     } else console.log("nothing");
@@ -103,7 +103,7 @@ function Template2({
         },
       }
     );
-    console.log("usersummary", userSummary);
+    // console.log("usersummary", userSummary);
     await axios
       .put(
         `${process.env.REACT_APP_API_SERVER}/${user}/cv`,
@@ -120,14 +120,14 @@ function Template2({
         }
       )
       .then((res) => {
-        console.log("res in handlesubmit", res);
+        // console.log("res in handlesubmit", res);
       });
   };
 
   const dataFunc = async () => {
     const data = await Sentiment([work]);
     setGetData(data);
-    console.log("data in data func", data, work);
+    // console.log("data in data func", data, work);
   };
 
   const printDocument = () => {

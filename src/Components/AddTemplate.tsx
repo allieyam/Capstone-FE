@@ -77,9 +77,14 @@ function AddTemplate() {
       })
       .then((response) => {
         console.log(response);
-        if (response !== undefined) {
+        console.log(templateName);
+        setTemplateName(templateName);
+        // if (templateName === "") {
+        //   setTemplateName(response.name);
+        // } else setTemplateName(templateName);
+        if (response !== undefined && userBlurb !== undefined) {
           setUserBlurb(response.summary);
-          setTemplateName(response.name);
+
           console.log("resId", cvId);
           console.log(userSummary, userBlurb);
 
@@ -101,6 +106,7 @@ function AddTemplate() {
             setUserSummary(userSummary);
             console.log("run here 1");
           } else if (userBlurb !== "" && userSummary !== undefined) {
+            console.log(templateName);
             axios.put(
               `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
               {
@@ -116,14 +122,30 @@ function AddTemplate() {
               }
             );
             setUserSummary(userBlurb);
-            console.log("run here 2", userSummary);
+            console.log("run here 4", userSummary);
           } else if (userBlurb !== "" && userSummary === undefined) {
             setUserSummary(response.summary);
             console.log("run here 3");
           } else {
             setUserSummary("Please edit the summary");
-            console.log("run here 3");
+            console.log("run here 5");
           }
+        } else if (userBlurb !== undefined && response === undefined) {
+          axios.put(
+            `${process.env.REACT_APP_API_SERVER}/${userId}/cv`,
+            {
+              summary: userBlurb,
+              templateId: templateChoice,
+              name: templateName,
+              cvId: cvId,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+          setUserSummary(userBlurb);
         } else setUserSummary("Please edit the summary");
       });
   };
