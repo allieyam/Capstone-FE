@@ -3,20 +3,20 @@ import React, { useEffect } from "react";
 type Props = { results: any };
 
 export default function SentimentPop({ results }: Props) {
-  console.log("in sentiment pop", results, typeof results);
+  // console.log("in sentiment pop", results, typeof results);
 
   const passiveArray: any = [];
   const activeArray: any = [];
   const filterResults = () => {
-    console.log("in filter results");
+    // console.log("in filter results");
     if (results !== undefined)
       for (let element of results) {
-        console.log("element in for loop", element, element.result);
+        // console.log("element in for loop", element, element.result);
         if (element.result == "passive") {
-          console.log("is passive", element);
+          // console.log("is passive", element);
           passiveArray.push(element);
         } else if (element.result == "active") {
-          console.log("is active", element);
+          // console.log("is active", element);
           activeArray.push(element);
         } else {
           return;
@@ -24,7 +24,7 @@ export default function SentimentPop({ results }: Props) {
       }
   };
   filterResults();
-  console.log("passive array", passiveArray, "active array", activeArray);
+  // console.log("passive array", passiveArray, "active array", activeArray);
   return (
     <div className="sentiment-pop-container">
       <div className="sentiment-what">

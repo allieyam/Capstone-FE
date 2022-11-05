@@ -40,8 +40,8 @@ function Template() {
         },
       }
     );
-    setCvId(response.data[0].id);
-    console.log("resId", cvId);
+    setCvId(response.data.id);
+    // console.log("resId", cvId);
   };
   const handleClick2 = async (e: MouseEvent) => {
     setTemplateChoice(2);
@@ -62,7 +62,8 @@ function Template() {
         },
       }
     );
-    setCvId(response.data[0].id);
+    console.log(response);
+    setCvId(response.data.id);
     console.log("resId", cvId);
   };
   const handleClick3 = async (e: MouseEvent) => {
@@ -84,8 +85,8 @@ function Template() {
         },
       }
     );
-    setCvId(response.data[0].id);
-    console.log("resId", cvId);
+    setCvId(response.data.id);
+    // console.log("resId", cvId);
   };
 
   const enabled = templateName.length > 0;
@@ -148,6 +149,7 @@ function Template() {
               templateChoice: templateChoice,
               summary: userSummary,
               templateName: templateName,
+              cvId: cvId,
             }}
           >
             Add a Template
