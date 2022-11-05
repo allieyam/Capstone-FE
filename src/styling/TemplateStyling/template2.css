@@ -1,4 +1,5 @@
 .big-template-container {
+  /* margin-top: 300px; */
   display: flex;
   flex-direction: row;
   width: 80vw;
@@ -14,8 +15,8 @@
 }
 
 .template2-container {
-  width: 21cm;
-  height: 29.7cm;
+  width: 15cm;
+  height: 21.214285714286cm;
   background: white;
   display: flex;
   flex-direction: row;
