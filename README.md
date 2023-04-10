@@ -1,6 +1,6 @@
 # Project Name
 Team-based customizable Résumé builder application with sentences recommendation.
-> Live demo [_here_](https://potent-move-d6a.notion.site/Wee-Li-s-Portfolio-d1c1106ff8604b529648dc3fdde66201?p=3d7e821ab5c346b389327f21ad784d81&pm=c). <!-- If you have the project hosted somewhere, include the link here. -->
+> Live demo [_here_](https://file.notion.so/f/s/cf7becb1-fade-4360-b6c9-18d76a4d90b1/Wallie.mp4?id=53f7f802-30f7-494c-ad14-528723c72cea&table=block&spaceId=8c985e98-5fd2-4800-84a8-7038d7b9dc12&expirationTimestamp=1681187683719&signature=e7nvkU7fJRZwYO9BHKQWLFALd9VdBGnyLKeyMVWQHD8). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 * [General Info](#general-information)
