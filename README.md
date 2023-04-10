@@ -36,10 +36,10 @@ List the ready features here:
 
 ## Screenshots
 ![ss1](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9099a684-b0df-42b6-a6e4-835c163ed928%2Fss3.png?id=6f9001de-d837-4102-b223-bf46ada4164b&table=block&spaceId=8c985e98-5fd2-4800-84a8-7038d7b9dc12&width=2000&userId=&cache=v2)
-![ss2](https://drive.google.com/file/d/1FvuADXxmCB3-k8MOlP9T1W68rfAZa2PV/view?usp=share_link)
-![ss3](https://drive.google.com/file/d/1zr6ioK5XSTMzCccf_l0fYsMfjllfA140/view?usp=share_link)
-![ss4](https://drive.google.com/file/d/1oUbobXrlqvJkDjar-JaMO7CpIOAY5CBS/view?usp=share_link)
-![ss5](https://drive.google.com/file/d/1NvwP232fraE36-cLL1vuXWUbF-Xqz-ji/view?usp=share_link)
+![ss2](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F724a7bd2-5c32-483c-a153-3e2c0df8c0e1%2Fss2.png?id=912c45ba-e5e2-49e9-bf61-8cf9753f2881&table=block&spaceId=8c985e98-5fd2-4800-84a8-7038d7b9dc12&width=2000&userId=&cache=v2)
+![ss3](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb122deb0-e96e-469c-a99c-6236a2f8c92c%2Fss1.png?id=a3cf9a68-a5ea-43ca-88a9-0b4c0c5d87e0&table=block&spaceId=8c985e98-5fd2-4800-84a8-7038d7b9dc12&width=2000&userId=&cache=v2)
+![ss4]([https://drive.google.com/file/d/1oUbobXrlqvJkDjar-JaMO7CpIOAY5CBS/view?usp=share_link](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F5e985456-7f72-4997-9ca8-ec94de94faa6%2Fss4.png?id=486de8c5-e2f1-4fcc-8afa-cba9f2bed9c2&table=block&spaceId=8c985e98-5fd2-4800-84a8-7038d7b9dc12&width=2000&userId=&cache=v2))
+![ss5]([https://drive.google.com/file/d/1NvwP232fraE36-cLL1vuXWUbF-Xqz-ji/view?usp=share_link](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6ce447bb-840f-4a6c-b2cb-d6a35d2040b8%2Fss5.png?id=d17caa1f-4e3a-4e60-a3d0-9f744b4bc706&table=block&spaceId=8c985e98-5fd2-4800-84a8-7038d7b9dc12&width=2000&userId=&cache=v2))
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
