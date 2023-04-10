@@ -35,7 +35,7 @@ List the ready features here:
 
 
 ## Screenshots
-![ss1](https://www.notion.so/Photo-dump-b51087734560429aafbfa49ada7b3bdf)
+![ss1](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9099a684-b0df-42b6-a6e4-835c163ed928%2Fss3.png?id=6f9001de-d837-4102-b223-bf46ada4164b&table=block&spaceId=8c985e98-5fd2-4800-84a8-7038d7b9dc12&width=2000&userId=&cache=v2)
 ![ss2](https://drive.google.com/file/d/1FvuADXxmCB3-k8MOlP9T1W68rfAZa2PV/view?usp=share_link)
 ![ss3](https://drive.google.com/file/d/1zr6ioK5XSTMzCccf_l0fYsMfjllfA140/view?usp=share_link)
 ![ss4](https://drive.google.com/file/d/1oUbobXrlqvJkDjar-JaMO7CpIOAY5CBS/view?usp=share_link)
