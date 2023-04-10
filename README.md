@@ -1,6 +1,6 @@
 # Project Name
 Team-based customizable Résumé builder application with sentences recommendation.
-> Live demo [_here_]([https://www.example.com](https://potent-move-d6a.notion.site/Wee-Li-s-Portfolio-d1c1106ff8604b529648dc3fdde66201?p=3d7e821ab5c346b389327f21ad784d81&pm=c)). <!-- If you have the project hosted somewhere, include the link here. -->
+> Live demo [_here_](https://potent-move-d6a.notion.site/Wee-Li-s-Portfolio-d1c1106ff8604b529648dc3fdde66201?p=3d7e821ab5c346b389327f21ad784d81&pm=c). <!-- If you have the project hosted somewhere, include the link here. -->
 
 ## Table of Contents
 * [General Info](#general-information)
@@ -8,7 +8,6 @@ Team-based customizable Résumé builder application with sentences recommendati
 * [Features](#features)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
-* [Usage](#usage)
 * [Project Status](#project-status)
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
@@ -50,15 +49,6 @@ To run this project, install it locally using npm:
 $ npm install
 $ npm start
 ```
-
-
-
-## Usage
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
-
 
 ## Project Status
 Project is:  _complete_. 
