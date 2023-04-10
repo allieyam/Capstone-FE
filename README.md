@@ -1,46 +1,78 @@
-# Getting Started with Create React App
+# Project Name
+Team-based customizable Résumé builder application with sentences recommendation.
+> Live demo [_here_]([https://www.example.com](https://potent-move-d6a.notion.site/Wee-Li-s-Portfolio-d1c1106ff8604b529648dc3fdde66201?p=3d7e821ab5c346b389327f21ad784d81&pm=c)). <!-- If you have the project hosted somewhere, include the link here. -->
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+* [General Info](#general-information)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [Screenshots](#screenshots)
+* [Setup](#setup)
+* [Usage](#usage)
+* [Project Status](#project-status)
+* [Room for Improvement](#room-for-improvement)
+* [Acknowledgements](#acknowledgements)
+* [Contact](#contact)
+<!-- * [License](#license) -->
 
-## Available Scripts
 
-In the project directory, you can run:
+## General Information
+Wallie is a Resume builder app that will help user to create a professional resume using the templates. 
+There are 3 different templates the user can choose from. 
+The Resume is ready for use after the user has entered the details and selected the template!
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technologies Used
+![screenshot](https://potent-move-d6a.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb1974513-21bd-4388-8644-e8e1c9c34d1a%2Ftechstac.jpg?table=block&id=23cf7145-3e4d-4685-bed6-bff0152e5d93&spaceId=8c985e98-5fd2-4800-84a8-7038d7b9dc12&width=2000&userId=&cache=v2)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+## Features
+List the ready features here:
+- Login and Sign-up page
+- Options for selecting and customizing your resume
+- Complete in the templates with personal information
+- Add photos to the Resume
+- Download the Resume
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Screenshots
+![Example screenshot](./desktop/screenshot.png)
+<!-- If you have screenshots you'd like to share, include them here. -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Setup
+To run this project, install it locally using npm:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+$ npm install
+$ npm start
+```
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
+How does one go about using it?
+Provide various use cases and code examples here.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`write-your-code-here`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Project Status
+Project is:  _complete_. 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Acknowledgements
+Give credit here.
+- This project was inspired by...
+- This project was based on [this tutorial](https://www.example.com).
+- Many thanks to...
+
+
+## Contact
+Created by [@nateliew](https://potent-move-d6a.notion.site/Wee-Li-s-Portfolio-d1c1106ff8604b529648dc3fdde66201) - feel free to contact me!
+
+
+<!-- Optional -->
+<!-- ## License -->
+<!-- This project is open source and available under the [... License](). -->
+
