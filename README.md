@@ -10,7 +10,6 @@ Team-based customizable Résumé builder application with sentences recommendati
 * [Setup](#setup)
 * [Usage](#usage)
 * [Project Status](#project-status)
-* [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
 <!-- * [License](#license) -->
@@ -36,7 +35,11 @@ List the ready features here:
 
 
 ## Screenshots
-![Example screenshot](./desktop/screenshot.png)
+![ss1](https://drive.google.com/file/d/1PjEQ1URoJmAsb-EsFdjq0pqUQkV0yRbo/view?usp=share_link)
+![ss2](https://drive.google.com/file/d/1FvuADXxmCB3-k8MOlP9T1W68rfAZa2PV/view?usp=share_link)
+![ss3](https://drive.google.com/file/d/1zr6ioK5XSTMzCccf_l0fYsMfjllfA140/view?usp=share_link)
+![ss4](https://drive.google.com/file/d/1oUbobXrlqvJkDjar-JaMO7CpIOAY5CBS/view?usp=share_link)
+![ss5](https://drive.google.com/file/d/1NvwP232fraE36-cLL1vuXWUbF-Xqz-ji/view?usp=share_link)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
@@ -62,10 +65,7 @@ Project is:  _complete_.
 
 
 ## Acknowledgements
-Give credit here.
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+- Many thanks to @allieyam
 
 
 ## Contact
