@@ -54,14 +54,6 @@ $ npm start
 Project is:  _complete_. 
 
 
-## Acknowledgements
-- Many thanks to @allieyam
-
-
-## Contact
-Created by [@nateliew](https://potent-move-d6a.notion.site/Wee-Li-s-Portfolio-d1c1106ff8604b529648dc3fdde66201) - feel free to contact me!
-
-
 <!-- Optional -->
 <!-- ## License -->
 <!-- This project is open source and available under the [... License](). -->
